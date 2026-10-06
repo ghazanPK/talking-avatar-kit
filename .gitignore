@@ -1,0 +1,13 @@
+# Local data, recordings and model weights are never committed
+outputs/
+models/
+datasets/
+recordings/
+*.blend1
+
+# Tooling caches
+__pycache__/
+*.pyc
+node_modules/
+dist/
+.venv/
