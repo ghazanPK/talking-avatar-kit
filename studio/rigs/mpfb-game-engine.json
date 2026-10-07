@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "id": "mpfb-game-engine",
+  "description": "MPFB 2 'game_engine' skeleton as exported to glTF by Blender. Bone names map to the Unity humanoid names used as the canonical skeleton; poses written for this rig resolve through this table on other rigs.",
+  "bone_axis": "+y",
+  "mirror": {"left": "_l", "right": "_r"},
+  "canonical": {
+    "pelvis": "Hips", "spine_01": "Spine", "spine_02": "Chest", "spine_03": "UpperChest",
+    "neck_01": "Neck", "head": "Head",
+    "clavicle_l": "LeftShoulder", "upperarm_l": "LeftUpperArm", "lowerarm_l": "LeftLowerArm", "hand_l": "LeftHand",
+    "clavicle_r": "RightShoulder", "upperarm_r": "RightUpperArm", "lowerarm_r": "RightLowerArm", "hand_r": "RightHand",
+    "thumb_01_l": "LeftThumbProximal", "thumb_02_l": "LeftThumbIntermediate", "thumb_03_l": "LeftThumbDistal",
+    "index_01_l": "LeftIndexProximal", "index_02_l": "LeftIndexIntermediate", "index_03_l": "LeftIndexDistal",
+    "middle_01_l": "LeftMiddleProximal", "middle_02_l": "LeftMiddleIntermediate", "middle_03_l": "LeftMiddleDistal",
+    "ring_01_l": "LeftRingProximal", "ring_02_l": "LeftRingIntermediate", "ring_03_l": "LeftRingDistal",
+    "pinky_01_l": "LeftLittleProximal", "pinky_02_l": "LeftLittleIntermediate", "pinky_03_l": "LeftLittleDistal",
+    "thumb_01_r": "RightThumbProximal", "thumb_02_r": "RightThumbIntermediate", "thumb_03_r": "RightThumbDistal",
+    "index_01_r": "RightIndexProximal", "index_02_r": "RightIndexIntermediate", "index_03_r": "RightIndexDistal",
+    "middle_01_r": "RightMiddleProximal", "middle_02_r": "RightMiddleIntermediate", "middle_03_r": "RightMiddleDistal",
+    "ring_01_r": "RightRingProximal", "ring_02_r": "RightRingIntermediate", "ring_03_r": "RightRingDistal",
+    "pinky_01_r": "RightLittleProximal", "pinky_02_r": "RightLittleIntermediate", "pinky_03_r": "RightLittleDistal",
+    "thigh_l": "LeftUpperLeg", "calf_l": "LeftLowerLeg", "foot_l": "LeftFoot", "ball_l": "LeftToes",
+    "thigh_r": "RightUpperLeg", "calf_r": "RightLowerLeg", "foot_r": "RightFoot", "ball_r": "RightToes"
+  },
+  "hands": {
+    "hand_l": {
+      "side": "left",
+      "fingers": {
+        "thumb": ["thumb_01_l", "thumb_02_l", "thumb_03_l"],
+        "index": ["index_01_l", "index_02_l", "index_03_l"],
+        "middle": ["middle_01_l", "middle_02_l", "middle_03_l"],
+        "ring": ["ring_01_l", "ring_02_l", "ring_03_l"],
+        "pinky": ["pinky_01_l", "pinky_02_l", "pinky_03_l"]
+      }
+    },
+    "hand_r": {
+      "side": "right",
+      "fingers": {
+        "thumb": ["thumb_01_r", "thumb_02_r", "thumb_03_r"],
+        "index": ["index_01_r", "index_02_r", "index_03_r"],
+        "middle": ["middle_01_r", "middle_02_r", "middle_03_r"],
+        "ring": ["ring_01_r", "ring_02_r", "ring_03_r"],
+        "pinky": ["pinky_01_r", "pinky_02_r", "pinky_03_r"]
+      }
+    }
+  }
+}

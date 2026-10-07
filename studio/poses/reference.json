@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "id": "reference",
+  "rig": "mpfb-game-engine",
+  "description": "Reference pose sheet for before/after comparison of skinning and bind pose. Directions are in the avatar frame (+x avatar's left, +y up, +z the avatar's forward). Angles are degrees. Operations run in order from the bind pose; 'mirror': true repeats an operation for the right side (bone suffix _l to _r, x mirrored).",
+  "operations": {
+    "aim": "Swing a bone so it points along 'dir'.",
+    "palm": "Twist forearm (60%) and hand so the palm normal of 'hand' turns toward 'normal'.",
+    "flat": "Straighten the listed fingers of 'hand' (removes bind curl, keeps spread).",
+    "curl": "Bend each listed finger toward the palm by 'angles' (proximal, intermediate, distal).",
+    "spread": "Rotate proximal finger bones away from the middle finger by 'angles' per finger.",
+    "reach": "Bend the bone 'chain' (CCD) so its tip reaches 'target' (a bone, optionally its tip, offset along the palm normal of 'hand').",
+    "rotate": "Rotate a bone about a world 'axis' by 'angle'."
+  },
+  "cameras": ["full", "upper", "face", "hand_l", "hand_r"],
+  "poses": [
+    {
+      "id": "bind",
+      "label": "Bind pose",
+      "ops": []
+    },
+    {
+      "id": "a-pose",
+      "label": "Relaxed A-pose",
+      "ops": [
+        {"op": "aim", "bone": "upperarm_l", "dir": [0.42, -0.9, 0.04], "mirror": true},
+        {"op": "aim", "bone": "lowerarm_l", "dir": [0.28, -0.93, 0.2], "mirror": true},
+        {"op": "palm", "hand": "hand_l", "normal": [-0.95, 0, -0.3], "mirror": true},
+        {"op": "curl", "hand": "hand_l", "fingers": ["index", "middle", "ring", "pinky"], "angles": [12, 18, 10], "mirror": true}
+      ]
+    },
+    {
+      "id": "arms-raised",
+      "label": "Arms raised",
+      "ops": [
+        {"op": "aim", "bone": "upperarm_l", "dir": [0.3, 0.95, 0.04], "mirror": true},
+        {"op": "aim", "bone": "lowerarm_l", "dir": [0.12, 0.99, 0.04], "mirror": true},
+        {"op": "palm", "hand": "hand_l", "normal": [-1, 0, 0], "mirror": true}
+      ]
+    },
+    {
+      "id": "elbows-90",
+      "label": "Elbows bent 90 degrees",
+      "ops": [
+        {"op": "aim", "bone": "upperarm_l", "dir": [0.16, -0.99, 0.0], "mirror": true},
+        {"op": "aim", "bone": "lowerarm_l", "dir": [0.05, 0.0, 1.0], "mirror": true},
+        {"op": "palm", "hand": "hand_l", "normal": [-1, 0, 0], "mirror": true}
+      ]
+    },
+    {
+      "id": "open-hands",
+      "label": "Open hands",
+      "ops": [
+        {"op": "aim", "bone": "upperarm_l", "dir": [0.6, -0.78, 0.18], "mirror": true},
+        {"op": "aim", "bone": "lowerarm_l", "dir": [0.12, 0.98, 0.15], "mirror": true},
+        {"op": "palm", "hand": "hand_l", "normal": [0, 0, 1], "mirror": true},
+        {"op": "flat", "hand": "hand_l", "fingers": ["index", "middle", "ring", "pinky"], "mirror": true},
+        {"op": "spread", "hand": "hand_l", "angles": {"index": 8, "ring": 7, "pinky": 15}, "mirror": true}
+      ]
+    },
+    {
+      "id": "fists",
+      "label": "Fists",
+      "ops": [
+        {"op": "aim", "bone": "upperarm_l", "dir": [0.6, -0.78, 0.18], "mirror": true},
+        {"op": "aim", "bone": "lowerarm_l", "dir": [0.12, 0.98, 0.15], "mirror": true},
+        {"op": "palm", "hand": "hand_l", "normal": [0, 0, 1], "mirror": true},
+        {"op": "curl", "hand": "hand_l", "fingers": ["index", "middle", "ring", "pinky"], "angles": [85, 100, 65], "mirror": true},
+        {"op": "reach", "hand": "hand_l", "chain": ["thumb_01_l", "thumb_02_l", "thumb_03_l"], "target": {"bone": "middle_02_l", "palm": 0.02}, "mirror": true}
+      ]
+    },
+    {
+      "id": "pointing",
+      "label": "Pointing",
+      "ops": [
+        {"op": "aim", "bone": "upperarm_l", "dir": [0.95, -0.25, 0.2], "mirror": true},
+        {"op": "aim", "bone": "lowerarm_l", "dir": [0.92, -0.05, 0.38], "mirror": true},
+        {"op": "palm", "hand": "hand_l", "normal": [0, -1, 0], "mirror": true},
+        {"op": "flat", "hand": "hand_l", "fingers": ["index"], "mirror": true},
+        {"op": "curl", "hand": "hand_l", "fingers": ["middle", "ring", "pinky"], "angles": [85, 100, 65], "mirror": true},
+        {"op": "reach", "hand": "hand_l", "chain": ["thumb_01_l", "thumb_02_l", "thumb_03_l"], "target": {"bone": "middle_02_l", "palm": 0.02}, "mirror": true}
+      ]
+    },
+    {
+      "id": "thumb-opposition",
+      "label": "Thumb opposition",
+      "ops": [
+        {"op": "aim", "bone": "upperarm_l", "dir": [0.6, -0.78, 0.18], "mirror": true},
+        {"op": "aim", "bone": "lowerarm_l", "dir": [0.12, 0.98, 0.15], "mirror": true},
+        {"op": "palm", "hand": "hand_l", "normal": [0, 0, 1], "mirror": true},
+        {"op": "flat", "hand": "hand_l", "fingers": ["index", "middle", "ring"], "mirror": true},
+        {"op": "curl", "hand": "hand_l", "fingers": ["pinky"], "angles": [55, 45, 20], "mirror": true},
+        {"op": "reach", "hand": "hand_l", "chain": ["thumb_01_l", "thumb_02_l", "thumb_03_l"], "target": {"bone": "pinky_03_l", "tip": true, "palm": 0.008}, "mirror": true}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avatar Studio</title>
+  <link rel="stylesheet" href="studio.css">
+  <script type="importmap">
+    {"imports": {"three": "./vendor/three/three.module.js", "three/addons/": "./vendor/three/addons/"}}
+  </script>
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">talking-avatar-kit <span>Studio</span></div>
+    <nav class="views" aria-label="Views">
+      <button type="button" data-view="viewer" class="active">Viewer</button>
+      <button type="button" data-view="renders">Renders</button>
+      <button type="button" data-view="settings">Settings</button>
+    </nav>
+    <div class="status" id="status" role="status"></div>
+  </header>
+
+  <div class="shell">
+    <aside class="library" aria-label="Avatar library">
+      <div class="panel-head">
+        <h2>Avatars</h2>
+        <div class="head-actions">
+          <button type="button" id="refresh-avatars" title="Rescan avatar folders">Rescan</button>
+          <button type="button" id="build-all" title="Build every avatar from its spec.json">Build all</button>
+        </div>
+      </div>
+      <ul id="avatar-list" class="avatar-list"></ul>
+    </aside>
+
+    <main>
+      <section id="view-viewer" class="view active">
+        <div class="viewport-wrap">
+          <div id="viewport" class="viewport"></div>
+          <div class="overlay top-left" id="camera-bar" role="toolbar" aria-label="Camera presets"></div>
+          <div class="overlay top-right view-options">
+            <label>Tone <select id="tone-mapping"></select></label>
+            <label>Exposure <input id="exposure" type="range" min="0.3" max="2.5" step="0.05" value="1"></label>
+            <label>Background <select id="background"></select></label>
+            <label class="check"><input id="skeleton" type="checkbox"> Skeleton</label>
+            <label class="check"><input id="grid" type="checkbox"> Grid</label>
+          </div>
+          <div class="overlay bottom-left info" id="avatar-info"></div>
+          <div class="overlay center message" id="viewport-message" hidden></div>
+        </div>
+        <aside class="inspector" aria-label="Inspector">
+          <nav class="tabs" role="tablist">
+            <button type="button" role="tab" data-tab="morphs" class="active">Morphs</button>
+            <button type="button" role="tab" data-tab="pose">Pose</button>
+            <button type="button" role="tab" data-tab="capture">Capture</button>
+          </nav>
+          <div class="tab active" data-tab="morphs">
+            <div class="row">
+              <input id="morph-filter" type="search" placeholder="Filter morph targets" aria-label="Filter morph targets">
+              <button type="button" id="morph-reset">Reset</button>
+            </div>
+            <div id="morph-list" class="morph-list"></div>
+          </div>
+          <div class="tab" data-tab="pose">
+            <p class="hint">Reference pose sheet <code>poses/reference.json</code>. Poses are applied on top of the bind pose.</p>
+            <div id="pose-list" class="pose-list"></div>
+            <p class="hint" id="pose-report"></p>
+          </div>
+          <div class="tab" data-tab="capture">
+            <p class="hint">Renders every pose from every camera preset at a fixed size and saves PNGs to <code>build/renders/&lt;slug&gt;/&lt;label&gt;/</code>.</p>
+            <label class="field">Label <input id="capture-label" type="text" value="reference" pattern="[A-Za-z0-9][A-Za-z0-9._-]*"></label>
+            <label class="field">Size
+              <select id="capture-size">
+                <option value="512">512 x 512</option>
+                <option value="1024" selected>1024 x 1024</option>
+                <option value="2048">2048 x 2048</option>
+              </select>
+            </label>
+            <button type="button" id="capture-run" class="primary">Capture reference set</button>
+            <div class="progress" id="capture-progress" hidden><div></div></div>
+            <p class="hint" id="capture-result"></p>
+          </div>
+        </aside>
+      </section>
+
+      <section id="view-renders" class="view">
+        <div class="renders-head">
+          <label>Set <select id="render-set-a"></select></label>
+          <label>Compare with <select id="render-set-b"></select></label>
+          <button type="button" id="renders-refresh">Refresh</button>
+        </div>
+        <div id="render-grid" class="render-grid"></div>
+      </section>
+
+      <section id="view-settings" class="view">
+        <div class="settings-grid">
+          <form id="settings-form" class="card">
+            <h2>Settings</h2>
+            <p class="hint">Stored outside the repository: <code id="settings-path"></code></p>
+            <label class="field">Blender executable
+              <input name="blender_path" type="text" placeholder="Empty: BLENDER variable, PATH, standard install folders">
+            </label>
+            <label class="field">MPFB profile folder
+              <input name="mpfb_profile_dir" type="text" placeholder="Empty: .tak/blender-user in the repository">
+            </label>
+            <label class="field">Asset pack folder
+              <input name="packs_dir" type="text" placeholder="Empty: download from the official sources">
+            </label>
+            <label class="field">Extra avatar folders (one per line)
+              <textarea name="extra_avatar_dirs" rows="3" placeholder="Folders with .glb files or &lt;slug&gt;/ folders, e.g. build/dev-avatars"></textarea>
+            </label>
+            <div class="row">
+              <button type="submit" class="primary">Save</button>
+              <span class="hint" id="settings-saved"></span>
+            </div>
+          </form>
+          <div class="card">
+            <div class="panel-head">
+              <h2>Tool check</h2>
+              <div class="head-actions">
+                <button type="button" id="check-run">Run check</button>
+                <button type="button" id="setup-run" title="python -m tak setup">Run setup</button>
+              </div>
+            </div>
+            <div id="check-result" class="check-result"><p class="hint">Press Run check.</p></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="joblog collapsed" id="joblog">
+    <div class="joblog-head">
+      <button type="button" id="joblog-toggle" aria-expanded="false">Jobs</button>
+      <span id="joblog-summary" class="hint"></span>
+      <button type="button" id="job-cancel" hidden>Cancel job</button>
+    </div>
+    <div class="joblog-body">
+      <ul id="job-list" class="job-list"></ul>
+      <pre id="job-lines" class="job-lines"></pre>
+    </div>
+  </footer>
+</body>
+</html>

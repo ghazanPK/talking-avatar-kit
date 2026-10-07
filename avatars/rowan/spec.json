@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "slug": "rowan",
+  "name": "Rowan",
+  "description": "Middle-aged African man in a slate work suit",
+  "body": {
+    "gender": 1.0,
+    "age": 0.73,
+    "muscle": 0.57,
+    "weight": 0.58,
+    "height": 0.62,
+    "proportions": 0.47,
+    "cupsize": 0.5,
+    "firmness": 0.5,
+    "race": {"african": 1.0, "asian": 0.0, "caucasian": 0.0}
+  },
+  "rig": "game_engine",
+  "skin": {
+    "material": "middleage_african_male",
+    "roughness": 0.58,
+    "specular": 0.36,
+    "detail_normal_strength": 0.3
+  },
+  "eyes": {"mesh": "high-poly", "material": "brown"},
+  "eyebrows": {"asset": "eyebrow004"},
+  "eyelashes": {"asset": "eyelashes01"},
+  "teeth": {"asset": "teeth_shape01"},
+  "tongue": {"asset": "tongue01"},
+  "hair": {"asset": "short04", "roughness": 0.62},
+  "clothes": [
+    {"asset": "male_worksuit01", "slot": "outfit", "base_color": [0.17, 0.23, 0.29], "roughness": 0.78, "keep_texture": false},
+    {"asset": "shoes03", "slot": "shoes", "roughness": 0.45}
+  ],
+  "face": {"arkit": true, "visemes": "meta"},
+  "textures": {"default_max": 1024, "skin_max": 2048, "eyes_max": 512},
+  "checks": {"height_m": [1.85, 2.05], "max_bytes": 10000000}
+}

@@ -11,3 +11,10 @@ __pycache__/
 node_modules/
 dist/
 .venv/
+
+# Avatar pipeline: Blender profile with MPFB and asset packs, downloads, build work files
+.tak/
+
+# Studio: reference renders and local test avatars
+build/
+.pytest_cache/

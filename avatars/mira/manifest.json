@@ -1,0 +1,626 @@
+{
+  "schema_version": 1,
+  "slug": "mira",
+  "name": "Mira",
+  "description": "Short young adult Asian woman in a muted teal casual suit",
+  "license": "CC-BY-4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "credit": "talking-avatar-kit by Ghazanfar Ali",
+  "attribution": "Mira avatar, talking-avatar-kit by Ghazanfar Ali, licensed under CC BY 4.0. Built with MPFB from CC0 MakeHuman assets.",
+  "file": "mira.glb",
+  "format": "glTF 2.0 binary (GLB)",
+  "bytes": 5462124,
+  "sha256": "28876500464ce66fb872101d3943a299addede79bd700ffe1fa641438cf7e995",
+  "preview": "preview.png",
+  "units": "metres, +Y up, character faces +Z",
+  "height_m": 1.424,
+  "generator": {
+    "pipeline": "talking-avatar-kit tak build",
+    "blender": "5.2.2 LTS",
+    "mpfb": "2.0.17",
+    "gltf_exporter": "5.2.40",
+    "makehuman_packs_sha256": {
+      "makehuman_system_assets": "b542127a8e25547c7c29c19f2d1d2adb9a664c80396ecd694095dbc8028a0107",
+      "visemes02": "a69ab6fb95ddd5f56f70acc7e859f5f9c6ae613c527d577ea1571eff2183d29e",
+      "faceunits01": "d113107bd7eb59f3af4df6fc0ec29bfcc593f496d0b336aec14f086a80ce7146"
+    }
+  },
+  "source_assets": {
+    "license": "CC0-1.0 (MakeHuman Community)",
+    "names": {
+      "skin": "young_asian_female",
+      "eyes": "high-poly / brown",
+      "eyebrows": "eyebrow007",
+      "eyelashes": "eyelashes02",
+      "teeth": "teeth_shape02",
+      "tongue": "tongue01",
+      "hair": "ponytail01",
+      "outfit": "female_casualsuit01",
+      "shoes": "shoes02"
+    }
+  },
+  "rig": {
+    "type": "MPFB game_engine",
+    "rest_pose": "A-pose",
+    "bone_count": 53,
+    "bones": [
+      "Root",
+      "pelvis",
+      "spine_01",
+      "spine_02",
+      "spine_03",
+      "clavicle_l",
+      "upperarm_l",
+      "lowerarm_l",
+      "hand_l",
+      "index_01_l",
+      "index_02_l",
+      "index_03_l",
+      "middle_01_l",
+      "middle_02_l",
+      "middle_03_l",
+      "pinky_01_l",
+      "pinky_02_l",
+      "pinky_03_l",
+      "ring_01_l",
+      "ring_02_l",
+      "ring_03_l",
+      "thumb_01_l",
+      "thumb_02_l",
+      "thumb_03_l",
+      "clavicle_r",
+      "upperarm_r",
+      "lowerarm_r",
+      "hand_r",
+      "index_01_r",
+      "index_02_r",
+      "index_03_r",
+      "middle_01_r",
+      "middle_02_r",
+      "middle_03_r",
+      "pinky_01_r",
+      "pinky_02_r",
+      "pinky_03_r",
+      "ring_01_r",
+      "ring_02_r",
+      "ring_03_r",
+      "thumb_01_r",
+      "thumb_02_r",
+      "thumb_03_r",
+      "neck_01",
+      "head",
+      "thigh_l",
+      "calf_l",
+      "foot_l",
+      "ball_l",
+      "thigh_r",
+      "calf_r",
+      "foot_r",
+      "ball_r"
+    ],
+    "max_influences": 4,
+    "weight_fixes": [
+      "clothes_outfit",
+      "elbow_l",
+      "elbow_r",
+      "knuckles_l",
+      "knuckles_r",
+      "shoulder_l",
+      "shoulder_r",
+      "thumb_base_l",
+      "thumb_base_r",
+      "thumb_middle_l",
+      "thumb_middle_r",
+      "tucked_shoe_vertices",
+      "vertices_changed",
+      "wrist_l",
+      "wrist_r"
+    ]
+  },
+  "morph_targets": {
+    "count": 67,
+    "arkit": [
+      "eyeBlinkLeft",
+      "eyeLookDownLeft",
+      "eyeLookInLeft",
+      "eyeLookOutLeft",
+      "eyeLookUpLeft",
+      "eyeSquintLeft",
+      "eyeWideLeft",
+      "eyeBlinkRight",
+      "eyeLookDownRight",
+      "eyeLookInRight",
+      "eyeLookOutRight",
+      "eyeLookUpRight",
+      "eyeSquintRight",
+      "eyeWideRight",
+      "jawForward",
+      "jawLeft",
+      "jawRight",
+      "jawOpen",
+      "mouthClose",
+      "mouthFunnel",
+      "mouthPucker",
+      "mouthLeft",
+      "mouthRight",
+      "mouthSmileLeft",
+      "mouthSmileRight",
+      "mouthFrownLeft",
+      "mouthFrownRight",
+      "mouthDimpleLeft",
+      "mouthDimpleRight",
+      "mouthStretchLeft",
+      "mouthStretchRight",
+      "mouthRollLower",
+      "mouthRollUpper",
+      "mouthShrugLower",
+      "mouthShrugUpper",
+      "mouthPressLeft",
+      "mouthPressRight",
+      "mouthLowerDownLeft",
+      "mouthLowerDownRight",
+      "mouthUpperUpLeft",
+      "mouthUpperUpRight",
+      "browDownLeft",
+      "browDownRight",
+      "browInnerUp",
+      "browOuterUpLeft",
+      "browOuterUpRight",
+      "cheekPuff",
+      "cheekSquintLeft",
+      "cheekSquintRight",
+      "noseSneerLeft",
+      "noseSneerRight",
+      "tongueOut"
+    ],
+    "visemes": [
+      "viseme_sil",
+      "viseme_PP",
+      "viseme_FF",
+      "viseme_TH",
+      "viseme_DD",
+      "viseme_kk",
+      "viseme_CH",
+      "viseme_SS",
+      "viseme_nn",
+      "viseme_RR",
+      "viseme_aa",
+      "viseme_E",
+      "viseme_I",
+      "viseme_O",
+      "viseme_U"
+    ],
+    "meshes": {
+      "Body": [
+        "viseme_aa",
+        "viseme_CH",
+        "viseme_DD",
+        "viseme_E",
+        "viseme_FF",
+        "viseme_I",
+        "viseme_kk",
+        "viseme_nn",
+        "viseme_O",
+        "viseme_PP",
+        "viseme_RR",
+        "viseme_sil",
+        "viseme_SS",
+        "viseme_TH",
+        "viseme_U",
+        "browDownLeft",
+        "browDownRight",
+        "browInnerUp",
+        "browOuterUpLeft",
+        "browOuterUpRight",
+        "cheekPuff",
+        "cheekSquintLeft",
+        "cheekSquintRight",
+        "eyeBlinkLeft",
+        "eyeBlinkRight",
+        "eyeLookDownLeft",
+        "eyeLookDownRight",
+        "eyeLookInLeft",
+        "eyeLookInRight",
+        "eyeLookOutLeft",
+        "eyeLookOutRight",
+        "eyeLookUpLeft",
+        "eyeLookUpRight",
+        "eyeSquintLeft",
+        "eyeSquintRight",
+        "eyeWideLeft",
+        "eyeWideRight",
+        "jawForward",
+        "jawLeft",
+        "jawOpen",
+        "jawRight",
+        "mouthClose",
+        "mouthDimpleLeft",
+        "mouthDimpleRight",
+        "mouthFrownLeft",
+        "mouthFrownRight",
+        "mouthFunnel",
+        "mouthLeft",
+        "mouthLowerDownLeft",
+        "mouthLowerDownRight",
+        "mouthPressLeft",
+        "mouthPressRight",
+        "mouthPucker",
+        "mouthRight",
+        "mouthRollLower",
+        "mouthRollUpper",
+        "mouthShrugLower",
+        "mouthShrugUpper",
+        "mouthSmileLeft",
+        "mouthSmileRight",
+        "mouthStretchLeft",
+        "mouthStretchRight",
+        "mouthUpperUpLeft",
+        "mouthUpperUpRight",
+        "noseSneerLeft",
+        "noseSneerRight",
+        "tongueOut"
+      ],
+      "Eyebrows": [
+        "browDownLeft",
+        "browDownRight",
+        "browInnerUp",
+        "browOuterUpLeft",
+        "browOuterUpRight",
+        "cheekSquintLeft",
+        "cheekSquintRight",
+        "eyeBlinkLeft",
+        "eyeBlinkRight",
+        "eyeLookDownLeft",
+        "eyeLookDownRight",
+        "eyeLookUpLeft",
+        "eyeLookUpRight",
+        "eyeWideLeft",
+        "eyeWideRight",
+        "noseSneerLeft",
+        "noseSneerRight"
+      ],
+      "Eyelashes": [
+        "browDownLeft",
+        "browDownRight",
+        "cheekPuff",
+        "cheekSquintLeft",
+        "cheekSquintRight",
+        "eyeBlinkLeft",
+        "eyeBlinkRight",
+        "eyeLookDownLeft",
+        "eyeLookDownRight",
+        "eyeLookInLeft",
+        "eyeLookInRight",
+        "eyeLookOutLeft",
+        "eyeLookOutRight",
+        "eyeLookUpLeft",
+        "eyeLookUpRight",
+        "eyeSquintLeft",
+        "eyeSquintRight",
+        "eyeWideLeft",
+        "eyeWideRight",
+        "mouthSmileLeft",
+        "mouthSmileRight",
+        "mouthStretchLeft",
+        "mouthStretchRight",
+        "noseSneerLeft",
+        "noseSneerRight",
+        "viseme_E",
+        "viseme_SS"
+      ],
+      "Eyes": [
+        "eyeLookDownLeft",
+        "eyeLookDownRight",
+        "eyeLookInLeft",
+        "eyeLookInRight",
+        "eyeLookOutLeft",
+        "eyeLookOutRight",
+        "eyeLookUpLeft",
+        "eyeLookUpRight"
+      ],
+      "Teeth": [
+        "jawForward",
+        "jawLeft",
+        "jawOpen",
+        "jawRight",
+        "viseme_aa",
+        "viseme_DD",
+        "viseme_E",
+        "viseme_kk",
+        "viseme_nn",
+        "viseme_O",
+        "viseme_PP",
+        "viseme_TH"
+      ],
+      "Tongue": [
+        "jawForward",
+        "jawLeft",
+        "jawOpen",
+        "jawRight",
+        "tongueOut",
+        "viseme_aa",
+        "viseme_DD",
+        "viseme_E",
+        "viseme_kk",
+        "viseme_nn",
+        "viseme_O",
+        "viseme_PP",
+        "viseme_TH"
+      ]
+    }
+  },
+  "materials": [
+    {
+      "slot": "skin",
+      "meshes": [
+        "Body"
+      ],
+      "alpha_mode": "OPAQUE",
+      "double_sided": false,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": true,
+      "extensions": [
+        "KHR_materials_ior",
+        "KHR_materials_sheen",
+        "KHR_materials_specular"
+      ]
+    },
+    {
+      "slot": "eyebrows",
+      "meshes": [
+        "Eyebrows"
+      ],
+      "alpha_mode": "BLEND",
+      "double_sided": false,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": false,
+      "extensions": [
+        "KHR_materials_ior",
+        "KHR_materials_specular"
+      ]
+    },
+    {
+      "slot": "eyelashes",
+      "meshes": [
+        "Eyelashes"
+      ],
+      "alpha_mode": "BLEND",
+      "double_sided": true,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": false,
+      "extensions": [
+        "KHR_materials_ior",
+        "KHR_materials_specular"
+      ]
+    },
+    {
+      "slot": "eyes",
+      "meshes": [
+        "Eyes"
+      ],
+      "alpha_mode": "OPAQUE",
+      "double_sided": false,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": false,
+      "extensions": [
+        "KHR_materials_clearcoat"
+      ]
+    },
+    {
+      "slot": "hair",
+      "meshes": [
+        "Hair"
+      ],
+      "alpha_mode": "MASK",
+      "double_sided": true,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": false,
+      "extensions": [
+        "KHR_materials_ior",
+        "KHR_materials_sheen",
+        "KHR_materials_specular"
+      ]
+    },
+    {
+      "slot": "outfit",
+      "meshes": [
+        "Outfit"
+      ],
+      "alpha_mode": "OPAQUE",
+      "double_sided": true,
+      "base_color_texture": false,
+      "base_color_factor": [
+        0.18000000715255737,
+        0.41999998688697815,
+        0.41999998688697815,
+        1
+      ],
+      "normal_texture": true,
+      "extensions": [
+        "KHR_materials_ior",
+        "KHR_materials_specular"
+      ]
+    },
+    {
+      "slot": "shoes",
+      "meshes": [
+        "Shoes"
+      ],
+      "alpha_mode": "OPAQUE",
+      "double_sided": true,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": false,
+      "extensions": [
+        "KHR_materials_ior",
+        "KHR_materials_specular"
+      ]
+    },
+    {
+      "slot": "teeth",
+      "meshes": [
+        "Teeth"
+      ],
+      "alpha_mode": "OPAQUE",
+      "double_sided": false,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": false,
+      "extensions": [
+        "KHR_materials_ior",
+        "KHR_materials_specular"
+      ]
+    },
+    {
+      "slot": "tongue",
+      "meshes": [
+        "Tongue"
+      ],
+      "alpha_mode": "OPAQUE",
+      "double_sided": false,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": false,
+      "extensions": [
+        "KHR_materials_ior",
+        "KHR_materials_specular"
+      ]
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Body",
+      "vertices": 9247,
+      "morph_targets": 67
+    },
+    {
+      "name": "Eyebrows",
+      "vertices": 124,
+      "morph_targets": 17
+    },
+    {
+      "name": "Eyelashes",
+      "vertices": 250,
+      "morph_targets": 27
+    },
+    {
+      "name": "Eyes",
+      "vertices": 552,
+      "morph_targets": 8
+    },
+    {
+      "name": "Hair",
+      "vertices": 3902,
+      "morph_targets": 0
+    },
+    {
+      "name": "Outfit",
+      "vertices": 2377,
+      "morph_targets": 0
+    },
+    {
+      "name": "Shoes",
+      "vertices": 1738,
+      "morph_targets": 0
+    },
+    {
+      "name": "Teeth",
+      "vertices": 4494,
+      "morph_targets": 12
+    },
+    {
+      "name": "Tongue",
+      "vertices": 253,
+      "morph_targets": 13
+    }
+  ],
+  "textures": [
+    {
+      "name": "skin_detail_normal",
+      "mime_type": "image/jpeg",
+      "bytes": 108664
+    },
+    {
+      "name": "young_lightskinned_female_diffuse3",
+      "mime_type": "image/jpeg",
+      "bytes": 206633
+    },
+    {
+      "name": "eyebrow007",
+      "mime_type": "image/png",
+      "bytes": 25928
+    },
+    {
+      "name": "eyelashes02",
+      "mime_type": "image/png",
+      "bytes": 161544
+    },
+    {
+      "name": "brown_eye",
+      "mime_type": "image/jpeg",
+      "bytes": 11829
+    },
+    {
+      "name": "ponytail01_diffuse",
+      "mime_type": "image/png",
+      "bytes": 1608301
+    },
+    {
+      "name": "female_casualsuit01_normal",
+      "mime_type": "image/jpeg",
+      "bytes": 38278
+    },
+    {
+      "name": "shoes02_diffuse",
+      "mime_type": "image/jpeg",
+      "bytes": 105250
+    },
+    {
+      "name": "teeth",
+      "mime_type": "image/jpeg",
+      "bytes": 80799
+    },
+    {
+      "name": "tongue01_diffuse",
+      "mime_type": "image/jpeg",
+      "bytes": 38769
+    }
+  ],
+  "extensions_used": [
+    "KHR_materials_clearcoat",
+    "KHR_materials_ior",
+    "KHR_materials_sheen",
+    "KHR_materials_specular",
+    "KHR_texture_transform"
+  ],
+  "validation": {
+    "ok": true,
+    "checks": [
+      "glb",
+      "file_size",
+      "skeleton",
+      "morph_targets",
+      "morph_names",
+      "morph_meshes",
+      "morph_defaults",
+      "skinned_meshes",
+      "skin_weights",
+      "materials",
+      "alpha_modes",
+      "embedded_textures",
+      "height",
+      "import",
+      "bones",
+      "body_shape_keys",
+      "weighted_vertices",
+      "materials",
+      "height",
+      "posed_bounds"
+    ]
+  }
+}

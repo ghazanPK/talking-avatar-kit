@@ -12,12 +12,12 @@ Approach:
 ## Milestones
 
 ### M1: Studio and polished starter avatars
-- [ ] Studio shell: avatar library, 3D viewport, job log, settings for local tools
-- [ ] One-command setup and launch; setup checks for Blender and other tools
+- [x] Studio shell: avatar library, 3D viewport, job log, settings for local tools
+- [x] One-command setup and launch; setup checks for Blender and other tools
 - [ ] Two starter avatars with polished skin, eyes, teeth and basic hair
 - [ ] Bind-pose and skin-weight fixes for shoulders, elbows, hands and thumbs
-- [ ] Viewport lighting, tone mapping, shadows, camera presets
-- [ ] Reference renders with fixed motion and cameras for before/after comparison
+- [x] Viewport lighting, tone mapping, shadows, camera presets
+- [x] Reference renders with fixed motion and cameras for before/after comparison
 
 ### M2: Rig and motion
 - [ ] Canonical humanoid skeleton and rest pose

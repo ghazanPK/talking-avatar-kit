@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "slug": "mira",
+  "name": "Mira",
+  "description": "Short young adult Asian woman in a muted teal casual suit",
+  "body": {
+    "gender": 0.0,
+    "age": 0.40,
+    "muscle": 0.42,
+    "weight": 0.46,
+    "height": 0.50,
+    "proportions": 0.54,
+    "cupsize": 0.40,
+    "firmness": 0.68,
+    "race": {"african": 0.0, "asian": 1.0, "caucasian": 0.0}
+  },
+  "rig": "game_engine",
+  "skin": {
+    "material": "young_asian_female",
+    "roughness": 0.55,
+    "specular": 0.38,
+    "detail_normal_strength": 0.22,
+    "tint": [0.96, 0.9, 0.85]
+  },
+  "eyes": {"mesh": "high-poly", "material": "brown"},
+  "eyebrows": {"asset": "eyebrow007"},
+  "eyelashes": {"asset": "eyelashes02"},
+  "teeth": {"asset": "teeth_shape02"},
+  "tongue": {"asset": "tongue01"},
+  "hair": {"asset": "ponytail01", "roughness": 0.58},
+  "clothes": [
+    {"asset": "female_casualsuit01", "slot": "outfit", "base_color": [0.18, 0.42, 0.42], "roughness": 0.8, "keep_texture": false},
+    {"asset": "shoes02", "slot": "shoes", "roughness": 0.45}
+  ],
+  "face": {"arkit": true, "visemes": "meta"},
+  "textures": {"default_max": 1024, "skin_max": 2048, "eyes_max": 512},
+  "checks": {"height_m": [1.35, 1.52], "max_bytes": 10000000}
+}
