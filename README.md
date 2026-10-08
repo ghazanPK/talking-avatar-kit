@@ -4,7 +4,7 @@ Prepared virtual-human avatars for the web: rigged, with facial blendshapes, bui
 
 ## Current state
 
-- **Avatars:** two prepared avatars, Rowan and Mira, in `avatars/<slug>/` (GLB, manifest, spec, preview). Each has a 53-bone humanoid rig (A-pose), the 52 ARKit facial blendshapes and 15 viseme targets, and physically based materials.
+- **Avatars:** two prepared avatars, Rowan and Mira, in `avatars/<slug>/` (GLB, manifest, spec, preview). Each has a 53-bone humanoid rig (A-pose), the 52 ARKit facial blendshapes and 15 viseme targets, and physically based materials. Skin uses CC0 MakeHuman community skins with baked region detail (pores, wrinkles, palms, lips, colour and roughness variation) from tiles in `assets/detail/skin/`.
 - **Studio:** a local web app to browse avatars, view them under tone-mapped lighting with camera presets, drive blendshapes, apply test poses, capture reference renders, run build jobs and check installed tools.
 - **Pipeline:** headless Blender builds avatars from `spec.json` with MPFB, then validates the result (skeleton, blendshapes, materials, height, size, Blender re-import).
 
@@ -35,6 +35,7 @@ Details: [docs/studio.md](docs/studio.md) and [docs/avatars.md](docs/avatars.md)
 | Path | Purpose |
 |---|---|
 | `avatars/` | Prepared avatars and their specifications |
+| `assets/detail/skin/` | Seamless skin detail tiles used by the build, with provenance |
 | `studio/` | Studio web app (plain ES modules; three.js vendored in `studio/vendor/three/`) |
 | `tak/` | Python package: CLI, local Studio server, jobs, settings, tool discovery |
 | `tak/pipeline/` | Setup, build and validation commands |

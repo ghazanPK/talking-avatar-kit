@@ -9,8 +9,8 @@
   "attribution": "Mira avatar, talking-avatar-kit by Ghazanfar Ali, licensed under CC BY 4.0. Built with MPFB from CC0 MakeHuman assets.",
   "file": "mira.glb",
   "format": "glTF 2.0 binary (GLB)",
-  "bytes": 5462124,
-  "sha256": "28876500464ce66fb872101d3943a299addede79bd700ffe1fa641438cf7e995",
+  "bytes": 6003988,
+  "sha256": "cdce07973da05f46799749ca9b75fea8b808bbc59717eb9c5c038157cd6ab7ba",
   "preview": "preview.png",
   "units": "metres, +Y up, character faces +Z",
   "height_m": 1.424,
@@ -22,7 +22,8 @@
     "makehuman_packs_sha256": {
       "makehuman_system_assets": "b542127a8e25547c7c29c19f2d1d2adb9a664c80396ecd694095dbc8028a0107",
       "visemes02": "a69ab6fb95ddd5f56f70acc7e859f5f9c6ae613c527d577ea1571eff2183d29e",
-      "faceunits01": "d113107bd7eb59f3af4df6fc0ec29bfcc593f496d0b336aec14f086a80ce7146"
+      "faceunits01": "d113107bd7eb59f3af4df6fc0ec29bfcc593f496d0b336aec14f086a80ce7146",
+      "skins02": "1613f1ef3afca53094511d26620ed7cf1d2dedc29ed3d384d60bdebe250698ae"
     }
   },
   "source_assets": {
@@ -37,6 +38,80 @@
       "hair": "ponytail01",
       "outfit": "female_casualsuit01",
       "shoes": "shoes02"
+    }
+  },
+  "skin": {
+    "material": "young_asian_female",
+    "asset": {
+      "name": "young_asian_female",
+      "pack": "makehuman_system_assets",
+      "author": "makehuman_system",
+      "license": "CC0",
+      "source": "http://www.makehumancommunity.org"
+    },
+    "maps": {
+      "detail": {
+        "face_pores_height": {
+          "source": "assets/detail/skin/face_pores_height.png",
+          "strength": 0.1,
+          "tile_mm": 100,
+          "repair_seams": false,
+          "repeats": 9,
+          "sha256": "f2f91f89d525494f7660dd89a522aa0a3ae6c7f435609aa020a5e5ac4f2b2eef"
+        },
+        "body_skin_height": {
+          "source": "assets/detail/skin/body_skin_height.png",
+          "strength": 0.09,
+          "tile_mm": 140,
+          "repair_seams": false,
+          "repeats": 7,
+          "sha256": "9ada17bf8070fe7c1a87c1f1f1d58b41f2f9ec55543d5ebda61fb286ef709266"
+        },
+        "palm_skin_height": {
+          "source": "assets/detail/skin/palm_skin_height.png",
+          "strength": 0.2,
+          "tile_mm": 60,
+          "repair_seams": false,
+          "repeats": 21,
+          "sha256": "3b99aafb52d3f4dab73d005a3a10c8548177b5dc9f3c1054adc7fcbd65f6d950"
+        },
+        "lips_height": {
+          "source": "assets/detail/skin/lips_height.png",
+          "strength": 0.2,
+          "tile_mm": 30,
+          "rotate": 90,
+          "repair_seams": false,
+          "repeats": 29,
+          "sha256": "f76b37cf29d2ac1ad5eb2f75fed2e71ff4c04dd7c354e963f1fba0aac07fd5f1"
+        },
+        "color_variation": {
+          "source": "assets/detail/skin/skin_color_variation_light.png",
+          "strength": 0.06,
+          "tile_mm": 80,
+          "repair_seams": false,
+          "repeats": 11,
+          "sha256": "b42149dc7e20468ea26af7af1f1ac401f36a8ecdbd7fbc8a27d6e56ce5acc8f7"
+        },
+        "roughness_variation": {
+          "source": "assets/detail/skin/roughness_variation.png",
+          "strength": 0.05,
+          "tile_mm": 80,
+          "repair_seams": false,
+          "repeats": 11,
+          "sha256": "191b261672079565aceca9760d1f702d02e64f19d2105861eabd29e3d18de6d2"
+        }
+      },
+      "uv_mm_per_unit": {
+        "face": 915.4,
+        "body": 1017.1,
+        "palms": 1257.6,
+        "lips": 861.5
+      },
+      "normal_size": 2048,
+      "albedo_size": 2048,
+      "roughness_size": 1024,
+      "base_maps": [],
+      "eye_distance_m": 0.054
     }
   },
   "rig": {
@@ -541,14 +616,19 @@
   ],
   "textures": [
     {
-      "name": "skin_detail_normal",
+      "name": "mira_skin_normal",
       "mime_type": "image/jpeg",
-      "bytes": 108664
+      "bytes": 609790
     },
     {
-      "name": "young_lightskinned_female_diffuse3",
+      "name": "mira_skin",
       "mime_type": "image/jpeg",
-      "bytes": 206633
+      "bytes": 213373
+    },
+    {
+      "name": "mira_skin_roughness",
+      "mime_type": "image/jpeg",
+      "bytes": 34045
     },
     {
       "name": "eyebrow007",
@@ -595,8 +675,7 @@
     "KHR_materials_clearcoat",
     "KHR_materials_ior",
     "KHR_materials_sheen",
-    "KHR_materials_specular",
-    "KHR_texture_transform"
+    "KHR_materials_specular"
   ],
   "validation": {
     "ok": true,

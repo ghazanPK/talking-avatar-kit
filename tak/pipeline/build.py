@@ -12,7 +12,7 @@ from pathlib import Path
 from . import AVATARS_DIR, BLENDER_SCRIPTS, STATE_DIR
 from .manifest import build_manifest, write_manifest
 from .progress import Progress
-from .setup import installed_repo, read_record
+from .setup import asset_metadata, installed_repo, read_record
 from .spec import load_spec
 from .tools import PathArg, ToolError, find_blender, parse_marker, profile_dir, run_blender
 from .validate import validate_glb
@@ -81,7 +81,8 @@ def build_one(slug: str, blender: str, *, validate: bool = True, preview: bool =
     elif (out / "preview.png").is_file():
         preview_name = "preview.png"
     manifest = build_manifest(spec, out / glb.name, build=result, install=read_record(),
-                              preview=preview_name, validation=validation)
+                              preview=preview_name, validation=validation,
+                              skin_asset=asset_metadata(spec["skin"]["material"], profile_dir()))
     write_manifest(out / "manifest.json", manifest)
     progress.emit("publish", f"wrote {_rel(out / glb.name)} ({manifest['bytes']} bytes) and manifest.json", 1.0)
     return {"ok": True, "slug": slug, "glb": _rel(out / glb.name), "manifest": _rel(out / "manifest.json"),

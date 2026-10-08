@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from . import CREDIT, LICENSE_ID, MPFB_VERSION
+from . import CREDIT, KIT_ROOT, LICENSE_ID, MPFB_VERSION
 from .glb import Glb
 from .names import ARKIT, VISEMES
 
@@ -42,9 +42,25 @@ def material_summary(gltf: dict) -> list[dict]:
     return out
 
 
+def skin_summary(spec: dict, build: dict, skin_asset: dict | None, root: Path = KIT_ROOT) -> dict:
+    """Skin source asset (author, licence) and the baked maps' inputs (detail slots, sizes)."""
+    maps = dict(build.get("skin") or {})
+    detail = {}
+    for slot, settings in (maps.get("detail") or {}).items():
+        entry = dict(settings)
+        source = entry.get("source", "procedural")
+        if source != "procedural":
+            path = root / source
+            entry["sha256"] = sha256_bytes(path.read_bytes()) if path.is_file() else None
+        detail[slot] = entry
+    if detail:
+        maps["detail"] = detail
+    return {"material": spec["skin"]["material"], "asset": skin_asset, "maps": maps or None}
+
+
 def build_manifest(spec: dict, glb_path: Path, *, build: dict | None = None,
                    install: dict | None = None, preview: str | None = "preview.png",
-                   validation: dict | None = None) -> dict[str, Any]:
+                   validation: dict | None = None, skin_asset: dict | None = None) -> dict[str, Any]:
     """Assemble the manifest dictionary (pure function; no Blender needed)."""
     data = Path(glb_path).read_bytes()
     glb = Glb(data)
@@ -104,6 +120,7 @@ def build_manifest(spec: dict, glb_path: Path, *, build: dict | None = None,
             "makehuman_packs_sha256": packs,
         },
         "source_assets": {"license": "CC0-1.0 (MakeHuman Community)", "names": assets},
+        "skin": skin_summary(spec, build, skin_asset),
         "rig": {
             "type": "MPFB game_engine",
             "rest_pose": "A-pose",

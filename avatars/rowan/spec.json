@@ -16,10 +16,20 @@
   },
   "rig": "game_engine",
   "skin": {
-    "material": "middleage_african_male",
+    "material": "mindfront_skin_male_african_middleage",
     "roughness": 0.58,
-    "specular": 0.36,
-    "detail_normal_strength": 0.3
+    "specular": 0.4,
+    "base_normal_strength": 1.0,
+    "specular_map_strength": 0.25,
+    "detail": {
+      "face_pores_height": {"source": "assets/detail/skin/face_pores_height.png", "tile_mm": 100, "strength": 0.15, "repair_seams": false},
+      "body_skin_height": {"source": "assets/detail/skin/body_skin_height.png", "tile_mm": 140, "strength": 0.12, "repair_seams": false},
+      "palm_skin_height": {"source": "assets/detail/skin/palm_skin_height.png", "tile_mm": 60, "strength": 0.2, "repair_seams": false},
+      "lips_height": {"source": "assets/detail/skin/lips_height.png", "tile_mm": 30, "strength": 0.2, "rotate": 90, "repair_seams": false},
+      "color_variation": {"source": "assets/detail/skin/skin_color_variation_dark.png", "tile_mm": 80, "strength": 0.06, "repair_seams": false},
+      "roughness_variation": {"source": "assets/detail/skin/roughness_variation.png", "tile_mm": 80, "strength": 0.05, "repair_seams": false}
+    },
+    "regions": {"cheeks": {"amount": 0.5}, "nose": {"amount": 0.5}, "ears": {"amount": 0.5}}
   },
   "eyes": {"mesh": "high-poly", "material": "brown"},
   "eyebrows": {"asset": "eyebrow004"},
@@ -32,6 +42,6 @@
     {"asset": "shoes03", "slot": "shoes", "roughness": 0.45}
   ],
   "face": {"arkit": true, "visemes": "meta"},
-  "textures": {"default_max": 1024, "skin_max": 2048, "eyes_max": 512},
+  "textures": {"default_max": 1024, "skin_max": 2048, "skin_normal_max": 2048, "skin_roughness_max": 1024, "eyes_max": 512},
   "checks": {"height_m": [1.85, 2.05], "max_bytes": 10000000}
 }

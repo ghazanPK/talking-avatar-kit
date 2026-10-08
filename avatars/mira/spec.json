@@ -19,8 +19,17 @@
     "material": "young_asian_female",
     "roughness": 0.55,
     "specular": 0.38,
-    "detail_normal_strength": 0.22,
-    "tint": [0.96, 0.9, 0.85]
+    "tint": [0.96, 0.9, 0.85],
+    "sheen_color": [0.16, 0.07, 0.05],
+    "detail": {
+      "face_pores_height": {"source": "assets/detail/skin/face_pores_height.png", "tile_mm": 100, "strength": 0.1, "repair_seams": false},
+      "body_skin_height": {"source": "assets/detail/skin/body_skin_height.png", "tile_mm": 140, "strength": 0.09, "repair_seams": false},
+      "palm_skin_height": {"source": "assets/detail/skin/palm_skin_height.png", "tile_mm": 60, "strength": 0.2, "repair_seams": false},
+      "lips_height": {"source": "assets/detail/skin/lips_height.png", "tile_mm": 30, "strength": 0.2, "rotate": 90, "repair_seams": false},
+      "color_variation": {"source": "assets/detail/skin/skin_color_variation_light.png", "tile_mm": 80, "strength": 0.06, "repair_seams": false},
+      "roughness_variation": {"source": "assets/detail/skin/roughness_variation.png", "tile_mm": 80, "strength": 0.05, "repair_seams": false}
+    },
+    "regions": {"nose": {"detail": 1.4}, "cheeks": {"amount": 0.8}}
   },
   "eyes": {"mesh": "high-poly", "material": "brown"},
   "eyebrows": {"asset": "eyebrow007"},
@@ -33,6 +42,6 @@
     {"asset": "shoes02", "slot": "shoes", "roughness": 0.45}
   ],
   "face": {"arkit": true, "visemes": "meta"},
-  "textures": {"default_max": 1024, "skin_max": 2048, "eyes_max": 512},
+  "textures": {"default_max": 1024, "skin_max": 2048, "skin_normal_max": 2048, "skin_roughness_max": 1024, "eyes_max": 512},
   "checks": {"height_m": [1.35, 1.52], "max_bytes": 10000000}
 }

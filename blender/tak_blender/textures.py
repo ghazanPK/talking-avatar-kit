@@ -105,37 +105,3 @@ def tune_eye(img, sclera_level=0.86, iris_tint=(1.0, 0.64, 0.38), iris_gain=1.25
     arr[..., 3] = 1.0
     store(img, arr)
     return img
-
-def _band_noise(size, rng, low, high):
-    """Tileable band-limited noise in [-1, 1] (frequencies in cycles per tile)."""
-    white = rng.standard_normal((size, size)).astype(np.float32)
-    spec = np.fft.rfft2(white)
-    fy = np.fft.fftfreq(size)[:, None] * size
-    fx = np.fft.rfftfreq(size)[None, :] * size
-    radius = np.sqrt(fx * fx + fy * fy)
-    mask = np.exp(-((np.log(np.maximum(radius, 1e-3)) - np.log(np.sqrt(low * high))) ** 2)
-                  / (2 * (np.log(high / low) / 2.5) ** 2))
-    out = np.fft.irfft2(spec * mask, s=(size, size)).astype(np.float32)
-    return out / (np.abs(out).max() + 1e-6)
-
-
-def make_skin_detail_normal(name, size=512, seed=7, strength=1.0):
-    """A tileable tangent-space normal map of fine skin pores and creases (authored, CC BY 4.0)."""
-    rng = np.random.default_rng(seed)
-    pores = _band_noise(size, rng, 40, 90)
-    pores = -np.clip(pores, 0, None) ** 1.5  # sparse small pits
-    fine = _band_noise(size, rng, 90, 200) * 0.35
-    creases = _band_noise(size, rng, 12, 30)
-    creases = -np.abs(creases) * 0.25  # thin valleys between skin cells
-    height = (pores + fine + creases) * strength
-    gx = (np.roll(height, -1, 1) - np.roll(height, 1, 1)) * 0.5
-    gy = (np.roll(height, -1, 0) - np.roll(height, 1, 0)) * 0.5
-    scale = 6.0
-    normal = np.stack([-gx * scale, -gy * scale, np.ones_like(height)], axis=-1)
-    normal /= np.linalg.norm(normal, axis=-1, keepdims=True)
-    rgba = np.concatenate([normal * 0.5 + 0.5, np.ones((size, size, 1), dtype=np.float32)], axis=-1)
-    img = bpy.data.images.new(name, size, size, alpha=False, float_buffer=False)
-    img.colorspace_settings.name = "Non-Color"
-    store(img, rgba)
-    img.pack()
-    return img

@@ -2,12 +2,14 @@
 
 Every material is a single Principled BSDF whose inputs map onto glTF 2.0 and
 the KHR_materials_* extensions three.js supports (specular, ior, clearcoat,
-sheen), plus KHR_texture_transform for the tiled skin detail normal map.
+sheen). The skin's albedo, normal and roughness maps are baked by skinmaps.py.
 """
+from pathlib import Path
+
 import bpy
 import numpy as np
 
-from . import textures
+from . import skinmaps, textures
 
 
 def _image_of(obj):
@@ -115,26 +117,55 @@ def _specular(bsdf, level, ior=1.45):
     bsdf.inputs["Specular IOR Level"].default_value = level
 
 
-def skin(obj, slug, cfg, limits, work):
-    image = textures.limit_size(textures.own_copy(_image_of(obj), f"{slug}_skin"), limits["skin_max"])
-    if "tint" in cfg:
-        textures.scale_rgb(image, cfg["tint"][:3])
-    textures.set_alpha(image, 1.0)
-    image.pack()
+def _mhmat_textures(mhmat_path):
+    """Texture file names of a MakeHuman material (diffuseTexture, normalmapTexture, ...)."""
+    out = {}
+    for line in Path(mhmat_path).read_text(encoding="utf-8", errors="replace").splitlines():
+        parts = line.split()
+        if len(parts) == 2 and parts[0].endswith("Texture"):
+            out[parts[0]] = Path(mhmat_path).with_name(parts[1])
+    return out
+
+
+def _load_data_image(path):
+    image = bpy.data.images.load(str(path), check_existing=False)
+    image.colorspace_settings.name = "Non-Color"
+    return image
+
+
+def skin(obj, slug, cfg, limits, mpfb, kit_root, dump_dir=None):
+    """Skin with baked albedo, normal and roughness maps (see skinmaps.py)."""
+    maps = _mhmat_textures(mpfb.find("skins", cfg["material"], True))
+    normal = _load_data_image(maps["normalmapTexture"]) if maps.get("normalmapTexture", Path()).is_file() else None
+    spec = _load_data_image(maps["specularTexture"]) if maps.get("specularTexture", Path()).is_file() else None
+    albedo_size = limits["skin_max"]
+    normal_size = limits.get("skin_normal_max", albedo_size)
+    rough_size = limits.get("skin_roughness_max", 1024)
+    albedo, normal_img, rough, report = skinmaps.bake(
+        obj, slug, cfg, _image_of(obj), kit_root, normal_image=normal, spec_image=spec,
+        albedo_size=albedo_size, normal_size=normal_size, roughness_size=rough_size, dump_dir=dump_dir)
+    for image in (normal, spec):
+        if image is not None:
+            bpy.data.images.remove(image)
+    report["base_maps"] = sorted(k for k, v in (("normal", normal), ("specular", spec)) if v is not None)
+
     mat, bsdf = _new_material("skin")
-    _base_color(mat, bsdf, image)
-    bsdf.inputs["Roughness"].default_value = cfg.get("roughness", 0.58)
-    _specular(bsdf, cfg.get("specular", 0.36), 1.4)
-    detail = work.get("skin_detail")
-    if detail is None:
-        detail = work["skin_detail"] = textures.make_skin_detail_normal("skin_detail_normal")
-    _normal_map(mat, bsdf, detail, cfg.get("detail_normal_strength", 0.3), tiling=48.0)
+    _base_color(mat, bsdf, albedo)
+    nodes, links = mat.node_tree.nodes, mat.node_tree.links
+    rough_tex = _tex(mat, rough, (-500, -50), non_color=True)
+    split = nodes.new("ShaderNodeSeparateColor")
+    split.location = (-200, -50)
+    links.new(rough_tex.outputs["Color"], split.inputs["Color"])
+    links.new(split.outputs["Green"], bsdf.inputs["Roughness"])
+    _normal_map(mat, bsdf, normal_img, 1.0)
+    _specular(bsdf, cfg.get("specular", 0.4), 1.4)
     # Faint sheen for the soft rim of fine facial hair (KHR_materials_sheen).
-    bsdf.inputs["Sheen Weight"].default_value = 1.0
-    bsdf.inputs["Sheen Roughness"].default_value = 0.55
-    bsdf.inputs["Sheen Tint"].default_value = (0.03, 0.025, 0.022, 1.0)
+    sheen = cfg.get("sheen", 1.0)
+    bsdf.inputs["Sheen Weight"].default_value = sheen
+    bsdf.inputs["Sheen Roughness"].default_value = 0.5
+    bsdf.inputs["Sheen Tint"].default_value = tuple(cfg.get("sheen_color", (0.03, 0.025, 0.022))) + (1.0,)
     _assign(obj, mat)
-    return mat
+    return mat, report
 
 
 def eyes(obj, slug, mpfb, cfg, limits):

@@ -18,7 +18,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bpy  # noqa: E402
 
 from tak_blender import emit, enable_mpfb, mpfb_version, progress, script_args  # noqa: E402
-from tak_blender import export, materials, render, rigfix, scene, weights  # noqa: E402
+from tak_blender import export, materials, render, rigfix, scene, skinmaps, weights  # noqa: E402
+
+KIT_ROOT = Path(os.path.dirname(os.path.abspath(__file__))).parent
 
 # Proxies that receive the face targets through their MHCLO binding.
 FACE_PROXIES = ("eyes", "eyebrows", "eyelashes", "teeth", "tongue")
@@ -33,10 +35,11 @@ def parse():
     parser.add_argument("--out-dir", required=True)
     parser.add_argument("--preview", action="store_true")
     parser.add_argument("--blend", help="also save the working .blend here")
+    parser.add_argument("--dump-maps", help="also write the skin's region masks and baked maps as PNG here")
     return parser.parse_args(script_args())
 
 
-def build(spec, out_dir, want_preview, blend_path):
+def build(spec, out_dir, want_preview, blend_path, dump_maps=None):
     slug = spec["slug"]
     limits = spec["textures"]
     progress("blender", "enabling MPFB", 0.02)
@@ -81,6 +84,9 @@ def build(spec, out_dir, want_preview, blend_path):
     progress("face", "face targets transferred to " + ", ".join(
         f"{k} ({len(v)})" for k, v in morphs.items()), 0.45)
 
+    progress("regions", "computing skin regions (face, lips, palms, cheeks, ...)", 0.48)
+    regions = skinmaps.compute_regions(base)
+
     progress("masks", "baking clothing masks and removing helper geometry", 0.5)
     scene.remove_helpers(mpfb, base)
     # Drop every shape key that is not a face target (the basis stays first).
@@ -90,9 +96,11 @@ def build(spec, out_dir, want_preview, blend_path):
             base.shape_key_remove(key)
     morphs = {"Body": [k.name for k in base.data.shape_keys.key_blocks][1:], **morphs}
 
-    progress("materials", "building skin, eye, mouth, hair and clothing materials", 0.58)
-    work = {}
-    materials.skin(base, slug, spec["skin"], limits, work)
+    progress("materials", "baking skin albedo, normal and roughness maps", 0.53)
+    _, skin_report = materials.skin(base, slug, spec["skin"], limits, mpfb, KIT_ROOT, dump_dir=dump_maps)
+    skinmaps.clear_regions(base)
+    skin_report.update(regions)
+    progress("materials", "building eye, mouth, hair and clothing materials", 0.62)
     materials.eyes(parts["eyes"], slug, mpfb, spec["eyes"], limits)
     materials.card(parts["eyebrows"], slug, "eyebrows", limits, darken=0.9, roughness=0.65)
     materials.card(parts["eyelashes"], slug, "eyelashes", limits, darken=0.55, roughness=0.6)
@@ -143,7 +151,7 @@ def build(spec, out_dir, want_preview, blend_path):
     emit("result", slug=slug, glb=glb.name, bones=bone_names, morphs=morphs,
          materials=[m["name"] for m in gltf.get("materials", [])],
          meshes=[o.name for o in meshes], height_m=round(height, 4), versions=versions,
-         weight_fixes=fixes, preview="preview.png" if want_preview else None)
+         weight_fixes=fixes, skin=skin_report, preview="preview.png" if want_preview else None)
     progress("blender", "build finished", 0.9)
 
 
@@ -161,7 +169,7 @@ def _exporter_version():
 def main():
     args = parse()
     spec = json.loads(Path(args.spec).read_text(encoding="utf-8"))
-    build(spec, Path(args.out_dir), args.preview, args.blend)
+    build(spec, Path(args.out_dir), args.preview, args.blend, args.dump_maps)
 
 
 main()

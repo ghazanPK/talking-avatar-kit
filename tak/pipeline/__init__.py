@@ -42,6 +42,13 @@ PACKS = {
         "sha256": "d113107bd7eb59f3af4df6fc0ec29bfcc593f496d0b336aec14f086a80ce7146",
         "page": "https://static.makehumancommunity.org/assets/assetpacks/faceunits01.html",
     },
+    # Community skins (natural male skins, each CC0; authors listed in the pack's packs/skins02.json).
+    "skins02": {
+        "file": "skins02_cc0.zip",
+        "url": "https://files2.makehumancommunity.org/asset_packs/skins02/skins02_cc0.zip",
+        "sha256": "1613f1ef3afca53094511d26620ed7cf1d2dedc29ed3d384d60bdebe250698ae",
+        "page": "https://static.makehumancommunity.org/assets/assetpacks/skins02.html",
+    },
 }
 
 LICENSE_ID = "CC-BY-4.0"

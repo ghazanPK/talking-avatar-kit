@@ -48,6 +48,22 @@ def installed_repo(profile: Path) -> str | None:
     return None
 
 
+def asset_metadata(name: str, profile: Path | None = None) -> dict | None:
+    """Author, licence and source of an installed MakeHuman asset, from its pack's packs/*.json."""
+    profile = profile or PROFILE_DIR
+    repo = installed_repo(profile) or MPFB_REPO
+    for pack in sorted((user_data_dir(profile, repo) / "packs").glob("*.json")):
+        try:
+            entries = json.loads(pack.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        entry = entries.get(name) if isinstance(entries, dict) else None
+        if isinstance(entry, dict):
+            return {"name": name, "pack": pack.stem, "author": entry.get("author"),
+                    "license": entry.get("license"), "source": entry.get("source")}
+    return None
+
+
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:

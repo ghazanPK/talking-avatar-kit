@@ -18,6 +18,13 @@ RACES = ("african", "asian", "caucasian")
 RIGS = ("game_engine",)
 SLOTS = ("outfit", "top", "bottom", "shoes", "hat", "accessory")
 EYE_MESHES = ("high-poly", "low-poly")
+# Skin detail slots and regions (blender/tak_blender/skinmaps.py bakes them).
+SKIN_DETAIL_SLOTS = ("face_pores_height", "body_skin_height", "palm_skin_height", "lips_height",
+                     "color_variation", "roughness_variation")
+SKIN_REGIONS = ("face", "lips", "palms", "body", "cheeks", "nose", "forehead", "chin", "under_eye",
+                "ears", "knuckles", "elbows", "knees", "nails")
+SOURCE_RE = re.compile(r"^[A-Za-z0-9_\-]+(/[A-Za-z0-9_.\-]+)*\.(png|jpg|jpeg)$", re.IGNORECASE)
+TEXTURE_SIZES = (256, 512, 1024, 2048, 4096)
 
 
 class SpecError(ValueError):
@@ -49,6 +56,74 @@ def _asset(errors: list[str], where: str, block: Any, extra: dict[str, str] | No
                     errors.append(f"{where}.{key} must be 3 or 4 numbers between 0 and 1")
             elif kind == "bool" and not isinstance(block[key], bool):
                 errors.append(f"{where}.{key} must be true or false")
+
+
+def _range(errors: list[str], where: str, value: Any, lo: float, hi: float) -> None:
+    if not _num(value) or not lo <= value <= hi:
+        errors.append(f"{where} must be a number between {lo:g} and {hi:g}")
+
+
+def _rgb(errors: list[str], where: str, value: Any, hi: float = 1.0) -> None:
+    if not (isinstance(value, list) and len(value) == 3 and all(_num(v) and 0 <= v <= hi for v in value)):
+        errors.append(f"{where} must be 3 numbers between 0 and {hi:g}")
+
+
+def _skin_detail(errors: list[str], detail: Any) -> None:
+    if not isinstance(detail, dict):
+        errors.append("skin.detail must be an object of detail slots")
+        return
+    for slot, block in detail.items():
+        where = f"skin.detail.{slot}"
+        if slot not in SKIN_DETAIL_SLOTS:
+            errors.append(f"{where} is not a detail slot ({', '.join(SKIN_DETAIL_SLOTS)})")
+            continue
+        if not isinstance(block, dict):
+            errors.append(f"{where} must be an object")
+            continue
+        source = block.get("source", "procedural")
+        if source != "procedural" and not (isinstance(source, str) and SOURCE_RE.match(source)
+                                           and ".." not in source.split("/")):
+            errors.append(f"{where}.source must be \"procedural\" or a repository-relative PNG/JPEG path")
+        if "strength" in block:
+            _range(errors, f"{where}.strength", block["strength"], -2.0, 2.0)
+        if "tile_mm" in block:
+            _range(errors, f"{where}.tile_mm", block["tile_mm"], 1.0, 2000.0)
+        if "tiling" in block and not (isinstance(block["tiling"], int) and 1 <= block["tiling"] <= 512):
+            errors.append(f"{where}.tiling must be an integer between 1 and 512")
+        if "seed" in block and not isinstance(block["seed"], int):
+            errors.append(f"{where}.seed must be an integer")
+        if "rotate" in block and block["rotate"] not in (0, 90, 180, 270):
+            errors.append(f"{where}.rotate must be 0, 90, 180 or 270")
+        if "repair_seams" in block and not isinstance(block["repair_seams"], bool):
+            errors.append(f"{where}.repair_seams must be true or false")
+        unknown = set(block) - {"source", "strength", "tile_mm", "tiling", "seed", "rotate", "repair_seams"}
+        if unknown:
+            errors.append(f"{where} has unknown keys {sorted(unknown)}")
+
+
+def _skin_regions(errors: list[str], regions: Any) -> None:
+    if not isinstance(regions, dict):
+        errors.append("skin.regions must be an object of regions")
+        return
+    for name, block in regions.items():
+        where = f"skin.regions.{name}"
+        if name not in SKIN_REGIONS:
+            errors.append(f"{where} is not a skin region ({', '.join(SKIN_REGIONS)})")
+            continue
+        if not isinstance(block, dict):
+            errors.append(f"{where} must be an object")
+            continue
+        if "tint" in block:
+            _rgb(errors, f"{where}.tint", block["tint"], 2.0)
+        if "amount" in block:
+            _range(errors, f"{where}.amount", block["amount"], 0.0, 2.0)
+        if "roughness" in block:
+            _range(errors, f"{where}.roughness", block["roughness"], -1.0, 1.0)
+        if "detail" in block:
+            _range(errors, f"{where}.detail", block["detail"], 0.0, 4.0)
+        unknown = set(block) - {"tint", "amount", "roughness", "detail"}
+        if unknown:
+            errors.append(f"{where} has unknown keys {sorted(unknown)}")
 
 
 def validate_spec(spec: Any, slug: str | None = None) -> dict:
@@ -94,13 +169,21 @@ def validate_spec(spec: Any, slug: str | None = None) -> dict:
     if not isinstance(skin, dict) or not isinstance(skin.get("material"), str) or not NAME_RE.match(skin.get("material", "")):
         errors.append("skin.material must be a MakeHuman skin name")
     else:
-        for key in ("roughness", "specular", "detail_normal_strength"):
+        for key in ("roughness", "specular", "specular_map_strength", "cavity", "sheen"):
             if key in skin:
                 _unit(errors, f"skin.{key}", skin[key])
+        if "base_normal_strength" in skin:
+            _range(errors, "skin.base_normal_strength", skin["base_normal_strength"], 0.0, 2.0)
         if "tint" in skin:
             tint = skin["tint"]
             if not (isinstance(tint, list) and len(tint) == 3 and all(_num(v) and 0 <= v <= 1 for v in tint)):
                 errors.append("skin.tint must be 3 numbers between 0 and 1 (albedo multipliers)")
+        if "sheen_color" in skin:
+            _rgb(errors, "skin.sheen_color", skin["sheen_color"])
+        if "detail" in skin:
+            _skin_detail(errors, skin["detail"])
+        if "regions" in skin:
+            _skin_regions(errors, skin["regions"])
 
     eyes = spec.get("eyes")
     if not isinstance(eyes, dict) or eyes.get("mesh") not in EYE_MESHES or not NAME_RE.match(str(eyes.get("material", ""))):
@@ -133,9 +216,11 @@ def validate_spec(spec: Any, slug: str | None = None) -> dict:
     if not isinstance(textures, dict):
         errors.append("textures must be an object")
     else:
-        for key in ("default_max", "skin_max", "eyes_max"):
+        for key in ("default_max", "skin_max", "eyes_max", "skin_normal_max", "skin_roughness_max"):
+            if key not in textures and key in ("skin_normal_max", "skin_roughness_max"):
+                continue
             value = textures.get(key)
-            if not isinstance(value, int) or value not in (256, 512, 1024, 2048, 4096):
+            if not isinstance(value, int) or value not in TEXTURE_SIZES:
                 errors.append(f"textures.{key} must be one of 256, 512, 1024, 2048, 4096")
 
     checks = spec.get("checks")

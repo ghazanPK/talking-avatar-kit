@@ -1,0 +1,80 @@
+{
+  "license": "CC-BY-4.0",
+  "origin": "Generated on 2026-10-08 with an image generator from text prompts recorded by the owner (Ghazanfar Ali); processed with blender/prepare_detail.py. Part of talking-avatar-kit by Ghazanfar Ali.",
+  "processing": {
+    "grey": "luminance (Rec. 709 weights), seam repair (offset-and-blend per axis, variance preserving, band 25%), Fourier resampling to 1024 px, contrast normalised (mean 0.5, 3 sd = 0.5)",
+    "colour": "seam repair per channel, Fourier resampling to 1024 px"
+  },
+  "files": {
+    "face_pores_height.png": {
+      "input": "face_pores_height.png",
+      "input_size": [
+        1254,
+        1254
+      ],
+      "input_sha256": "c1ee4bde7a6304d01cf2b64d0c8ef32138f37339d5936856e76c528d165edae1",
+      "sha256": "f2f91f89d525494f7660dd89a522aa0a3ae6c7f435609aa020a5e5ac4f2b2eef",
+      "kind": "height/roughness (grey)"
+    },
+    "body_skin_height.png": {
+      "input": "body_skin_height.png",
+      "input_size": [
+        1254,
+        1254
+      ],
+      "input_sha256": "25d05c64ebdcbb29c771fc4a9fa9e05d84ec61f66072dc07be91eef92ded80b1",
+      "sha256": "9ada17bf8070fe7c1a87c1f1f1d58b41f2f9ec55543d5ebda61fb286ef709266",
+      "kind": "height/roughness (grey)"
+    },
+    "palm_skin_height.png": {
+      "input": "palm_skin_height.png",
+      "input_size": [
+        1254,
+        1254
+      ],
+      "input_sha256": "f2a5a1b29a380a254ce30feff919ccde7f8f743679992e53f1c0662d3b1532f7",
+      "sha256": "3b99aafb52d3f4dab73d005a3a10c8548177b5dc9f3c1054adc7fcbd65f6d950",
+      "kind": "height/roughness (grey)"
+    },
+    "lips_height.png": {
+      "input": "lips_height.png",
+      "input_size": [
+        1254,
+        1254
+      ],
+      "input_sha256": "54a23826ddf1c25c1b86ffe0a208aa939da62ec57c84bf1588c060f6301a5fc2",
+      "sha256": "f76b37cf29d2ac1ad5eb2f75fed2e71ff4c04dd7c354e963f1fba0aac07fd5f1",
+      "kind": "height/roughness (grey)"
+    },
+    "roughness_variation.png": {
+      "input": "roughness_variation.png",
+      "input_size": [
+        1254,
+        1254
+      ],
+      "input_sha256": "4a1f2642e7fcffc8258d6f7e2dc48e96da19b2c635125f1207be834b337987e3",
+      "sha256": "191b261672079565aceca9760d1f702d02e64f19d2105861eabd29e3d18de6d2",
+      "kind": "height/roughness (grey)"
+    },
+    "skin_color_variation_light.png": {
+      "input": "skin_color_variation_light.png",
+      "input_size": [
+        1254,
+        1254
+      ],
+      "input_sha256": "b752555c0aaebcfe9ba8ab256ff661625a84eb62ecb6a2444833c57a07a42246",
+      "sha256": "b42149dc7e20468ea26af7af1f1ac401f36a8ecdbd7fbc8a27d6e56ce5acc8f7",
+      "kind": "albedo variation (RGB)"
+    },
+    "skin_color_variation_dark.png": {
+      "input": "skin_color_variation_dark.png",
+      "input_size": [
+        1254,
+        1254
+      ],
+      "input_sha256": "9c1414efbde5c2a8907e79241fe89e08ac4083509c9e93853d2c335875d38317",
+      "sha256": "8cfcc270062564ac5a1a919e084405d196556a7e78867f9ac2f53f231b2bf961",
+      "kind": "albedo variation (RGB)"
+    }
+  }
+}
