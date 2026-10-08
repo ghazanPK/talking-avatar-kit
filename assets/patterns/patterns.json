@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "license": "CC-BY-4.0",
+  "credit": "talking-avatar-kit by Ghazanfar Ali",
+  "date": "2026-10-08",
+  "provenance": "Generated with an image generator from text prompts recorded by the author on 2026-10-08; processed with tak.pipeline.fabrics (luminance, flat-field, map alignment, seam repair, resampling, normal map from height).",
+  "description": "Tileable pattern masks. kind 'mask': white = colour A, black = colour B. kind 'rgb': red, green and blue regions = colours A, B and C. patch_cm is the real [width, height] of one tile.",
+  "patterns": {
+    "gingham": {
+      "label": "Gingham",
+      "kind": "rgb",
+      "file": "gingham.png",
+      "patch_cm": [
+        5.0,
+        5.0
+      ],
+      "colors": 3,
+      "check": {
+        "period_residual": [
+          0.0005,
+          0.0014
+        ],
+        "source_periods_px": [
+          313.5,
+          313.5
+        ]
+      },
+      "provenance": {
+        "input": "ab90a75471262e289966e83ad12a62513c029a7d19c195934a4e79c69eb8acec",
+        "output": "f0522999866934cf87618d2399c447ccd72a6be83100d6232949bdce263d7aa0",
+        "processing": "palette snapped (pure red, green, blue; 3 x 3 majority filter), cropped to whole periods, area-resampled to 1024 px"
+      }
+    },
+    "houndstooth": {
+      "label": "Houndstooth",
+      "kind": "mask",
+      "file": "houndstooth.png",
+      "patch_cm": [
+        5.831,
+        5.27
+      ],
+      "colors": 2,
+      "check": {
+        "period_residual": [
+          0.0161,
+          0.0177
+        ],
+        "source_periods_px": [
+          83.09,
+          82.72
+        ]
+      },
+      "provenance": {
+        "input": "8733505f72f5929a716fa94709be61ec4bbcb1df83d52641a7ffad5607c123d9",
+        "output": "284bd3be94473c393a1beebf883c9226746cc848c0cad78139070ab0cb1160f2",
+        "processing": "palette snapped (black/white), cropped to whole periods, area-resampled to 1024 px"
+      }
+    },
+    "stripes_breton": {
+      "label": "Breton stripes",
+      "kind": "mask",
+      "file": "stripes_breton.png",
+      "patch_cm": [
+        10.0,
+        9.171
+      ],
+      "colors": 2,
+      "check": {
+        "period_residual": [
+          null,
+          0.0069
+        ],
+        "source_periods_px": [
+          null,
+          230.56
+        ]
+      },
+      "provenance": {
+        "input": "66b9ea37f09204fb0ff00bc10377b9a56b6d8f7793ddecb7a4106f551f48e534",
+        "output": "5dbe10c27b60e67dcccbd4b0123d4a12fa2e7bc90e6352407310244baeaab08b",
+        "processing": "palette snapped (black/white), cropped to whole periods, area-resampled to 1024 px"
+      }
+    },
+    "stripes_pinstripe": {
+      "label": "Pinstripe",
+      "kind": "mask",
+      "file": "stripes_pinstripe.png",
+      "patch_cm": [
+        10.0,
+        10.0
+      ],
+      "colors": 2,
+      "check": {
+        "period_residual": [
+          0.0045,
+          null
+        ],
+        "source_periods_px": [
+          156.83,
+          null
+        ]
+      },
+      "provenance": {
+        "input": "8a0077bfdc229e9061c7ff38e55f78aacc291d46430221368df77037a96c5ead",
+        "output": "b9e63a0eaccfb56462d09a3d2621a726e0c7f5621728a8b95cf099ff37fb28ad",
+        "processing": "palette snapped (black/white), cropped to whole periods, area-resampled to 1024 px"
+      }
+    },
+    "tartan_plaid": {
+      "label": "Tartan",
+      "kind": "rgb",
+      "file": "tartan_plaid.png",
+      "patch_cm": [
+        14.821,
+        14.414
+      ],
+      "colors": 3,
+      "check": {
+        "period_residual": [
+          0.094,
+          0.0913
+        ],
+        "source_periods_px": [
+          310.47,
+          302.11
+        ]
+      },
+      "provenance": {
+        "input": "b2f17bd5bd8e6d41c275e36b21ae2d3280520902f5b95220e896006b6290a25a",
+        "output": "488401b4fecc139993cf4cf04163db5906aea058b891174ea60147ab973a7067",
+        "processing": "palette snapped (pure red, green, blue; 3 x 3 majority filter), cropped to whole periods, area-resampled to 1024 px"
+      }
+    }
+  }
+}

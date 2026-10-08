@@ -1,0 +1,1320 @@
+{
+  "schema_version": 1,
+  "license": "CC-BY-4.0",
+  "credit": "talking-avatar-kit by Ghazanfar Ali",
+  "date": "2026-10-08",
+  "provenance": "Generated with an image generator from text prompts recorded by the author on 2026-10-08; processed with tak.pipeline.fabrics (luminance, flat-field, map alignment, seam repair, resampling, normal map from height).",
+  "description": "Seamless, tintable fabric tiles: neutral grey albedo (mean sRGB 0.8), tangent-space normal map (OpenGL/glTF convention), optional roughness variation (mean 0.5 around the fabric's roughness). patch_cm is the real width of one tile.",
+  "fabrics": {
+    "canvas_duck": {
+      "label": "Canvas",
+      "patch_cm": 8,
+      "use": [
+        "work wear",
+        "shoes",
+        "bags"
+      ],
+      "roughness": 0.85,
+      "sheen": 0.05,
+      "relief_mm": 0.3,
+      "albedo_mean_linear": 0.6181,
+      "albedo_mean_srgb": 0.8,
+      "maps": {
+        "albedo": "albedo.jpg",
+        "normal": "normal.png"
+      },
+      "sizes": {
+        "albedo": 1024,
+        "normal": 512
+      },
+      "check": {
+        "albedo_max_jump": [
+          1.16,
+          1.19
+        ],
+        "normal_max_jump": [
+          1.19,
+          1.28
+        ]
+      },
+      "provenance": {
+        "inputs": {
+          "albedo": "c3854de20191f533f3e5ba4193cf60b10072538db32e8dee68817fe9ce7d1561",
+          "height": "768cbaf1c19786d261bd6f8aebab9443ea398849b51c41a2782383426fbbb052"
+        },
+        "outputs": {
+          "albedo": "8c63541e9bc1f7ecc64de9a0f74d8c640f180bc89eaec3b725b9288fc39518fc",
+          "normal": "57672cbce2c9d741f6aa75c997e848b236ae97368ce2363620929b9d14ec2006"
+        },
+        "processing": {
+          "source_size": [
+            1254,
+            1254
+          ],
+          "source_edge_score": {
+            "albedo": [
+              2.33,
+              3.89
+            ],
+            "height": [
+              1.12,
+              1.31
+            ]
+          },
+          "weave_period_px": 48.2,
+          "align_sigma_px": 24.0,
+          "seams": {
+            "edge_before": [
+              1.12,
+              1.31
+            ],
+            "max_jump_before": [
+              1.14,
+              1.18
+            ],
+            "max_jump_after": [
+              1.15,
+              1.2
+            ],
+            "cuts": {
+              "x": [
+                627
+              ],
+              "y": [
+                627
+              ]
+            },
+            "cut_rms": [
+              0.1146,
+              0.122
+            ]
+          }
+        }
+      }
+    },
+    "corduroy": {
+      "label": "Corduroy",
+      "patch_cm": 6,
+      "use": [
+        "trousers",
+        "jackets"
+      ],
+      "roughness": 0.8,
+      "sheen": 0.5,
+      "relief_mm": 0.8,
+      "albedo_mean_linear": 0.6148,
+      "albedo_mean_srgb": 0.8001,
+      "roughness_map_mean": 0.5,
+      "maps": {
+        "albedo": "albedo.jpg",
+        "normal": "normal.png",
+        "roughness": "roughness.png"
+      },
+      "sizes": {
+        "albedo": 1024,
+        "normal": 512,
+        "roughness": 512
+      },
+      "check": {
+        "albedo_max_jump": [
+          1.57,
+          1.19
+        ],
+        "normal_max_jump": [
+          2.36,
+          1.13
+        ]
+      },
+      "provenance": {
+        "inputs": {
+          "albedo": "cfb34d7126fc669a70c6fb897dd9a97c3b6e4cd58cca056ba2a71a488f5818f0",
+          "height": "8b6ea475f735e6c586d53b5783fe78a982f0cc36caa94495db8d619e0cb43bed",
+          "roughness": "19358ba5b05813fbcbf1ce47d458be99c0505cc208a40afabd2fd7c9638d4279"
+        },
+        "outputs": {
+          "albedo": "01e174e48802179fe03d14044f17643a93c1054462e664d0be0d20abe7c7e642",
+          "normal": "71b85014c41d76ef2f9104b294b9e681e8c53334bc271ce24816572fe7ad7379",
+          "roughness": "d8358803979a5b94c9e05aa2c05e6fc3cc12e305c938edfc711bc341d05ad40e"
+        },
+        "processing": {
+          "source_size": [
+            1254,
+            1254
+          ],
+          "source_edge_score": {
+            "albedo": [
+              1.63,
+              1.89
+            ],
+            "height": [
+              2.36,
+              1.25
+            ]
+          },
+          "weave_period_px": 25.1,
+          "align_sigma_px": 15.0,
+          "seams": {
+            "edge_before": [
+              2.31,
+              1.25
+            ],
+            "max_jump_before": [
+              2.08,
+              1.18
+            ],
+            "max_jump_after": [
+              1.49,
+              1.16
+            ],
+            "cuts": {
+              "x": [
+                627
+              ],
+              "y": [
+                627
+              ]
+            },
+            "cut_rms": [
+              0.1077,
+              0.0739
+            ]
+          }
+        }
+      }
+    },
+    "cotton_jersey": {
+      "label": "Cotton jersey",
+      "patch_cm": 6,
+      "use": [
+        "t-shirts",
+        "tops"
+      ],
+      "roughness": 0.85,
+      "sheen": 0.3,
+      "relief_mm": 0.25,
+      "albedo_mean_linear": 0.6185,
+      "albedo_mean_srgb": 0.8,
+      "maps": {
+        "albedo": "albedo.jpg",
+        "normal": "normal.png"
+      },
+      "sizes": {
+        "albedo": 1024,
+        "normal": 512
+      },
+      "check": {
+        "albedo_max_jump": [
+          1.27,
+          1.42
+        ],
+        "normal_max_jump": [
+          2.13,
+          1.32
+        ]
+      },
+      "provenance": {
+        "inputs": {
+          "albedo": "e98cd7f5a5ebf025ae39d5f1db348faf5bebb11cae8e5301257c4dd6251efeaf",
+          "height": "372f9a6661d01b9e060ab37c1824ea8667bfc8e65a8c36143f55c28acab304d3"
+        },
+        "outputs": {
+          "albedo": "8712b13d11a3bf107bcd935b8876a5ae6ac577a4cd5315fac76f1e16be2d3f8d",
+          "normal": "007424f08c44c863b57168ccabe6be0db2ff2ea452ba95c474986ad47e018aec"
+        },
+        "processing": {
+          "source_size": [
+            1254,
+            1254
+          ],
+          "source_edge_score": {
+            "albedo": [
+              2.03,
+              2.99
+            ],
+            "height": [
+              0.89,
+              1.52
+            ]
+          },
+          "weave_period_px": 31.4,
+          "align_sigma_px": 18.8,
+          "seams": {
+            "edge_before": [
+              0.89,
+              1.52
+            ],
+            "max_jump_before": [
+              1.3,
+              1.27
+            ],
+            "max_jump_after": [
+              1.29,
+              1.23
+            ],
+            "cuts": {
+              "x": [
+                627
+              ],
+              "y": [
+                627
+              ]
+            },
+            "cut_rms": [
+              0.13,
+              0.0697
+            ]
+          }
+        }
+      }
+    },
+    "cotton_poplin": {
+      "label": "Cotton poplin",
+      "patch_cm": 4,
+      "use": [
+        "shirts",
+        "blouses"
+      ],
+      "roughness": 0.7,
+      "sheen": 0.15,
+      "relief_mm": 0.08,
+      "albedo_mean_linear": 0.6109,
+      "albedo_mean_srgb": 0.8,
+      "maps": {
+        "albedo": "albedo.jpg",
+        "normal": "normal.png"
+      },
+      "sizes": {
+        "albedo": 1024,
+        "normal": 512
+      },
+      "check": {
+        "albedo_max_jump": [
+          1.73,
+          1.23
+        ],
+        "normal_max_jump": [
+          1.12,
+          1.17
+        ]
+      },
+      "provenance": {
+        "inputs": {
+          "albedo": "63ee5dae2e3bfe49a9eaecc9fd78f78a934fa14f5c70e363560935ae0112a185",
+          "height": "139aaf98d15fe56e2670fe3234a005a501d260f122e4eafd4d587cac4674eba3"
+        },
+        "outputs": {
+          "albedo": "44cc4eb3a022ffe8d25c37ba2db1200abccc3f6d5d432025162065393cd85fc4",
+          "normal": "372944add17cae6a03e9eac96e8334623f77984dd533ed8082982dfbd579aaa8"
+        },
+        "processing": {
+          "source_size": [
+            1254,
+            1254
+          ],
+          "source_edge_score": {
+            "albedo": [
+              2.69,
+              1.74
+            ],
+            "height": [
+              2.89,
+              1.61
+            ]
+          },
+          "weave_period_px": 17.7,
+          "align_sigma_px": 10.6,
+          "seams": {
+            "edge_before": [
+              2.89,
+              1.61
+            ],
+            "max_jump_before": [
+              3.28,
+              1.25
+            ],
+            "max_jump_after": [
+              1.21,
+              1.14
+            ],
+            "cuts": {
+              "x": [
+                627
+              ],
+              "y": [
+                627
+              ]
+            },
+            "cut_rms": [
+              0.107,
+              0.1382
+            ]
+          }
+        }
+      }
+    },
+    "denim_twill": {
+      "label": "Denim twill",
+      "patch_cm": 6,
+      "use": [
+        "jeans",
+        "jackets"
+      ],
+      "roughness": 0.82,
+      "sheen": 0.15,
+      "relief_mm": 0.3,
+      "albedo_mean_linear": 0.6295,
+      "albedo_mean_srgb": 0.7997,
+      "maps": {
+        "albedo": "albedo.jpg",
+        "normal": "normal.png"
+      },
+      "sizes": {
+        "albedo": 1024,
+        "normal": 512
+      },
+      "check": {
+        "albedo_max_jump": [
+          1.83,
+          1.19
+        ],
+        "normal_max_jump": [
+          1.23,
+          1.23
+        ]
+      },
+      "provenance": {
+        "inputs": {
+          "albedo": "0c741c8c4c4b37762031715f4e461704a513ce81b86b8b37906a7a80340eff3b",
+          "height": "1c23ce80e83615214a0c38feff3e21c10fa4f58c7c674bba9e1ae4ba4ccb3364"
+        },
+        "outputs": {
+          "albedo": "a212b1f8c29fffef149453d427133dd9ccf074f1a9bcd449f796e5bb10c61e24",
+          "normal": "645d31ac1c62639683de5915af0cc05917c070f0b2c363c834b7a9b9cd29d879"
+        },
+        "processing": {
+          "source_size": [
+            1254,
+            1254
+          ],
+          "source_edge_score": {
+            "albedo": [
+              1.95,
+              2.5
+            ],
+            "height": [
+              3.63,
+              2.32
+            ]
+          },
+          "weave_period_px": 20.2,
+          "align_sigma_px": 12.1,
+          "seams": {
+            "edge_before": [
+              3.63,
+              2.32
+            ],
+            "max_jump_before": [
+              2.91,
+              2.22
+            ],
+            "max_jump_after": [
+              1.86,
+              1.18
+            ],
+            "cuts": {
+              "x": [
+                627,
+                0,
+                315,
+                771
+              ],
+              "y": [
+                627
+              ]
+            },
+            "cut_rms": [
+              0.1407,
+              0.1179,
+              0.1466,
+              0.1101,
+              0.1556
+            ]
+          }
+        }
+      }
+    },
+    "fleece": {
+      "label": "Fleece",
+      "patch_cm": 6,
+      "use": [
+        "sweatshirts",
+        "jackets"
+      ],
+      "roughness": 0.95,
+      "sheen": 0.6,
+      "relief_mm": 0.15,
+      "albedo_mean_linear": 0.6119,
+      "albedo_mean_srgb": 0.8,
+      "maps": {
+        "albedo": "albedo.jpg",
+        "normal": "normal.png"
+      },
+      "sizes": {
+        "albedo": 1024,
+        "normal": 512
+      },
+      "check": {
+        "albedo_max_jump": [
+          1.17,
+          1.11
+        ],
+        "normal_max_jump": [
+          1.09,
+          1.14
+        ]
+      },
+      "provenance": {
+        "inputs": {
+          "albedo": "0569c00338f6ebb0a37c528de96b60f3f8fb1c4201716cf6af8c7bcd7f3a9978",
+          "height": "5606128364c6de4c66cfeed036bc2eeae1b3261ad586eea05b2ea2c8184a7cfe"
+        },
+        "outputs": {
+          "albedo": "99a3861d4191057c94c459d3985f8d477652566467e551ceb58d261c2e0bd09e",
+          "normal": "a404ef866ea6a5ecfa0b98801065ba455ec1cd6411cc6eb834ac4ad55e4dc1ae"
+        },
+        "processing": {
+          "source_size": [
+            1254,
+            1254
+          ],
+          "source_edge_score": {
+            "albedo": [
+              1.65,
+              1.74
+            ],
+            "height": [
+              1.83,
+              1.74
+            ]
+          },
+          "weave_period_px": 29.2,
+          "align_sigma_px": 17.5,
+          "seams": {
+            "edge_before": [
+              1.83,
+              1.74
+            ],
+            "max_jump_before": [
+              1.57,
+              1.55
+            ],
+            "max_jump_after": [
+              1.11,
+              1.1
+            ],
+            "cuts": {
+              "x": [
+                627
+              ],
+              "y": [
+                627
+              ]
+            },
+            "cut_rms": [
+              0.1054,
+              0.106
+            ]
+          }
+        }
+      }
+    },
+    "knit_sweater": {
+      "label": "Knit",
+      "patch_cm": 8,
+      "use": [
+        "sweaters"
+      ],
+      "roughness": 0.9,
+      "sheen": 0.4,
+      "relief_mm": 1.2,
+      "albedo_mean_linear": 0.6163,
+      "albedo_mean_srgb": 0.8,
+      "maps": {
+        "albedo": "albedo.jpg",
+        "normal": "normal.png"
+      },
+      "sizes": {
+        "albedo": 1024,
+        "normal": 512
+      },
+      "check": {
+        "albedo_max_jump": [
+          1.23,
+          1.38
+        ],
+        "normal_max_jump": [
+          1.81,
+          1.22
+        ]
+      },
+      "provenance": {
+        "inputs": {
+          "albedo": "62644a7856d44df7044cea1469067cdc5a1f522049a5da7221ba8d070de988d7",
+          "height": "c48a327e92b005f8f77dc97ebc5524b8e3be1d96f3da66e702e8eaafa72fe7da"
+        },
+        "outputs": {
+          "albedo": "b1744669e46e9e39dcf53a7db612553883bfb407c3f2c7ff27d8954c3ad40410",
+          "normal": "f6099e9f02f3bd8a1501cbece4558d8f71cc2e5ae087f0eb215ba7d941d670fb"
+        },
+        "processing": {
+          "source_size": [
+            1254,
+            1254
+          ],
+          "source_edge_score": {
+            "albedo": [
+              2.11,
+              2.15
+            ],
+            "height": [
+              2.06,
+              1.42
+            ]
+          },
+          "weave_period_px": 52.2,
+          "align_sigma_px": 24.0,
+          "seams": {
+            "edge_before": [
+              2.05,
+              1.42
+            ],
+            "max_jump_before": [
+              1.33,
+              1.37
+            ],
+            "max_jump_after": [
+              1.2,
+              1.15
+            ],
+            "cuts": {
+              "x": [
+                627
+              ],
+              "y": [
+                627
+              ]
+            },
+            "cut_rms": [
+              0.1098,
+              0.0382
+            ]
+          }
+        }
+      }
+    },
+    "leather_smooth": {
+      "label": "Smooth leather",
+      "patch_cm": 8,
+      "use": [
+        "shoes",
+        "belts",
+        "jackets"
+      ],
+      "roughness": 0.45,
+      "sheen": 0.0,
+      "relief_mm": 0.12,
+      "albedo_mean_linear": 0.609,
+      "albedo_mean_srgb": 0.8,
+      "roughness_map_mean": 0.5,
+      "maps": {
+        "albedo": "albedo.jpg",
+        "normal": "normal.png",
+        "roughness": "roughness.png"
+      },
+      "sizes": {
+        "albedo": 1024,
+        "normal": 512,
+        "roughness": 512
+      },
+      "check": {
+        "albedo_max_jump": [
+          1.27,
+          1.17
+        ],
+        "normal_max_jump": [
+          1.13,
+          1.08
+        ]
+      },
+      "provenance": {
+        "inputs": {
+          "albedo": "b9898f4e47ec13144c7e6c18f388d5c7ceca5606657842af77063bcf4d9aab85",
+          "height": "e6ac9600cbc475ada7fba771dd23c031873c944df8e8ad0da517d01a84c1480e",
+          "roughness": "ff42dbb3a8c9129350eed7be7fc583f4952c8decf7e1b590a6e8191494593f44"
+        },
+        "outputs": {
+          "albedo": "1fb14eee399e18f0daf0b78a4987aa20e5cd9cd217c18c1118314cabb264c1ae",
+          "normal": "1deb6ac4921dc3f487be93aa4c31fa5659cb48b6d21cd03c9516b7eaf14886d0",
+          "roughness": "f66e3c70f13ea4aec39308a2b16c726f115d3f4f10f1f68768b7dcbf24c80303"
+        },
+        "processing": {
+          "source_size": [
+            1254,
+            1254
+          ],
+          "source_edge_score": {
+            "albedo": [
+              1.72,
+              1.35
+            ],
+            "height": [
+              2.14,
+              1.85
+            ]
+          },
+          "weave_period_px": 26.1,
+          "align_sigma_px": 15.7,
+          "seams": {
+            "edge_before": [
+              2.14,
+              1.85
+            ],
+            "max_jump_before": [
+              1.92,
+              1.75
+            ],
+            "max_jump_after": [
+              1.12,
+              1.17
+            ],
+            "cuts": {
+              "x": [
+                627
+              ],
+              "y": [
+                627
+              ]
+            },
+            "cut_rms": [
+              0.0795,
+              0.0794
+            ]
+          }
+        }
+      }
+    },
+    "linen_plain": {
+      "label": "Linen",
+      "patch_cm": 6,
+      "use": [
+        "shirts",
+        "trousers",
+        "dresses"
+      ],
+      "roughness": 0.82,
+      "sheen": 0.1,
+      "relief_mm": 0.25,
+      "albedo_mean_linear": 0.6271,
+      "albedo_mean_srgb": 0.7999,
+      "maps": {
+        "albedo": "albedo.jpg",
+        "normal": "normal.png"
+      },
+      "sizes": {
+        "albedo": 1024,
+        "normal": 512
+      },
+      "check": {
+        "albedo_max_jump": [
+          2.08,
+          1.58
+        ],
+        "normal_max_jump": [
+          1.48,
+          1.18
+        ]
+      },
+      "provenance": {
+        "inputs": {
+          "albedo": "9e6018b9155bd87ecbf0c1aa80993b96801a3159ac420be15c223b30bd205cc9",
+          "height": "acae38858f9052104777d721b7b06c27efd73c97b5c2d3b644febc0d35e9ae7c"
+        },
+        "outputs": {
+          "albedo": "b38d8c42480c6139910f7e4c298ad03234e426e88289b877992a00d04877ba3e",
+          "normal": "77a9b94753bba6467e9736997f0977fab26c229e7a9f83fc5fe12d209eb2ca15"
+        },
+        "processing": {
+          "source_size": [
+            1254,
+            1254
+          ],
+          "source_edge_score": {
+            "albedo": [
+              2.06,
+              2.06
+            ],
+            "height": [
+              1.81,
+              1.8
+            ]
+          },
+          "weave_period_px": 38.0,
+          "align_sigma_px": 22.8,
+          "seams": {
+            "edge_before": [
+              1.81,
+              1.8
+            ],
+            "max_jump_before": [
+              1.87,
+              1.5
+            ],
+            "max_jump_after": [
+              1.89,
+              1.61
+            ],
+            "cuts": {
+              "x": [
+                627
+              ],
+              "y": [
+                627
+              ]
+            },
+            "cut_rms": [
+              0.135,
+              0.1484
+            ]
+          }
+        }
+      }
+    },
+    "rubber_sole": {
+      "label": "Rubber",
+      "patch_cm": 6,
+      "use": [
+        "shoe soles",
+        "trainers"
+      ],
+      "roughness": 0.65,
+      "sheen": 0.0,
+      "relief_mm": 0.2,
+      "albedo_mean_linear": 0.6134,
+      "albedo_mean_srgb": 0.7999,
+      "roughness_map_mean": 0.5,
+      "maps": {
+        "albedo": "albedo.jpg",
+        "normal": "normal.png",
+        "roughness": "roughness.png"
+      },
+      "sizes": {
+        "albedo": 1024,
+        "normal": 512,
+        "roughness": 512
+      },
+      "check": {
+        "albedo_max_jump": [
+          1.41,
+          1.2
+        ],
+        "normal_max_jump": [
+          1.09,
+          1.15
+        ]
+      },
+      "provenance": {
+        "inputs": {
+          "albedo": "a8c5f6b362ee883c732cc12577788af8ca9b5e960b84ddd5a71bb47c504f4d71",
+          "height": "9f41c1dcc4a12646563c192435b401d8559cd83917904bb85f78572bd37b4903",
+          "roughness": "450d5777f4320cc052118e4b3e28508495e9705176d3bf6f79a9045f5149c3b1"
+        },
+        "outputs": {
+          "albedo": "3e2d0a968fdaf3b5f328dffb398c30a9b47900cef28f341e64c6ed4691532bdc",
+          "normal": "54ed452566ca47fc99a1cfc7b44cb5231d37efdfbb3990671e9f95b34c133bbc",
+          "roughness": "b2c73ae40971d49eb1a8595130bee2908e413f1b7ee7e5f9f4c276bf8d9902ef"
+        },
+        "processing": {
+          "source_size": [
+            1254,
+            1254
+          ],
+          "source_edge_score": {
+            "albedo": [
+              2.51,
+              1.97
+            ],
+            "height": [
+              2.09,
+              1.53
+            ]
+          },
+          "weave_period_px": 16.1,
+          "align_sigma_px": 9.6,
+          "seams": {
+            "edge_before": [
+              2.08,
+              1.53
+            ],
+            "max_jump_before": [
+              2.01,
+              1.37
+            ],
+            "max_jump_after": [
+              1.14,
+              1.17
+            ],
+            "cuts": {
+              "x": [
+                627
+              ],
+              "y": [
+                627
+              ]
+            },
+            "cut_rms": [
+              0.1298,
+              0.1304
+            ]
+          }
+        }
+      }
+    },
+    "satin": {
+      "label": "Satin",
+      "patch_cm": 5,
+      "use": [
+        "blouses",
+        "dresses",
+        "linings"
+      ],
+      "roughness": 0.3,
+      "sheen": 0.6,
+      "relief_mm": 0.05,
+      "albedo_mean_linear": 0.6171,
+      "albedo_mean_srgb": 0.8,
+      "roughness_map_mean": 0.5,
+      "maps": {
+        "albedo": "albedo.jpg",
+        "normal": "normal.png",
+        "roughness": "roughness.png"
+      },
+      "sizes": {
+        "albedo": 1024,
+        "normal": 512,
+        "roughness": 512
+      },
+      "check": {
+        "albedo_max_jump": [
+          1.96,
+          1.3
+        ],
+        "normal_max_jump": [
+          1.43,
+          1.35
+        ]
+      },
+      "provenance": {
+        "inputs": {
+          "albedo": "28bfbdced351f5f0a06b99f51fc6a8c93fd473ed8b1ab8d1948e873bca33a6e0",
+          "height": "27071f5bff2b1a1bea8df44e6088eb8947d81b717581a60cc71fed169c0eda37",
+          "roughness": "8f70233e656f246ed1fcd9b0e867b8027dc315dd6157cc66ec80fa6a77478d5f"
+        },
+        "outputs": {
+          "albedo": "66b9531930da7d99a62a199b4c4f47e581d7010c4fc2fccff5d3d2b440e5aa04",
+          "normal": "66e3b8b1efbf360bea009aea5d523955ec8b6178abec0415ec612246be0674d3",
+          "roughness": "83f7c83d6601f374cbe06ebb6ca84cfd45d9eb7e3ebf353289234fc7d97931ef"
+        },
+        "processing": {
+          "source_size": [
+            1254,
+            1254
+          ],
+          "source_edge_score": {
+            "albedo": [
+              1.45,
+              1.38
+            ],
+            "height": [
+              6.49,
+              1.58
+            ]
+          },
+          "weave_period_px": 39.2,
+          "align_sigma_px": 23.5,
+          "seams": {
+            "edge_before": [
+              6.48,
+              1.58
+            ],
+            "max_jump_before": [
+              4.1,
+              1.44
+            ],
+            "max_jump_after": [
+              2.14,
+              1.38
+            ],
+            "cuts": {
+              "x": [
+                627,
+                196
+              ],
+              "y": [
+                627
+              ]
+            },
+            "cut_rms": [
+              0.1101,
+              0.0732,
+              0.0994
+            ]
+          }
+        }
+      }
+    },
+    "scrubs_twill": {
+      "label": "Scrubs twill",
+      "patch_cm": 5,
+      "use": [
+        "medical scrubs"
+      ],
+      "roughness": 0.75,
+      "sheen": 0.1,
+      "relief_mm": 0.12,
+      "albedo_mean_linear": 0.6158,
+      "albedo_mean_srgb": 0.8,
+      "maps": {
+        "albedo": "albedo.jpg",
+        "normal": "normal.png"
+      },
+      "sizes": {
+        "albedo": 1024,
+        "normal": 512
+      },
+      "check": {
+        "albedo_max_jump": [
+          1.52,
+          1.25
+        ],
+        "normal_max_jump": [
+          1.2,
+          1.18
+        ]
+      },
+      "provenance": {
+        "inputs": {
+          "albedo": "f7e6b78bdcacaa20744783e5556bddbd9e37f92f7f0910b8eb40bb1fde93c288",
+          "height": "e9afd25f08d5ad9698523fcd83a3f08617481d367243ba8b6aa0854c85d3b150"
+        },
+        "outputs": {
+          "albedo": "a320197e518b9c9a6be81d2d4330a7892fe083e2ed1625f68044c4a84ef75758",
+          "normal": "b32dfe9bd022ab1af54139893b58d55a1fbfa18e18b2fe3e601e938996ee585c"
+        },
+        "processing": {
+          "source_size": [
+            1254,
+            1254
+          ],
+          "source_edge_score": {
+            "albedo": [
+              3.12,
+              2.37
+            ],
+            "height": [
+              3.14,
+              1.88
+            ]
+          },
+          "weave_period_px": 19.3,
+          "align_sigma_px": 11.6,
+          "seams": {
+            "edge_before": [
+              3.14,
+              1.88
+            ],
+            "max_jump_before": [
+              2.72,
+              1.44
+            ],
+            "max_jump_after": [
+              1.24,
+              1.28
+            ],
+            "cuts": {
+              "x": [
+                627
+              ],
+              "y": [
+                627
+              ]
+            },
+            "cut_rms": [
+              0.1343,
+              0.1399
+            ]
+          }
+        }
+      }
+    },
+    "sport_mesh": {
+      "label": "Sport mesh",
+      "patch_cm": 5,
+      "use": [
+        "sportswear"
+      ],
+      "roughness": 0.6,
+      "sheen": 0.1,
+      "relief_mm": 0.6,
+      "albedo_mean_linear": 0.6443,
+      "albedo_mean_srgb": 0.7978,
+      "maps": {
+        "albedo": "albedo.jpg",
+        "normal": "normal.png"
+      },
+      "sizes": {
+        "albedo": 1024,
+        "normal": 512
+      },
+      "check": {
+        "albedo_max_jump": [
+          1.79,
+          1.91
+        ],
+        "normal_max_jump": [
+          1.53,
+          1.34
+        ]
+      },
+      "provenance": {
+        "inputs": {
+          "albedo": "9181611292fe0188dff4fb385a1a019774c8c0e2e3cb4266130d2541cf9198de",
+          "height": "b98eba1be10946d434c1835cb403662595e9adb0083c114eabc5a9214262670c"
+        },
+        "outputs": {
+          "albedo": "8f0c4adfecde5072e40775b19b61d5a12e79191f0c0cdd46dbe76e060f758f67",
+          "normal": "8d5ba2eb1cd9ef60cbbe05a7fc56430631182db5a8a82db169b72720e22a709a"
+        },
+        "processing": {
+          "source_size": [
+            1254,
+            1254
+          ],
+          "source_edge_score": {
+            "albedo": [
+              0.84,
+              4.26
+            ],
+            "height": [
+              2.96,
+              0.86
+            ]
+          },
+          "weave_period_px": 52.2,
+          "align_sigma_px": 24.0,
+          "seams": {
+            "edge_before": [
+              2.96,
+              0.86
+            ],
+            "max_jump_before": [
+              2.08,
+              1.79
+            ],
+            "max_jump_after": [
+              1.65,
+              1.74
+            ],
+            "cuts": {
+              "x": [
+                627
+              ],
+              "y": [
+                627
+              ]
+            },
+            "cut_rms": [
+              0.2208,
+              0.0644
+            ]
+          }
+        }
+      }
+    },
+    "suede": {
+      "label": "Suede",
+      "patch_cm": 8,
+      "use": [
+        "shoes",
+        "jackets"
+      ],
+      "roughness": 0.92,
+      "sheen": 0.5,
+      "relief_mm": 0.15,
+      "albedo_mean_linear": 0.6105,
+      "albedo_mean_srgb": 0.8,
+      "roughness_map_mean": 0.5,
+      "maps": {
+        "albedo": "albedo.jpg",
+        "normal": "normal.png",
+        "roughness": "roughness.png"
+      },
+      "sizes": {
+        "albedo": 1024,
+        "normal": 512,
+        "roughness": 512
+      },
+      "check": {
+        "albedo_max_jump": [
+          1.11,
+          1.16
+        ],
+        "normal_max_jump": [
+          1.13,
+          1.14
+        ]
+      },
+      "provenance": {
+        "inputs": {
+          "albedo": "bec6d4aaed6f5463e893928183c0ccab55cbf3f14034e4c09edffcad73931181",
+          "height": "fd1ce01adf51dca8c7302c1fd5f3c78bc22805d309b667c38efd7a83ca8d527d",
+          "roughness": "7adade11dcfeb553379694ab4c64fe677f1140a174aadd8e0ed702ba85ba6f02"
+        },
+        "outputs": {
+          "albedo": "bfa8ca178715e613ceffc6bc453f12246fd432c2219b6fd9c01f905169051ec3",
+          "normal": "0f99b29f19d6fac82aec49e716fc484e2bf83118c8caa354ac963f1b56977897",
+          "roughness": "c34d9838181d11103ebe27c13273498eb7f2572bdc3d6ebb04c4b1b066d7c273"
+        },
+        "processing": {
+          "source_size": [
+            1254,
+            1254
+          ],
+          "source_edge_score": {
+            "albedo": [
+              1.1,
+              1.09
+            ],
+            "height": [
+              1.21,
+              1.03
+            ]
+          },
+          "weave_period_px": 4.5,
+          "align_sigma_px": 2.7,
+          "seams": {
+            "edge_before": [
+              1.19,
+              1.03
+            ],
+            "max_jump_before": [
+              1.05,
+              1.09
+            ],
+            "max_jump_after": [
+              1.06,
+              1.08
+            ],
+            "cuts": {
+              "x": [
+                627
+              ],
+              "y": [
+                627
+              ]
+            },
+            "cut_rms": [
+              0.0997,
+              0.1002
+            ]
+          }
+        }
+      }
+    },
+    "wool_suiting": {
+      "label": "Wool suiting",
+      "patch_cm": 5,
+      "use": [
+        "suits",
+        "trousers",
+        "blazers"
+      ],
+      "roughness": 0.72,
+      "sheen": 0.35,
+      "relief_mm": 0.12,
+      "albedo_mean_linear": 0.6169,
+      "albedo_mean_srgb": 0.7999,
+      "maps": {
+        "albedo": "albedo.jpg",
+        "normal": "normal.png"
+      },
+      "sizes": {
+        "albedo": 1024,
+        "normal": 512
+      },
+      "check": {
+        "albedo_max_jump": [
+          1.42,
+          1.19
+        ],
+        "normal_max_jump": [
+          1.18,
+          1.09
+        ]
+      },
+      "provenance": {
+        "inputs": {
+          "albedo": "c540fef0f2e454b6250ffa10872244baefb2392978c8d398af7b6269943627d7",
+          "height": "e14a32fce673c8294e8ffe29f63a4e5761d20aa44aa6221f48e08efdf80a92f1"
+        },
+        "outputs": {
+          "albedo": "af66d6c93041b288551d244227a36c282e286dea90359b18ac2f64c1e84491d5",
+          "normal": "01eba2d75672ee6e2d0e7a974560ff117be863b3ae41efdaa70125a059045d61"
+        },
+        "processing": {
+          "source_size": [
+            1254,
+            1254
+          ],
+          "source_edge_score": {
+            "albedo": [
+              1.35,
+              1.18
+            ],
+            "height": [
+              2.57,
+              2.17
+            ]
+          },
+          "weave_period_px": 15.9,
+          "align_sigma_px": 9.5,
+          "seams": {
+            "edge_before": [
+              2.57,
+              2.17
+            ],
+            "max_jump_before": [
+              2.03,
+              1.81
+            ],
+            "max_jump_after": [
+              1.38,
+              1.23
+            ],
+            "cuts": {
+              "x": [
+                627
+              ],
+              "y": [
+                627
+              ]
+            },
+            "cut_rms": [
+              0.1299,
+              0.1182
+            ]
+          }
+        }
+      }
+    }
+  }
+}

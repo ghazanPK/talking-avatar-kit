@@ -36,6 +36,7 @@ Details: [docs/studio.md](docs/studio.md) and [docs/avatars.md](docs/avatars.md)
 |---|---|
 | `avatars/` | Prepared avatars and their specifications |
 | `assets/detail/skin/` | Seamless skin detail tiles used by the build, with provenance |
+| `assets/fabrics/`, `assets/patterns/` | Seamless fabric swatches (tintable albedo, normal, roughness) and pattern masks, with provenance |
 | `studio/` | Studio web app (plain ES modules; three.js vendored in `studio/vendor/three/`) |
 | `tak/` | Python package: CLI, local Studio server, jobs, settings, tool discovery |
 | `tak/pipeline/` | Setup, build and validation commands |

@@ -66,3 +66,7 @@ Community skin used by Rowan: *skin male african middleage* (`mindfront_skin_mal
 - Version: the one bundled with Blender (5.2.40 for the shipped avatars, recorded in each `manifest.json`)
 - Source: https://github.com/KhronosGroup/glTF-Blender-IO
 - Licence: Apache-2.0. Writes the GLB files.
+
+## Fabric and pattern library
+
+`assets/fabrics/` (15 tileable fabrics: greyscale albedo, tangent-space normal map, optional roughness variation) and `assets/patterns/` (5 tileable pattern masks) are part of this kit, CC BY 4.0, credit "talking-avatar-kit by Ghazanfar Ali". The source swatches were generated on 2026-10-08 with an image generator from text prompts recorded by the author and processed with `tak/pipeline/fabrics.py` (luminance, flat-field correction, alignment of the weave between albedo and height, seam repair by offsetting and quilting along minimum-error cuts, periodic resampling, normal maps from height at the real patch size; pattern masks snapped to exact palettes and cropped to whole periods). `fabrics.json` and `patterns.json` list the real patch size of every tile and the sha256 of each source image and output. The processing tool uses [NumPy](https://numpy.org) (BSD-3-Clause) and [Pillow](https://python-pillow.org) (MIT-CMU); neither is needed to use the library.
