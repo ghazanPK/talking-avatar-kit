@@ -2,6 +2,8 @@
 
 Prepared virtual-human avatars that talk: rigged characters with facial blendshapes, a three.js talking rig with local text-to-speech, a web demo with its own server, and Unity-ready FBX export.
 
+![The five avatars in the web viewer: Rowan, Mira, Amina, Elena and Min-jun](docs/images/avatars.jpg)
+
 ## Current state
 
 - **Avatars:** five prepared avatars in `avatars/<slug>/` (GLB, manifest, preview): Rowan, Mira, Amina, Elena and Min-jun. Each has a 53-bone humanoid rig (A-pose), the 52 ARKit facial blendshapes and 15 viseme targets, and physically based materials. Credits and licences are in each manifest. Rowan and Mira also carry their build `spec.json`.
@@ -23,6 +25,8 @@ python -m tak demo           # opens the talking demo
 
 The first sentence downloads the Kokoro model (about 330 MB) into `.tak/models/`; model weights are never committed. `python -m tak studio` opens the Studio (the Talk page is linked from it).
 
+![The Talk demo: avatar, voice, speed and mood controls with a live three.js view](docs/images/talk.jpg)
+
 FBX and Unity (Blender 4.2 or newer; Unity optional):
 
 ```sh
@@ -31,6 +35,8 @@ python -m tak export fbx --all --unity-check   # also import and validate in Uni
 ```
 
 In Unity: Package Manager, Add package from git URL: `https://github.com/ghazanPK/talking-avatar-kit.git?path=unity`, then add the exported folders to your project.
+
+![The five avatars imported as Humanoid characters in Unity 6 (URP), from the batch check](docs/images/unity-urp.jpg)
 
 Rebuilding avatars from their specifications (Blender 4.2 or newer):
 
@@ -56,7 +62,7 @@ Details: [docs/talking.md](docs/talking.md), [docs/unity.md](docs/unity.md), [do
 | `assets/detail/skin/` | Seamless skin detail tiles used by the build, with provenance |
 | `assets/fabrics/`, `assets/patterns/` | Seamless fabric swatches and pattern masks, with provenance |
 | `tests/` | Tests (`python -m pytest`); Blender, Unity and Kokoro tests run only when those tools are installed |
-| `docs/` | Guides |
+| `docs/` | Guides; README images in `docs/images/` |
 | `ROADMAP.md`, `RELEASE_NOTES.md` | Planned work and released changes |
 | `CREDITS.md` | Third-party tools and assets |
 
