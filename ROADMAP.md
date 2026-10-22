@@ -1,66 +1,47 @@
 # Roadmap
 
-Goal: choose a preset or a range of parameters, press **Create**, and receive a finished avatar: rigged, with facial blendshapes and lip-sync, customisable, and ready for the web.
+Goal: prepared virtual-human avatars that are free to use, talk out of the box on the web, and drop into game engines, with tooling to rebuild them and add more.
 
 Approach:
 
-- **Web first:** three.js is the target for every feature. Game engines and other formats come later; each output is decided when it is reached.
-- **Studio:** a local web app is the single place to run and check every feature. It is backed by a local Python service that drives headless Blender, alignment tools and exporters. A static viewer stays available for embedding.
-- **Harness over core code:** reuse established open-source tools and Blender add-ons (for example MPFB for one-click character building) wherever possible. Tools are installed by setup scripts from their official sources at pinned versions, and credited.
-- **Canonical form:** humanoid skeleton with Unity-humanoid hierarchy (T-pose, metres), 52 ARKit facial blendshapes, 15 viseme blendshapes and a material-slot manifest. Each export converts from it.
+- **Built avatars first:** the repository ships finished characters; the build tooling reproduces and extends them.
+- **Harness over core code:** reuse established open-source tools (MPFB for character building, Kokoro for speech, Blender exporters) wherever possible, installed from official sources and credited.
+- **One local server:** the Studio and the Talk demo run from `python -m tak`; heavier tools (speech, Blender, Unity checks) are optional add-ons.
 
-## Milestones
+## Done
 
-### M1: Studio and polished starter avatars
-- [x] Studio shell: avatar library, 3D viewport, job log, settings for local tools
-- [x] One-command setup and launch; setup checks for Blender and other tools
-- [ ] Two starter avatars with polished skin, eyes, teeth and basic hair
-- [ ] Bind-pose and skin-weight fixes for shoulders, elbows, hands and thumbs
-- [x] Viewport lighting, tone mapping, shadows, camera presets
-- [x] Reference renders with fixed motion and cameras for before/after comparison
+- [x] Studio: avatar library, viewer, blendshape inspector, test poses, reference renders, build jobs, tool checks
+- [x] Five prepared avatars (Rowan, Mira, Amina, Elena, Min-jun) with ARKit and viseme blendshapes, credited parts, reproducible build recipes
+- [x] Skin detail (community skins, baked pore and wrinkle maps) and eye treatment
+- [x] Talking: Kokoro text-to-speech, phoneme-to-viseme timeline, three.js talking rig with blinks, gaze, breathing and moods, Talk demo page
+- [x] FBX export and Unity package (Humanoid import, URP or Standard materials, lip-sync helper), with an automated Unity batch check
+- [x] Fabric and pattern library for clothing variants
 
-### M2: Rig and motion
-- [ ] Canonical humanoid skeleton and rest pose
-- [ ] Load motion files into the Studio and play them, including fingers
-- [ ] Validation clips: rest, open hand, fist, pointing, thumb, fast transitions, sitting
-- [ ] GLB export from the Studio
-- [ ] Automatic checks: Blender re-import and browser load (skeleton, blendshapes, materials)
+## Next (v0.1 release)
 
-### M3: Face and lip-sync
-- [ ] Load audio files or generate speech in the Studio
-- [ ] Phoneme alignment from TTS timings or a forced aligner
-- [ ] Multilingual phoneme-to-viseme tables
-- [ ] Viseme timeline on the audio clock, with limited jaw/viseme stacking
-- [ ] Blinking, gaze and expression blending
-- [ ] Combined playback of body motion, speech and face
+- [ ] GitHub Release with one download per avatar (GLB, FBX, textures, credit line) and an avatar card (height, polygon count, blendshapes, licence)
+- [ ] Lip-sync for any audio file through forced alignment, which also covers languages without a Kokoro voice (for example Korean)
+- [ ] Drop-in web component (`<talking-avatar>`) with plain HTML and framework examples
+- [ ] Citation file and archived release DOI
 
-### M4: Customisation
-- [ ] Material slots: skin, hair, eyes, top, bottom, shoes
-- [ ] Colour tints and texture-set swapping in the Studio
-- [ ] Appearance presets saved as JSON
+## Then (v0.2)
 
-### M5: Create
-- [ ] Character specification: body parameters, outfit, hair, skin and appearance
-- [ ] Parameter ranges and presets with a **Create** button; batch creation
-- [ ] Headless build, automatic quality gates and export per created avatar
-- [ ] At least one new avatar created entirely from the Studio
+- [ ] Animation library: idle, talking gestures, wave, nod, point, sit, walk; Mixamo-compatible bone-name export so common animation libraries apply
+- [ ] Load motion files in the Studio and play them on any avatar, including fingers
+- [ ] Unity sample scene: talking avatar driven by the speech timeline, idle loop
+- [ ] Chat example: text from any language model streamed to speech over a WebSocket (model-agnostic)
+- [ ] Lighter variants: compressed meshes and textures, 512 / 1k / 2k texture sets for mobile and VR
 
-### M6: Props and interactions
-- [ ] Props built for this project (procedural Blender tools or our own modelling) or taken from CC0 sources; no store or brand-catalogue models
-- [ ] Prop schema: grasp points, approach position, hand pose, contact targets
-- [ ] Inverse-kinematics generation of interactions, baked to clips
-- [ ] Prop bundles with interactions, playable with any avatar in the Studio
+## Later
 
-### Later: engines and formats
-Candidates, each decided when reached: Unity (FBX and package), VRM 1.0, Unreal FBX, Mixamo-compatible bone names, USD / USDZ, Godot, BVH for motion clips.
-
-## Releases
-
-- v0.1: M1 to M3
-- v0.2: M4 and M5
-- v0.3: M6
-- Later: engines and formats, then additional features as needed
+- [ ] VRM 1.0 export
+- [ ] Outfit and colour variants as presets (casual, business, clinical) with tints and patterns
+- [ ] Webcam face puppeteering (face landmarks to ARKit blendshapes)
+- [ ] Online viewer with pre-recorded speech samples
+- [ ] Create: parameter ranges and presets to build new avatars in one step, with automatic quality gates
+- [ ] Props and interactions: schema for grasp points, approach positions and hand poses; inverse-kinematics interactions baked to clips (sit, pick up, open)
+- [ ] More engines and formats, each decided when reached: Unreal FBX, USD / USDZ, Godot, BVH motion clips
 
 ## Distribution
 
-GitHub Releases first; other channels decided with the engine and format work.
+GitHub Releases first; Unity package by git URL; other channels decided with the engine and format work.
