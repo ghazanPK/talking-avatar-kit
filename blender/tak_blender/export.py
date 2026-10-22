@@ -14,7 +14,11 @@ ALPHA = {
     "top": ("OPAQUE", None, True),
     "bottom": ("OPAQUE", None, True),
     "shoes": ("OPAQUE", None, True),
+    "hat": ("OPAQUE", None, True),
+    "accessory": ("OPAQUE", None, True),
 }
+EYE_MARK = "tak_eye_treatment"
+EYE_TREATMENT = "brown iris, calmed sclera, clearcoat, roughness 0.35"
 
 
 def export_glb(path, objects, active, jpeg_quality=90):
@@ -59,7 +63,13 @@ def postprocess(path, asset_extras, copyright=None):
     """Fix alpha modes and sidedness per material and stamp asset metadata."""
     gltf, rest = read_glb(path)
     for material in gltf.get("materials", []):
-        name = material.get("name", "")
+        # Blender appends ".001" when a role name was taken; the GLB uses the role.
+        name = material.get("name", "").split(".")[0]
+        material["name"] = name
+        if name == "eyes":
+            # Marks the eye look (textures.tune_eye + clearcoat) so tak.pipeline.glb_eyes
+            # never applies it a second time.
+            material.setdefault("extras", {})[EYE_MARK] = EYE_TREATMENT
         mode, cutoff, double = ALPHA.get(name, ("OPAQUE", None, False))
         material["alphaMode"] = mode
         material.pop("alphaCutoff", None)

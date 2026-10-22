@@ -3,13 +3,25 @@
   "slug": "mira",
   "name": "Mira",
   "description": "Short young adult Asian woman in a grey double-breasted trouser suit",
+  "persona": "A sharp young new hire: formal, precise, and curious about everything.",
   "license": "CC-BY-4.0",
   "license_url": "https://creativecommons.org/licenses/by/4.0/",
   "credit": "talking-avatar-kit by Ghazanfar Ali",
   "attribution": "Mira avatar, talking-avatar-kit by Ghazanfar Ali, licensed under CC BY 4.0. Built with MPFB from CC0 MakeHuman assets. Outfit: double-breasted trouser suit by MargaretToigo from the MakeHuman community (CC0).",
+  "credits": [],
+  "licenses": {
+    "avatar": "CC-BY-4.0",
+    "makehuman_assets": "CC0-1.0"
+  },
+  "outfit": [
+    "shoes04",
+    "toigo_female_double-breasted_suit"
+  ],
   "file": "mira.glb",
   "format": "glTF 2.0 binary (GLB)",
-  "bytes": 6457256,
+  "bytes": 6541352,
+  "sha256": "0cbe25a508f17ee2a3ee82394340c8eab50ad2d09da1ceb0d68c2c5f8623ed44",
+  "preview": "preview.png",
   "units": "metres, +Y up, character faces +Z",
   "height_m": 1.4131,
   "generator": {
@@ -21,11 +33,19 @@
       "makehuman_system_assets": "b542127a8e25547c7c29c19f2d1d2adb9a664c80396ecd694095dbc8028a0107",
       "visemes02": "a69ab6fb95ddd5f56f70acc7e859f5f9c6ae613c527d577ea1571eff2183d29e",
       "faceunits01": "d113107bd7eb59f3af4df6fc0ec29bfcc593f496d0b336aec14f086a80ce7146",
-      "skins02": "1613f1ef3afca53094511d26620ed7cf1d2dedc29ed3d384d60bdebe250698ae"
+      "skins02": "1613f1ef3afca53094511d26620ed7cf1d2dedc29ed3d384d60bdebe250698ae",
+      "shirts01": "a5a723b0e84a109bb190fcfeac7f1de4138d875da3e30fe5b3340eac9f38bcd3",
+      "pants01": "e4e0ec60db34f279be291a83cfd7b342a7c5cf09bb7676682a5f39f4f6ac4ad9",
+      "suits01": "2b1d8676f3863b188e9eea98c1d8f234543d54c440e791d92b819f8ee1861f19",
+      "dress03": "d35487edda8347ac8d0250207007c18056d7aaac404e91946bf9cf1399f2bcd8",
+      "hair03": "776c277cb6bcebc32907e05fa94d119e48742cdc1c34183996fc3e65e17a2740",
+      "hair02": "c681e5efd37df4007a52253a8d071aedbfe3b614f199d8dae4ae76d5bd7d95c9",
+      "shirts02": "d711ca9f73212de855257ac08422e1e0ccb802e5231315c2a360d0fcfea5033e",
+      "skirts02": "20958a4669d88efc8295e2a4f5c97677f97ca47607478ee99e1a141525cff5b3"
     }
   },
   "source_assets": {
-    "license": "CC0-1.0 (MakeHuman Community)",
+    "license": "MakeHuman Community assets; CC0-1.0 unless listed in credits",
     "names": {
       "skin": "young_asian_female",
       "eyes": "high-poly / brown",
@@ -34,10 +54,85 @@
       "teeth": "teeth_shape02",
       "tongue": "tongue01",
       "hair": "ponytail01",
-      "outfit": "toigo_female_double-breasted_suit by MargaretToigo (MakeHuman community suits01, CC0)",
-      "shoes": "shoes04"
-    }
+      "shoes": "shoes04",
+      "outfit": "toigo_female_double-breasted_suit"
+    },
+    "parts": [
+      {
+        "part": "skin",
+        "asset": "young_asian_female",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "eyes",
+        "asset": "high-poly",
+        "pack": "makehuman_system_assets",
+        "author": null,
+        "license": "CC0",
+        "source": null
+      },
+      {
+        "part": "eyebrows",
+        "asset": "eyebrow007",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "eyelashes",
+        "asset": "eyelashes02",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "teeth",
+        "asset": "teeth_shape02",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "tongue",
+        "asset": "tongue01",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "hair",
+        "asset": "ponytail01",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "shoes",
+        "asset": "shoes04",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "outfit",
+        "asset": "toigo_female_double-breasted_suit",
+        "pack": "suits01",
+        "author": "MargaretToigo",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org/node/1742"
+      }
+    ]
   },
+  "look": "kit",
   "skin": {
     "material": "young_asian_female",
     "asset": {
@@ -62,7 +157,7 @@
           "strength": 0.09,
           "tile_mm": 140,
           "repair_seams": false,
-          "repeats": 7,
+          "repeats": 6,
           "sha256": "9ada17bf8070fe7c1a87c1f1f1d58b41f2f9ec55543d5ebda61fb286ef709266"
         },
         "palm_skin_height": {
@@ -101,7 +196,7 @@
       },
       "uv_mm_per_unit": {
         "face": 915.4,
-        "body": 1017.1,
+        "body": 812.1,
         "palms": 1257.6,
         "lips": 861.5
       },
@@ -110,6 +205,16 @@
       "roughness_size": 1024,
       "base_maps": [],
       "eye_distance_m": 0.054
+    }
+  },
+  "build": {
+    "body_vertices": 7728,
+    "layering": {
+      "shoes_under_legs": 322
+    },
+    "cover": {
+      "garments": [],
+      "faces_deleted": 0
     }
   },
   "rig": {
@@ -184,7 +289,6 @@
       "thumb_base_r",
       "thumb_middle_l",
       "thumb_middle_r",
-      "tucked_shoe_vertices",
       "vertices_changed",
       "wrist_l",
       "wrist_r"
@@ -506,18 +610,10 @@
       ],
       "alpha_mode": "OPAQUE",
       "double_sided": true,
-      "base_color_texture": false,
-      "base_color_factor": [
-        0.18000000715255737,
-        0.41999998688697815,
-        0.41999998688697815,
-        1
-      ],
+      "base_color_texture": true,
+      "base_color_factor": null,
       "normal_texture": true,
-      "extensions": [
-        "KHR_materials_ior",
-        "KHR_materials_specular"
-      ]
+      "extensions": []
     },
     {
       "slot": "shoes",
@@ -528,11 +624,8 @@
       "double_sided": true,
       "base_color_texture": true,
       "base_color_factor": null,
-      "normal_texture": false,
-      "extensions": [
-        "KHR_materials_ior",
-        "KHR_materials_specular"
-      ]
+      "normal_texture": true,
+      "extensions": []
     },
     {
       "slot": "teeth",
@@ -568,7 +661,7 @@
   "meshes": [
     {
       "name": "Body",
-      "vertices": 9247,
+      "vertices": 8387,
       "morph_targets": 67
     },
     {
@@ -593,12 +686,12 @@
     },
     {
       "name": "Outfit",
-      "vertices": 2377,
+      "vertices": 5824,
       "morph_targets": 0
     },
     {
       "name": "Shoes",
-      "vertices": 1738,
+      "vertices": 1846,
       "morph_targets": 0
     },
     {
@@ -616,17 +709,17 @@
     {
       "name": "mira_skin_normal",
       "mime_type": "image/jpeg",
-      "bytes": 609790
+      "bytes": 643113
     },
     {
       "name": "mira_skin",
       "mime_type": "image/jpeg",
-      "bytes": 213373
+      "bytes": 206826
     },
     {
       "name": "mira_skin_roughness",
       "mime_type": "image/jpeg",
-      "bytes": 34045
+      "bytes": 33940
     },
     {
       "name": "eyebrow007",
@@ -649,14 +742,24 @@
       "bytes": 1608301
     },
     {
-      "name": "female_casualsuit01_normal",
+      "name": "DB-suit-Fem-norm",
       "mime_type": "image/jpeg",
-      "bytes": 38278
+      "bytes": 168430
     },
     {
-      "name": "shoes02_diffuse",
+      "name": "DB-suit-Fem",
       "mime_type": "image/jpeg",
-      "bytes": 105250
+      "bytes": 142658
+    },
+    {
+      "name": "shoes04_normal",
+      "mime_type": "image/jpeg",
+      "bytes": 93222
+    },
+    {
+      "name": "shoes04_diffuse",
+      "mime_type": "image/jpeg",
+      "bytes": 83077
     },
     {
       "name": "teeth",
@@ -699,13 +802,5 @@
       "height",
       "posed_bounds"
     ]
-  },
-  "outfit": [
-    "shoes04",
-    "toigo_female_double-breasted_suit"
-  ],
-  "persona": "A sharp young new hire: formal, precise, and curious about everything.",
-  "credits": [],
-  "sha256": "fa82c894e76a6f8b371956034e5900ea8bcff3bd959e29a65e4738b11881d4fd",
-  "preview": "preview.png"
+  }
 }

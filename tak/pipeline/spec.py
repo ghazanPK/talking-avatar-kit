@@ -10,6 +10,8 @@ import re
 from pathlib import Path
 from typing import Any
 
+from . import PACKS
+
 SCHEMA_VERSION = 1
 NAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.\-]*$")
 SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9\-]*$")
@@ -25,6 +27,13 @@ SKIN_REGIONS = ("face", "lips", "palms", "body", "cheeks", "nose", "forehead", "
                 "ears", "knuckles", "elbows", "knees", "nails")
 SOURCE_RE = re.compile(r"^[A-Za-z0-9_\-]+(/[A-Za-z0-9_.\-]+)*\.(png|jpg|jpeg)$", re.IGNORECASE)
 TEXTURE_SIZES = (256, 512, 1024, 2048, 4096)
+# Material looks: the kit's own materials, or MPFB's materials from the MakeHuman assets.
+LOOKS = ("kit", "mpfb")
+# How the body under a garment is removed (blender/tak_blender/cover.py).
+COVER_MODES = ("auto", "raycast", "none")
+# Optional settings of the face parts, hair and garments (key -> kind).
+PART_KEYS = {"roughness": "unit", "base_color": "color", "recolor": "color", "pack": "pack", "credit": "text"}
+GARMENT_KEYS = dict(PART_KEYS, keep_texture="bool", cover="cover", tucked="bool")
 
 
 class SpecError(ValueError):
@@ -56,6 +65,32 @@ def _asset(errors: list[str], where: str, block: Any, extra: dict[str, str] | No
                     errors.append(f"{where}.{key} must be 3 or 4 numbers between 0 and 1")
             elif kind == "bool" and not isinstance(block[key], bool):
                 errors.append(f"{where}.{key} must be true or false")
+            elif kind == "text" and not (isinstance(block[key], str) and block[key].strip()):
+                errors.append(f"{where}.{key} must be a non-empty string")
+            elif kind == "pack" and block[key] not in PACKS:
+                errors.append(f"{where}.{key} must be a pack installed by setup ({', '.join(sorted(PACKS))})")
+            elif kind == "cover" and block[key] not in COVER_MODES:
+                errors.append(f"{where}.{key} must be one of {COVER_MODES}")
+
+
+def pack_license(pack: str | None) -> str:
+    """Licence of a pack installed by setup ("CC0" for the MakeHuman system assets)."""
+    return PACKS.get(pack or "makehuman_system_assets", {}).get("license", "CC0")
+
+
+def _credit_rule(errors: list[str], where: str, block: Any) -> None:
+    """Assets from a CC BY pack must carry the credit line the licence asks for."""
+    if isinstance(block, dict) and block.get("pack") in PACKS \
+            and pack_license(block["pack"]).startswith("CC-BY") and not block.get("credit"):
+        errors.append(f"{where}.credit is required: {block['asset']} comes from the CC BY pack {block['pack']}")
+
+
+def credits(spec: dict) -> list[str]:
+    """CC BY credit lines of the spec's garments (outfit order) and hair, as the manifest lists them."""
+    lines = [item["credit"] for item in spec.get("clothes", []) if item.get("credit")]
+    if spec.get("hair", {}).get("credit"):
+        lines.append(spec["hair"]["credit"])
+    return lines
 
 
 def _range(errors: list[str], where: str, value: Any, lo: float, hi: float) -> None:
@@ -189,9 +224,9 @@ def validate_spec(spec: Any, slug: str | None = None) -> dict:
     if not isinstance(eyes, dict) or eyes.get("mesh") not in EYE_MESHES or not NAME_RE.match(str(eyes.get("material", ""))):
         errors.append(f"eyes needs mesh ({'/'.join(EYE_MESHES)}) and a material name")
 
-    for key in ("eyebrows", "eyelashes", "teeth", "tongue"):
-        _asset(errors, key, spec.get(key))
-    _asset(errors, "hair", spec.get("hair"), {"roughness": "unit", "base_color": "color"})
+    for key in ("eyebrows", "eyelashes", "teeth", "tongue", "hair"):
+        _asset(errors, key, spec.get(key), PART_KEYS)
+        _credit_rule(errors, key, spec.get(key))
 
     clothes = spec.get("clothes")
     if not isinstance(clothes, list) or not clothes:
@@ -200,13 +235,29 @@ def validate_spec(spec: Any, slug: str | None = None) -> dict:
         slots = []
         for index, item in enumerate(clothes):
             where = f"clothes[{index}]"
-            _asset(errors, where, item, {"roughness": "unit", "base_color": "color", "keep_texture": "bool"})
+            _asset(errors, where, item, GARMENT_KEYS)
+            _credit_rule(errors, where, item)
             if isinstance(item, dict):
                 if item.get("slot") not in SLOTS:
                     errors.append(f"{where}.slot must be one of {SLOTS}")
+                if item.get("tucked") and item.get("slot") != "top":
+                    errors.append(f"{where}.tucked applies to the top only")
                 slots.append(item.get("slot"))
         if len(slots) != len(set(slots)):
             errors.append("clothes slots must be unique")
+
+    for key in ("persona", "attribution_note"):
+        if key in spec and not (isinstance(spec[key], str) and spec[key].strip()):
+            errors.append(f"{key} must be a non-empty string")
+    if spec.get("look", "kit") not in LOOKS:
+        errors.append(f"look must be one of {LOOKS}")
+    if "layering" in spec and not isinstance(spec["layering"], bool):
+        errors.append("layering must be true or false")
+    if "weights" in spec:
+        block = spec["weights"]
+        if not isinstance(block, dict) or set(block) - {"body", "garments"} \
+                or not all(isinstance(v, bool) for v in block.values()):
+            errors.append("weights must be {\"body\": true|false, \"garments\": true|false}")
 
     face = spec.get("face")
     if not isinstance(face, dict) or face.get("arkit") is not True or face.get("visemes") != "meta":

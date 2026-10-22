@@ -3,13 +3,26 @@
   "slug": "rowan",
   "name": "Rowan",
   "description": "Middle-aged African man in a green polo shirt and dark cargo trousers",
+  "persona": "A calm, steady lab technician who explains things once, and clearly.",
   "license": "CC-BY-4.0",
   "license_url": "https://creativecommons.org/licenses/by/4.0/",
   "credit": "talking-avatar-kit by Ghazanfar Ali",
   "attribution": "Rowan avatar, talking-avatar-kit by Ghazanfar Ali, licensed under CC BY 4.0. Built with MPFB from CC0 MakeHuman assets. Outfit: polo shirt and cargo trousers from the MakeHuman community (CC0).",
+  "credits": [],
+  "licenses": {
+    "avatar": "CC-BY-4.0",
+    "makehuman_assets": "CC0-1.0"
+  },
+  "outfit": [
+    "shoes03",
+    "cortu_cargo_pants",
+    "namuhekam_male_polo_shirt"
+  ],
   "file": "rowan.glb",
   "format": "glTF 2.0 binary (GLB)",
-  "bytes": 5319220,
+  "bytes": 5420552,
+  "sha256": "8cc07ac845aa1d5260e882be3e4b4ab0004b30a40e58de3b0cd3791056b13d8f",
+  "preview": "preview.png",
   "units": "metres, +Y up, character faces +Z",
   "height_m": 1.9887,
   "generator": {
@@ -21,11 +34,19 @@
       "makehuman_system_assets": "b542127a8e25547c7c29c19f2d1d2adb9a664c80396ecd694095dbc8028a0107",
       "visemes02": "a69ab6fb95ddd5f56f70acc7e859f5f9c6ae613c527d577ea1571eff2183d29e",
       "faceunits01": "d113107bd7eb59f3af4df6fc0ec29bfcc593f496d0b336aec14f086a80ce7146",
-      "skins02": "1613f1ef3afca53094511d26620ed7cf1d2dedc29ed3d384d60bdebe250698ae"
+      "skins02": "1613f1ef3afca53094511d26620ed7cf1d2dedc29ed3d384d60bdebe250698ae",
+      "shirts01": "a5a723b0e84a109bb190fcfeac7f1de4138d875da3e30fe5b3340eac9f38bcd3",
+      "pants01": "e4e0ec60db34f279be291a83cfd7b342a7c5cf09bb7676682a5f39f4f6ac4ad9",
+      "suits01": "2b1d8676f3863b188e9eea98c1d8f234543d54c440e791d92b819f8ee1861f19",
+      "dress03": "d35487edda8347ac8d0250207007c18056d7aaac404e91946bf9cf1399f2bcd8",
+      "hair03": "776c277cb6bcebc32907e05fa94d119e48742cdc1c34183996fc3e65e17a2740",
+      "hair02": "c681e5efd37df4007a52253a8d071aedbfe3b614f199d8dae4ae76d5bd7d95c9",
+      "shirts02": "d711ca9f73212de855257ac08422e1e0ccb802e5231315c2a360d0fcfea5033e",
+      "skirts02": "20958a4669d88efc8295e2a4f5c97677f97ca47607478ee99e1a141525cff5b3"
     }
   },
   "source_assets": {
-    "license": "CC0-1.0 (MakeHuman Community)",
+    "license": "MakeHuman Community assets; CC0-1.0 unless listed in credits",
     "names": {
       "skin": "mindfront_skin_male_african_middleage",
       "eyes": "high-poly / brown",
@@ -34,11 +55,94 @@
       "teeth": "teeth_shape01",
       "tongue": "tongue01",
       "hair": "short04",
-      "top": "namuhekam_male_polo_shirt (MakeHuman community shirts01, CC0)",
-      "bottom": "cortu_cargo_pants (MakeHuman community pants01, CC0)",
-      "shoes": "shoes03"
-    }
+      "shoes": "shoes03",
+      "bottom": "cortu_cargo_pants",
+      "top": "namuhekam_male_polo_shirt"
+    },
+    "parts": [
+      {
+        "part": "skin",
+        "asset": "mindfront_skin_male_african_middleage",
+        "pack": "skins02",
+        "author": "Mindfront",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org/node/526"
+      },
+      {
+        "part": "eyes",
+        "asset": "high-poly",
+        "pack": "makehuman_system_assets",
+        "author": null,
+        "license": "CC0",
+        "source": null
+      },
+      {
+        "part": "eyebrows",
+        "asset": "eyebrow004",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "eyelashes",
+        "asset": "eyelashes01",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "teeth",
+        "asset": "teeth_shape01",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "tongue",
+        "asset": "tongue01",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "hair",
+        "asset": "short04",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "shoes",
+        "asset": "shoes03",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "bottom",
+        "asset": "cortu_cargo_pants",
+        "pack": "pants01",
+        "author": "Cortu",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org/node/2798"
+      },
+      {
+        "part": "top",
+        "asset": "namuhekam_male_polo_shirt",
+        "pack": "shirts01",
+        "author": "namuhekam",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org/node/2909"
+      }
+    ]
   },
+  "look": "kit",
   "skin": {
     "material": "mindfront_skin_male_african_middleage",
     "asset": {
@@ -102,7 +206,7 @@
       },
       "uv_mm_per_unit": {
         "face": 1139.4,
-        "body": 1394.6,
+        "body": 1443.3,
         "palms": 1809.0,
         "lips": 1176.0
       },
@@ -114,6 +218,20 @@
         "specular"
       ],
       "eye_distance_m": 0.0622
+    }
+  },
+  "build": {
+    "body_vertices": 8698,
+    "layering": {
+      "bottom_under_top": 9,
+      "shoes_under_legs": 12
+    },
+    "cover": {
+      "garments": [
+        "cortu_cargo_pants",
+        "namuhekam_male_polo_shirt"
+      ],
+      "faces_deleted": 2515
     }
   },
   "rig": {
@@ -177,7 +295,7 @@
     ],
     "max_influences": 4,
     "weight_fixes": [
-      "clothes_outfit",
+      "clothes_top",
       "elbow_l",
       "elbow_r",
       "knuckles_l",
@@ -188,7 +306,6 @@
       "thumb_base_r",
       "thumb_middle_l",
       "thumb_middle_r",
-      "tucked_shoe_vertices",
       "vertices_changed",
       "wrist_l",
       "wrist_r"
@@ -448,6 +565,18 @@
       ]
     },
     {
+      "slot": "bottom",
+      "meshes": [
+        "Bottom"
+      ],
+      "alpha_mode": "OPAQUE",
+      "double_sided": true,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": true,
+      "extensions": []
+    },
+    {
       "slot": "eyebrows",
       "meshes": [
         "Eyebrows"
@@ -508,26 +637,6 @@
       ]
     },
     {
-      "slot": "outfit",
-      "meshes": [
-        "Outfit"
-      ],
-      "alpha_mode": "OPAQUE",
-      "double_sided": true,
-      "base_color_texture": false,
-      "base_color_factor": [
-        0.17000000178813934,
-        0.23000000417232513,
-        0.28999999165534973,
-        1
-      ],
-      "normal_texture": true,
-      "extensions": [
-        "KHR_materials_ior",
-        "KHR_materials_specular"
-      ]
-    },
-    {
       "slot": "shoes",
       "meshes": [
         "Shoes"
@@ -537,10 +646,7 @@
       "base_color_texture": true,
       "base_color_factor": null,
       "normal_texture": false,
-      "extensions": [
-        "KHR_materials_ior",
-        "KHR_materials_specular"
-      ]
+      "extensions": []
     },
     {
       "slot": "teeth",
@@ -571,13 +677,30 @@
         "KHR_materials_ior",
         "KHR_materials_specular"
       ]
+    },
+    {
+      "slot": "top",
+      "meshes": [
+        "Top"
+      ],
+      "alpha_mode": "OPAQUE",
+      "double_sided": true,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": false,
+      "extensions": []
     }
   ],
   "meshes": [
     {
       "name": "Body",
-      "vertices": 9120,
+      "vertices": 9425,
       "morph_targets": 67
+    },
+    {
+      "name": "Bottom",
+      "vertices": 232,
+      "morph_targets": 0
     },
     {
       "name": "Eyebrows",
@@ -600,11 +723,6 @@
       "morph_targets": 0
     },
     {
-      "name": "Outfit",
-      "vertices": 3962,
-      "morph_targets": 0
-    },
-    {
       "name": "Shoes",
       "vertices": 2510,
       "morph_targets": 0
@@ -618,23 +736,38 @@
       "name": "Tongue",
       "vertices": 253,
       "morph_targets": 13
+    },
+    {
+      "name": "Top",
+      "vertices": 2349,
+      "morph_targets": 0
     }
   ],
   "textures": [
     {
       "name": "rowan_skin_normal",
       "mime_type": "image/jpeg",
-      "bytes": 654046
+      "bytes": 694037
     },
     {
       "name": "rowan_skin",
       "mime_type": "image/jpeg",
-      "bytes": 161954
+      "bytes": 165550
     },
     {
       "name": "rowan_skin_roughness",
       "mime_type": "image/jpeg",
-      "bytes": 37985
+      "bytes": 38304
+    },
+    {
+      "name": "cargo_pants_norm",
+      "mime_type": "image/jpeg",
+      "bytes": 87029
+    },
+    {
+      "name": "cargo_pants_diff",
+      "mime_type": "image/jpeg",
+      "bytes": 32596
     },
     {
       "name": "eyebrow004",
@@ -657,11 +790,6 @@
       "bytes": 996073
     },
     {
-      "name": "male_worksuit01_normal",
-      "mime_type": "image/jpeg",
-      "bytes": 55076
-    },
-    {
       "name": "shoes03_diffuse",
       "mime_type": "image/jpeg",
       "bytes": 44618
@@ -675,6 +803,11 @@
       "name": "tongue01_diffuse",
       "mime_type": "image/jpeg",
       "bytes": 38769
+    },
+    {
+      "name": "Polo_Base_Color",
+      "mime_type": "image/jpeg",
+      "bytes": 21969
     }
   ],
   "extensions_used": [
@@ -707,13 +840,5 @@
       "height",
       "posed_bounds"
     ]
-  },
-  "outfit": [
-    "shoes03",
-    "cortu_cargo_pants",
-    "namuhekam_male_polo_shirt"
-  ],
-  "persona": "A calm, steady lab technician who explains things once, and clearly.",
-  "sha256": "69aa505caed21eeb68183c75c0b76ec9863775523026bb564b3ebb25a3cf3ed5",
-  "preview": "preview.png"
+  }
 }

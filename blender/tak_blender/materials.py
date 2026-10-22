@@ -3,6 +3,11 @@
 Every material is a single Principled BSDF whose inputs map onto glTF 2.0 and
 the KHR_materials_* extensions three.js supports (specular, ior, clearcoat,
 sheen). The skin's albedo, normal and roughness maps are baked by skinmaps.py.
+
+Two looks (spec ``look``): ``kit`` builds the kit's own materials for skin, brows,
+lashes, teeth, tongue and hair; ``mpfb`` keeps the materials MPFB makes from the
+MakeHuman assets (``keep_mpfb``). The eyes always get the kit's treatment, and
+garments keep their own textures unless the spec asks for a plain colour.
 """
 from pathlib import Path
 
@@ -12,11 +17,33 @@ import numpy as np
 from . import skinmaps, textures
 
 
+#: Material roles whose texture alpha means something (cards and hair).
+ALPHA_ROLES = ("eyebrows", "eyelashes", "hair")
+#: Roughness of a garment without a roughness map or a spec value: MPFB's default 0.5
+#: makes cotton read as satin.
+FINISH = {"top": 0.82, "bottom": 0.82, "outfit": 0.8, "shoes": 0.45, "hat": 0.7, "accessory": 0.6}
+
+
+def _base_color_node(mat):
+    """The image node feeding the Principled BSDF's base colour directly, if any."""
+    if not mat or not mat.use_nodes:
+        return None
+    for node in mat.node_tree.nodes:
+        if node.type == "BSDF_PRINCIPLED":
+            links = node.inputs["Base Color"].links
+            if links and links[0].from_node.type == "TEX_IMAGE" and links[0].from_node.image:
+                return links[0].from_node
+    return None
+
+
 def _image_of(obj):
     """The diffuse image MPFB attached to the object's material (or None)."""
     mat = obj.active_material
     if not mat or not mat.use_nodes:
         return None
+    node = _base_color_node(mat)
+    if node is not None:
+        return node.image
     for node in mat.node_tree.nodes:
         if node.type == "TEX_IMAGE" and node.image and "normal" not in node.image.name.lower() \
                 and not node.image.name.lower().endswith("_ao.png"):
@@ -32,6 +59,19 @@ def _image_named(obj, needle):
         if node.type == "TEX_IMAGE" and node.image and needle in node.image.name.lower():
             return node.image
     return None
+
+
+def _normal_image(obj):
+    """The image feeding a Normal Map node of the object's material (or None)."""
+    mat = obj.active_material
+    if not mat or not mat.use_nodes:
+        return None
+    for node in mat.node_tree.nodes:
+        if node.type == "NORMAL_MAP":
+            links = node.inputs["Color"].links
+            if links and links[0].from_node.type == "TEX_IMAGE" and links[0].from_node.image:
+                return links[0].from_node.image
+    return _image_named(obj, "norm")
 
 
 def _new_material(name):
@@ -212,6 +252,8 @@ def card(obj, slug, role, limits, darken=1.0, roughness=0.6, specular=0.3):
 
 def hair(obj, slug, cfg, limits):
     image = textures.limit_size(textures.own_copy(_image_of(obj), f"{slug}_hair"), limits["default_max"])
+    if "recolor" in cfg:
+        textures.recolor(image, cfg["recolor"])
     if "base_color" in cfg:
         textures.scale_rgb(image, cfg["base_color"][:3])
     textures.bleed_alpha(image)
@@ -265,22 +307,91 @@ def mouth_occlusion(obj, front_level=1.0, back_level=0.22, power=1.4):
     mesh.color_attributes.render_color_index = mesh.color_attributes.find("Color")
 
 
+def keep_mpfb(obj, role, roughness=None):
+    """Keep the material MPFB made from the MakeHuman asset, named after its role.
+
+    The texture alpha MPFB wires into every material is unlinked except on cards and
+    hair (otherwise the exporter writes a large PNG where a JPEG carries the same
+    picture, and the material sorts as transparent). ``roughness`` replaces the
+    constant roughness when no roughness map is linked.
+    """
+    mat = obj.active_material
+    if mat is None:
+        return None
+    mat.name = role
+    if mat.use_nodes:
+        for node in mat.node_tree.nodes:
+            if node.type != "BSDF_PRINCIPLED":
+                continue
+            if role not in ALPHA_ROLES:
+                for link in list(node.inputs["Alpha"].links):
+                    mat.node_tree.links.remove(link)
+                node.inputs["Alpha"].default_value = 1.0
+            if roughness is not None and not node.inputs["Roughness"].links:
+                node.inputs["Roughness"].default_value = roughness
+    return mat
+
+
+def limit_textures(obj, largest, seen=None):
+    """Cap every image used by the object's materials at ``largest`` pixels (packed copies)."""
+    seen = set() if seen is None else seen
+    for slot in obj.material_slots:
+        mat = slot.material
+        if mat is None or not mat.use_nodes:
+            continue
+        for node in mat.node_tree.nodes:
+            if node.type != "TEX_IMAGE" or node.image is None or node.image.name in seen:
+                continue
+            seen.add(node.image.name)
+            if max(node.image.size) > largest:
+                textures.limit_size(node.image, largest)
+                # Packed, or the exporter copies the original full-size file instead.
+                node.image.pack()
+    return seen
+
+
+def recolor_texture(obj, slug, role, colour=None, multiply=None):
+    """Recolour (``textures.recolor``) and/or multiply the base-colour texture on a copy."""
+    mat = obj.active_material
+    node = _base_color_node(mat)
+    if node is None:
+        bsdf = next((n for n in mat.node_tree.nodes if n.type == "BSDF_PRINCIPLED"), None) if mat else None
+        if bsdf is not None and (colour or multiply):
+            base = list(colour or (1.0, 1.0, 1.0))[:3]
+            if multiply:
+                base = [a * b for a, b in zip(base, multiply[:3])]
+            bsdf.inputs["Base Color"].default_value = base + [1.0]
+        return
+    image = textures.own_copy(node.image, f"{slug}_{role}")
+    if colour:
+        textures.recolor(image, colour)
+    if multiply:
+        textures.scale_rgb(image, multiply[:3])
+    image.pack()
+    node.image = image
+
+
 def clothing(obj, slug, cfg, limits):
+    """Garment material.
+
+    By default the garment keeps the material MPFB made from its own textures
+    (diffuse and normal map), with a fabric roughness; ``recolor`` gives the
+    texture a new colour (luminance kept as shading), ``base_color`` multiplies it.
+    With ``keep_texture: false`` the garment is a plain ``base_color`` with its
+    normal map.
+    """
     slot = cfg["slot"]
+    if cfg.get("keep_texture", True) and _image_of(obj) is not None:
+        keep_mpfb(obj, slot, cfg.get("roughness", FINISH.get(slot, 0.7)))
+        if "recolor" in cfg or "base_color" in cfg:
+            recolor_texture(obj, slug, slot, cfg.get("recolor"), cfg.get("base_color"))
+        limit_textures(obj, limits["default_max"])
+        return obj.active_material
     mat, bsdf = _new_material(slot)
-    image = _image_of(obj)
-    if cfg.get("keep_texture", True) and image is not None:
-        image = textures.limit_size(textures.own_copy(image, f"{slug}_{slot}"), limits["default_max"])
-        if "base_color" in cfg:
-            textures.scale_rgb(image, cfg["base_color"][:3])
-        textures.set_alpha(image, 1.0)
-        image.pack()
-        _base_color(mat, bsdf, image)
-    else:
-        color = list(cfg.get("base_color", (0.5, 0.5, 0.5)))[:3] + [1.0]
-        bsdf.inputs["Base Color"].default_value = color
-        mat.diffuse_color = color
-    normal = _image_named(obj, "normal")
+    color = list(cfg.get("base_color", (0.5, 0.5, 0.5)))[:3] + [1.0]
+    bsdf.inputs["Base Color"].default_value = color
+    mat.diffuse_color = color
+    normal = _normal_image(obj)
     if normal is not None:
         normal = textures.limit_size(textures.own_copy(normal, f"{slug}_{slot}_normal"), limits["default_max"])
         normal.pack()

@@ -6,11 +6,11 @@ Prepared virtual-human avatars that talk: rigged characters with facial blendsha
 
 ## Current state
 
-- **Avatars:** five prepared avatars in `avatars/<slug>/` (GLB, manifest, preview): Rowan, Mira, Amina, Elena and Min-jun. Each has a 53-bone humanoid rig (A-pose), the 52 ARKit facial blendshapes and 15 viseme targets, and physically based materials. Credits and licences are in each manifest. Rowan and Mira also carry their build `spec.json`.
+- **Avatars:** five prepared avatars in `avatars/<slug>/` (GLB, manifest, preview, build recipe `spec.json`): Rowan, Mira, Amina, Elena and Min-jun. Each has a 53-bone humanoid rig (A-pose), the 52 ARKit facial blendshapes and 15 viseme targets, and physically based materials. Credits and licences, including every part's pack and author, are in each manifest.
 - **Talking:** text goes to the local Kokoro text-to-speech model; its predicted phoneme durations become a 15-viseme lip-sync track. The three.js rig (`studio/js/talking/rig.js`) plays the audio and drives mouth, blinks, gaze, breathing, head motion and moods from the audio clock. The `/api/speech/say` endpoint returns audio plus a timeline (words, phonemes, visemes, keyframes) usable by any engine. Voices: US and UK English, Spanish, French, Hindi, Italian, Brazilian Portuguese (Japanese and Mandarin with extra setup). Korean is not covered by Kokoro.
 - **Demo and Studio:** one local server. The Talk page picks an avatar, voice, speed and mood and speaks typed text. The Studio browses avatars, drives blendshapes, applies test poses, captures reference renders, runs build jobs and checks installed tools.
 - **FBX and Unity:** `python -m tak export fbx` converts avatars to Unity-ready FBX (metres, Y up, facing +Z, blendshapes on every mesh they move, textures and a sidecar with licence, bone map, blendshapes and materials). The Unity package in `unity/` imports them as Humanoid characters with URP Lit or Standard materials and a component that drives visemes and ARKit shapes by name. An optional batch check validates the import in Unity and renders previews.
-- **Pipeline:** headless Blender builds avatars from `spec.json` with MPFB and validates the result. Skin uses CC0 MakeHuman community skins with baked region detail from tiles in `assets/detail/skin/`.
+- **Pipeline:** headless Blender rebuilds every avatar from its `spec.json` with MPFB, reproducibly, and validates the result. `python -m tak setup` installs MPFB and every MakeHuman pack the avatars use (CC0 and credited CC BY community packs, about 2.5 GB unpacked). Rowan's and Mira's skin uses CC0 community skins with baked region detail from tiles in `assets/detail/skin/`.
 
 Body-motion playback, customisation and avatar creation are not implemented yet; see [ROADMAP.md](ROADMAP.md).
 
@@ -41,9 +41,10 @@ In Unity: Package Manager, Add package from git URL: `https://github.com/ghazanP
 Rebuilding avatars from their specifications (Blender 4.2 or newer):
 
 ```sh
-python -m tak setup        # install MPFB and the CC0 MakeHuman asset packs into .tak/
-python -m tak check        # report Python, Blender and MPFB status
-python -m tak build rowan  # rebuild one avatar from avatars/rowan/spec.json
+python -m tak setup                  # install MPFB and the MakeHuman packs into .tak/
+python -m tak check                  # report Python, Blender and MPFB status
+python -m tak build --all            # rebuild every avatar into build/rebuild/<slug>/
+python -m tak build amina --install  # rebuild one and replace avatars/amina/ after validation
 ```
 
 Details: [docs/talking.md](docs/talking.md), [docs/unity.md](docs/unity.md), [docs/studio.md](docs/studio.md), [docs/avatars.md](docs/avatars.md).

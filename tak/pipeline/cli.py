@@ -36,7 +36,8 @@ def _fail(progress: Progress, stage: str, exc: BaseException, debug: bool) -> in
 
 def setup_parser() -> argparse.ArgumentParser:
     parser = _Parser(prog="tak setup", description=(
-        f"Install MPFB {MPFB_VERSION} and the MakeHuman CC0 packs into the kit's Blender profile."))
+        f"Install MPFB {MPFB_VERSION} and the MakeHuman asset packs (CC0 and CC BY community packs) "
+        "into the kit's Blender profile."))
     parser.add_argument("--blender", help="Blender executable (default: discovered)")
     parser.add_argument("--packs-dir", type=Path,
                         help="folder with pre-downloaded archives instead of downloading")
@@ -46,9 +47,14 @@ def setup_parser() -> argparse.ArgumentParser:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = _Parser(prog="tak build", description="Build avatars/<slug>/ from spec.json with headless Blender.")
+    parser = _Parser(prog="tak build", description=(
+        "Build avatars from avatars/<slug>/spec.json with headless Blender into build/rebuild/<slug>/ "
+        "(GLB, manifest.json, preview.png); --install also replaces avatars/<slug>/ after validation."))
     parser.add_argument("slugs", nargs="*", help="avatar slugs (folders under avatars/)")
     parser.add_argument("--all", action="store_true", help="build every avatar that has a spec.json")
+    parser.add_argument("--out", type=Path, help="output folder (default build/rebuild); each avatar goes to <out>/<slug>/")
+    parser.add_argument("--install", action="store_true",
+                        help="copy each validated build into avatars/<slug>/ (GLB, manifest, preview)")
     parser.add_argument("--blender", help="Blender executable (default: discovered)")
     parser.add_argument("--no-validate", action="store_true", help="skip validation after the build")
     parser.add_argument("--no-preview", action="store_true", help="skip the preview render")
@@ -129,9 +135,11 @@ def build_main(argv: Sequence[str] | None = None) -> int:
         return 2
     from .build import run_builds
     try:
+        if args.install and args.no_validate:
+            raise ValueError("--install needs validation; drop --no-validate")
         result = run_builds(slugs, blender=args.blender, validate=not args.no_validate,
                             preview=not args.no_preview, keep_blend=args.keep_blend,
-                            progress=progress)
+                            progress=progress, out_root=args.out, install=args.install)
     except Exception as exc:  # noqa: BLE001
         return _fail(progress, "build", exc, args.debug)
     progress.result(result)

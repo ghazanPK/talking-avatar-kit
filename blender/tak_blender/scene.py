@@ -185,7 +185,7 @@ def remove_eye_shell(eyes, u_min=0.85, v_max=0.15):
 
 
 def tuck_under(inner, outer, margin=0.006, reach=0.03):
-    """Push vertices of an inner garment (e.g. socks of a shoe) below an outer one (trousers).
+    """Push vertices of an inner garment (e.g. a shoe's socks, a waistband) below an outer one.
 
     MakeHuman garments are fitted independently, so a sock can poke through a
     trouser leg. Every inner vertex closer than ``reach`` to the outer surface
@@ -236,6 +236,30 @@ def tuck_under(inner, outer, margin=0.006, reach=0.03):
             moved += 1
     inner.data.update()
     return moved
+
+
+#: How far beneath the outer garment an inner one is pushed by ``layer`` (metres).
+LAYER_MARGIN = 0.005
+
+
+def layer(clothes, tucked=False, margin=LAYER_MARGIN):
+    """Make independently fitted garments sit on each other.
+
+    ``clothes`` maps slot -> object. Trousers or a skirt go under the top (or a
+    ``tucked`` top under the trousers, its hem inside the waistband), and shoes
+    under the trouser legs, skirt or full outfit. Runs in the rest pose before
+    garments get shape keys. Returns the vertices moved per pairing.
+    """
+    report = {}
+    if "bottom" in clothes and "top" in clothes:
+        if tucked:
+            report["top_under_bottom"] = tuck_under(clothes["top"], clothes["bottom"], margin=margin)
+        else:
+            report["bottom_under_top"] = tuck_under(clothes["bottom"], clothes["top"], margin=margin)
+    lower = clothes.get("bottom") or clothes.get("outfit")
+    if lower is not None and "shoes" in clothes:
+        report["shoes_under_legs"] = tuck_under(clothes["shoes"], lower, margin=margin)
+    return report
 
 
 def remove_helpers(mpfb, base):

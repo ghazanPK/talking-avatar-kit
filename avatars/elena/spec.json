@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "slug": "elena",
+  "name": "Elena",
+  "description": "Older Caucasian woman, silver updo, patterned knit sweater, long skirt",
+  "persona": "An unhurried retired lecturer with a story for every question.",
+  "body": {
+    "gender": 0.0,
+    "age": 0.92,
+    "muscle": 0.38,
+    "weight": 0.54,
+    "height": 0.48,
+    "proportions": 0.55,
+    "cupsize": 0.46,
+    "firmness": 0.38,
+    "race": {"african": 0.0, "asian": 0.0, "caucasian": 1.0}
+  },
+  "rig": "game_engine",
+  "look": "mpfb",
+  "skin": {"material": "old_caucasian_female"},
+  "eyes": {"mesh": "low-poly", "material": "brown"},
+  "eyebrows": {"asset": "eyebrow009"},
+  "eyelashes": {"asset": "eyelashes03"},
+  "teeth": {"asset": "teeth_shape04"},
+  "tongue": {"asset": "tongue01"},
+  "hair": {"asset": "elvs_50s_updo", "pack": "hair02", "recolor": [0.80, 0.79, 0.78],
+           "credit": "hair elvs_50s_updo by Elvaerwyn (MakeHuman community, hair02), CC BY"},
+  "clothes": [
+    {"asset": "shoes06", "slot": "shoes", "roughness": 0.45},
+    {"asset": "punkduck_skirt_native_american_fashion", "pack": "skirts02", "slot": "bottom", "roughness": 0.82,
+     "credit": "skirt punkduck_skirt_native_american_fashion by punkduck (MakeHuman, skirts02), CC BY"},
+    {"asset": "mindfront_lusekofta", "pack": "shirts02", "slot": "top", "roughness": 0.82,
+     "credit": "sweater mindfront_lusekofta by Mindfront (MakeHuman community, shirts02), CC BY"}
+  ],
+  "face": {"arkit": true, "visemes": "meta"},
+  "textures": {"default_max": 1024, "skin_max": 2048, "eyes_max": 512},
+  "checks": {"height_m": [1.58, 1.72], "max_bytes": 10000000}
+}

@@ -2,7 +2,8 @@
   "schema_version": 1,
   "slug": "mira",
   "name": "Mira",
-  "description": "Short young adult Asian woman in a muted teal casual suit",
+  "description": "Short young adult Asian woman in a grey double-breasted trouser suit",
+  "persona": "A sharp young new hire: formal, precise, and curious about everything.",
   "body": {
     "gender": 0.0,
     "age": 0.40,
@@ -15,6 +16,7 @@
     "race": {"african": 0.0, "asian": 1.0, "caucasian": 0.0}
   },
   "rig": "game_engine",
+  "look": "kit",
   "skin": {
     "material": "young_asian_female",
     "roughness": 0.55,
@@ -38,9 +40,10 @@
   "tongue": {"asset": "tongue01"},
   "hair": {"asset": "ponytail01", "roughness": 0.58},
   "clothes": [
-    {"asset": "toigo_female_double-breasted_suit", "pack": "suits01", "slot": "outfit"},
-    {"asset": "shoes04", "slot": "shoes", "roughness": 0.45}
+    {"asset": "shoes04", "slot": "shoes", "roughness": 0.45},
+    {"asset": "toigo_female_double-breasted_suit", "pack": "suits01", "slot": "outfit", "roughness": 0.8}
   ],
+  "attribution_note": "Outfit: double-breasted trouser suit by MargaretToigo from the MakeHuman community (CC0).",
   "face": {"arkit": true, "visemes": "meta"},
   "textures": {"default_max": 1024, "skin_max": 2048, "skin_normal_max": 2048, "skin_roughness_max": 1024, "eyes_max": 512},
   "checks": {"height_m": [1.35, 1.52], "max_bytes": 10000000}

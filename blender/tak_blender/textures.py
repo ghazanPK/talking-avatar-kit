@@ -72,6 +72,22 @@ def scale_rgb(img, factor, saturation=1.0):
     return img
 
 
+def recolor(img, colour):
+    """Replace the colour of a garment or hair texture, keeping its weave and folds as shading.
+
+    The texture's luminance, normalised to its own brightest fabric, scales the new
+    colour, so dark denim and white cotton both come out in the asked-for colour
+    with their own detail. The 95th percentile, not the mean: these textures are
+    largely black between their UV islands. Alpha is kept.
+    """
+    arr = pixels(img)
+    luma = arr[..., :3] @ np.array([0.2126, 0.7152, 0.0722], dtype=np.float32)
+    shading = luma / max(float(np.percentile(luma, 95)), 1e-3)
+    arr[..., :3] = np.clip(shading[..., None] * np.asarray(colour[:3], dtype=np.float32), 0.0, 1.0)
+    store(img, arr)
+    return img
+
+
 def set_alpha(img, value=1.0):
     arr = pixels(img)
     arr[..., 3] = value

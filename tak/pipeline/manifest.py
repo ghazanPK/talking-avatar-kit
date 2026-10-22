@@ -9,6 +9,7 @@ from typing import Any
 from . import CREDIT, KIT_ROOT, LICENSE_ID, MPFB_VERSION
 from .glb import Glb
 from .names import ARKIT, VISEMES
+from .spec import credits as spec_credits, pack_license
 
 SCHEMA_VERSION = 1
 LICENSE_URL = "https://creativecommons.org/licenses/by/4.0/"
@@ -58,10 +59,47 @@ def skin_summary(spec: dict, build: dict, skin_asset: dict | None, root: Path = 
     return {"material": spec["skin"]["material"], "asset": skin_asset, "maps": maps or None}
 
 
+def attribution(spec: dict) -> str:
+    """The credit line to show: the kit credit, the spec's note, then every CC BY part credit."""
+    text = (f"{spec['name']} avatar, {CREDIT}, licensed under CC BY 4.0. "
+            "Built with MPFB from CC0 MakeHuman assets.")
+    if spec.get("attribution_note"):
+        text += " " + spec["attribution_note"].strip()
+    lines = spec_credits(spec)
+    if lines:
+        text += " " + "; ".join(lines) + "."
+    return text
+
+
+def source_parts(spec: dict, parts: dict | None) -> list[dict]:
+    """One entry per MakeHuman asset: part, asset, pack, author, licence (from the pack metadata)."""
+    names = {"skin": spec["skin"]["material"], "eyes": spec["eyes"]["mesh"],
+             "eyebrows": spec["eyebrows"]["asset"], "eyelashes": spec["eyelashes"]["asset"],
+             "teeth": spec["teeth"]["asset"], "tongue": spec["tongue"]["asset"], "hair": spec["hair"]["asset"],
+             **{item["slot"]: item["asset"] for item in spec["clothes"]}}
+    blocks = {"hair": spec["hair"], **{item["slot"]: item for item in spec["clothes"]}}
+    out = []
+    for part, name in names.items():
+        meta = (parts or {}).get(part) or {}
+        block = blocks.get(part, {})
+        pack = block.get("pack") or meta.get("pack") or "makehuman_system_assets"
+        entry = {"part": part, "asset": name, "pack": pack, "author": meta.get("author"),
+                 "license": meta.get("license") or pack_license(pack), "source": meta.get("source")}
+        if block.get("credit"):
+            entry["credit"] = block["credit"]
+        out.append(entry)
+    return out
+
+
 def build_manifest(spec: dict, glb_path: Path, *, build: dict | None = None,
                    install: dict | None = None, preview: str | None = "preview.png",
-                   validation: dict | None = None, skin_asset: dict | None = None) -> dict[str, Any]:
-    """Assemble the manifest dictionary (pure function; no Blender needed)."""
+                   validation: dict | None = None, skin_asset: dict | None = None,
+                   parts: dict | None = None) -> dict[str, Any]:
+    """Assemble the manifest dictionary (pure function; no Blender needed).
+
+    ``parts`` maps a part (skin, hair, a clothing slot ...) to its asset metadata
+    from the installed packs (``tak.pipeline.build.part_assets``).
+    """
     data = Path(glb_path).read_bytes()
     glb = Glb(data)
     gltf = glb.json
@@ -95,16 +133,24 @@ def build_manifest(spec: dict, glb_path: Path, *, build: dict | None = None,
         "teeth": spec["teeth"]["asset"], "tongue": spec["tongue"]["asset"], "hair": spec["hair"]["asset"],
         **{item["slot"]: item["asset"] for item in spec["clothes"]},
     }
+    sources = source_parts(spec, parts)
+    credit_lines = spec_credits(spec)
+    licenses = {"avatar": LICENSE_ID, "makehuman_assets": "CC0-1.0"}
+    if any(str(p["license"]).startswith("CC-BY") for p in sources):
+        licenses["credited_community_assets"] = "CC-BY (see credits)"
     manifest = {
         "schema_version": SCHEMA_VERSION,
         "slug": spec["slug"],
         "name": spec["name"],
         "description": spec["description"],
+        "persona": spec.get("persona"),
         "license": LICENSE_ID,
         "license_url": LICENSE_URL,
         "credit": CREDIT,
-        "attribution": f"{spec['name']} avatar, {CREDIT}, licensed under CC BY 4.0. "
-                       "Built with MPFB from CC0 MakeHuman assets.",
+        "attribution": attribution(spec),
+        "credits": credit_lines,
+        "licenses": licenses,
+        "outfit": [item["asset"] for item in spec["clothes"]],
         "file": glb_path.name,
         "format": "glTF 2.0 binary (GLB)",
         "bytes": len(data),
@@ -119,8 +165,12 @@ def build_manifest(spec: dict, glb_path: Path, *, build: dict | None = None,
             "gltf_exporter": versions.get("gltf_exporter"),
             "makehuman_packs_sha256": packs,
         },
-        "source_assets": {"license": "CC0-1.0 (MakeHuman Community)", "names": assets},
+        "source_assets": {"license": "MakeHuman Community assets; CC0-1.0 unless listed in credits",
+                          "names": assets, "parts": sources},
+        "look": spec.get("look", "kit"),
         "skin": skin_summary(spec, build, skin_asset),
+        "build": {"body_vertices": build.get("body_vertices"), "layering": build.get("layering"),
+                  "cover": build.get("cover")},
         "rig": {
             "type": "MPFB game_engine",
             "rest_pose": "A-pose",
@@ -140,6 +190,8 @@ def build_manifest(spec: dict, glb_path: Path, *, build: dict | None = None,
         "textures": images,
         "extensions_used": sorted(gltf.get("extensionsUsed", [])),
     }
+    if manifest["persona"] is None:
+        del manifest["persona"]
     if validation is not None:
         manifest["validation"] = {
             "ok": validation.get("ok"),

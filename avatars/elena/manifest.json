@@ -1,52 +1,773 @@
 {
+  "schema_version": 1,
+  "slug": "elena",
   "name": "Elena",
   "description": "Older Caucasian woman, silver updo, patterned knit sweater, long skirt",
-  "source": "MPFB 2.0.17 / MakeHuman system assets",
-  "licenses": {
-    "character_geometry_and_makehuman_assets": "CC0-1.0"
-  },
-  "rig": "MPFB game_engine (Unity Mecanim-oriented)",
-  "facial_shape_keys": {
-    "meta_oculus": 15,
-    "arkit": 52
-  },
-  "meta_oculus_names": [
-    "viseme_aa",
-    "viseme_CH",
-    "viseme_DD",
-    "viseme_E",
-    "viseme_FF",
-    "viseme_I",
-    "viseme_kk",
-    "viseme_nn",
-    "viseme_O",
-    "viseme_PP",
-    "viseme_RR",
-    "viseme_sil",
-    "viseme_SS",
-    "viseme_TH",
-    "viseme_U"
-  ],
-  "file": "elena.glb",
-  "format": "glTF 2.0 binary (GLB)",
-  "height_m": 1.6459,
-  "bytes": 6260024,
-  "outfit": [
-    "shoes06",
-    "punkduck_skirt_native_american_fashion",
-    "mindfront_lusekofta"
-  ],
   "persona": "An unhurried retired lecturer with a story for every question.",
+  "license": "CC-BY-4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "credit": "talking-avatar-kit by Ghazanfar Ali",
+  "attribution": "Elena avatar, talking-avatar-kit by Ghazanfar Ali, licensed under CC BY 4.0. Built with MPFB from CC0 MakeHuman assets. skirt punkduck_skirt_native_american_fashion by punkduck (MakeHuman, skirts02), CC BY; sweater mindfront_lusekofta by Mindfront (MakeHuman community, shirts02), CC BY; hair elvs_50s_updo by Elvaerwyn (MakeHuman community, hair02), CC BY.",
   "credits": [
     "skirt punkduck_skirt_native_american_fashion by punkduck (MakeHuman, skirts02), CC BY",
     "sweater mindfront_lusekofta by Mindfront (MakeHuman community, shirts02), CC BY",
     "hair elvs_50s_updo by Elvaerwyn (MakeHuman community, hair02), CC BY"
   ],
-  "attribution": "Elena avatar, talking-avatar-kit by Ghazanfar Ali, licensed under CC BY 4.0. Built with MPFB from CC0 MakeHuman assets. skirt punkduck_skirt_native_american_fashion by punkduck (MakeHuman, skirts02), CC BY; sweater mindfront_lusekofta by Mindfront (MakeHuman community, shirts02), CC BY; hair elvs_50s_updo by Elvaerwyn (MakeHuman community, hair02), CC BY.",
-  "slug": "elena",
-  "sha256": "ae94e20d59157985a852dbf96d775b890c404fa1e54786f242c26e1420aaa803",
+  "licenses": {
+    "avatar": "CC-BY-4.0",
+    "makehuman_assets": "CC0-1.0",
+    "credited_community_assets": "CC-BY (see credits)"
+  },
+  "outfit": [
+    "shoes06",
+    "punkduck_skirt_native_american_fashion",
+    "mindfront_lusekofta"
+  ],
+  "file": "elena.glb",
+  "format": "glTF 2.0 binary (GLB)",
+  "bytes": 5902520,
+  "sha256": "9ed70e14af06934cbd22638968aefbc0e06b204b4e09a469a40416442901ce1b",
   "preview": "preview.png",
-  "license": "CC-BY-4.0",
-  "license_url": "https://creativecommons.org/licenses/by/4.0/",
-  "credit": "talking-avatar-kit by Ghazanfar Ali"
+  "units": "metres, +Y up, character faces +Z",
+  "height_m": 1.6459,
+  "generator": {
+    "pipeline": "talking-avatar-kit tak build",
+    "blender": "5.2.2 LTS",
+    "mpfb": "2.0.17",
+    "gltf_exporter": "5.2.40",
+    "makehuman_packs_sha256": {
+      "makehuman_system_assets": "b542127a8e25547c7c29c19f2d1d2adb9a664c80396ecd694095dbc8028a0107",
+      "visemes02": "a69ab6fb95ddd5f56f70acc7e859f5f9c6ae613c527d577ea1571eff2183d29e",
+      "faceunits01": "d113107bd7eb59f3af4df6fc0ec29bfcc593f496d0b336aec14f086a80ce7146",
+      "skins02": "1613f1ef3afca53094511d26620ed7cf1d2dedc29ed3d384d60bdebe250698ae",
+      "shirts01": "a5a723b0e84a109bb190fcfeac7f1de4138d875da3e30fe5b3340eac9f38bcd3",
+      "pants01": "e4e0ec60db34f279be291a83cfd7b342a7c5cf09bb7676682a5f39f4f6ac4ad9",
+      "suits01": "2b1d8676f3863b188e9eea98c1d8f234543d54c440e791d92b819f8ee1861f19",
+      "dress03": "d35487edda8347ac8d0250207007c18056d7aaac404e91946bf9cf1399f2bcd8",
+      "hair03": "776c277cb6bcebc32907e05fa94d119e48742cdc1c34183996fc3e65e17a2740",
+      "hair02": "c681e5efd37df4007a52253a8d071aedbfe3b614f199d8dae4ae76d5bd7d95c9",
+      "shirts02": "d711ca9f73212de855257ac08422e1e0ccb802e5231315c2a360d0fcfea5033e",
+      "skirts02": "20958a4669d88efc8295e2a4f5c97677f97ca47607478ee99e1a141525cff5b3"
+    }
+  },
+  "source_assets": {
+    "license": "MakeHuman Community assets; CC0-1.0 unless listed in credits",
+    "names": {
+      "skin": "old_caucasian_female",
+      "eyes": "low-poly / brown",
+      "eyebrows": "eyebrow009",
+      "eyelashes": "eyelashes03",
+      "teeth": "teeth_shape04",
+      "tongue": "tongue01",
+      "hair": "elvs_50s_updo",
+      "shoes": "shoes06",
+      "bottom": "punkduck_skirt_native_american_fashion",
+      "top": "mindfront_lusekofta"
+    },
+    "parts": [
+      {
+        "part": "skin",
+        "asset": "old_caucasian_female",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "eyes",
+        "asset": "low-poly",
+        "pack": "makehuman_system_assets",
+        "author": null,
+        "license": "CC0",
+        "source": null
+      },
+      {
+        "part": "eyebrows",
+        "asset": "eyebrow009",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "eyelashes",
+        "asset": "eyelashes03",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "teeth",
+        "asset": "teeth_shape04",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "tongue",
+        "asset": "tongue01",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "hair",
+        "asset": "elvs_50s_updo",
+        "pack": "hair02",
+        "author": "Elvaerwyn",
+        "license": "CC-BY",
+        "source": "http://www.makehumancommunity.org/node/2001",
+        "credit": "hair elvs_50s_updo by Elvaerwyn (MakeHuman community, hair02), CC BY"
+      },
+      {
+        "part": "shoes",
+        "asset": "shoes06",
+        "pack": "makehuman_system_assets",
+        "author": "makehuman_system",
+        "license": "CC0",
+        "source": "http://www.makehumancommunity.org"
+      },
+      {
+        "part": "bottom",
+        "asset": "punkduck_skirt_native_american_fashion",
+        "pack": "skirts02",
+        "author": "punkduck",
+        "license": "CC-BY",
+        "source": "http://www.makehumancommunity.org/node/923",
+        "credit": "skirt punkduck_skirt_native_american_fashion by punkduck (MakeHuman, skirts02), CC BY"
+      },
+      {
+        "part": "top",
+        "asset": "mindfront_lusekofta",
+        "pack": "shirts02",
+        "author": "Mindfront",
+        "license": "CC-BY",
+        "source": "http://www.makehumancommunity.org/node/1527",
+        "credit": "sweater mindfront_lusekofta by Mindfront (MakeHuman community, shirts02), CC BY"
+      }
+    ]
+  },
+  "look": "mpfb",
+  "skin": {
+    "material": "old_caucasian_female",
+    "asset": {
+      "name": "old_caucasian_female",
+      "pack": "makehuman_system_assets",
+      "author": "makehuman_system",
+      "license": "CC0",
+      "source": "http://www.makehumancommunity.org"
+    },
+    "maps": {
+      "look": "mpfb",
+      "material": "old_caucasian_female"
+    }
+  },
+  "build": {
+    "body_vertices": 9171,
+    "layering": {
+      "bottom_under_top": 1594,
+      "shoes_under_legs": 0
+    },
+    "cover": {
+      "garments": [],
+      "faces_deleted": 0
+    }
+  },
+  "rig": {
+    "type": "MPFB game_engine",
+    "rest_pose": "A-pose",
+    "bone_count": 53,
+    "bones": [
+      "Root",
+      "pelvis",
+      "spine_01",
+      "spine_02",
+      "spine_03",
+      "clavicle_l",
+      "upperarm_l",
+      "lowerarm_l",
+      "hand_l",
+      "index_01_l",
+      "index_02_l",
+      "index_03_l",
+      "middle_01_l",
+      "middle_02_l",
+      "middle_03_l",
+      "pinky_01_l",
+      "pinky_02_l",
+      "pinky_03_l",
+      "ring_01_l",
+      "ring_02_l",
+      "ring_03_l",
+      "thumb_01_l",
+      "thumb_02_l",
+      "thumb_03_l",
+      "clavicle_r",
+      "upperarm_r",
+      "lowerarm_r",
+      "hand_r",
+      "index_01_r",
+      "index_02_r",
+      "index_03_r",
+      "middle_01_r",
+      "middle_02_r",
+      "middle_03_r",
+      "pinky_01_r",
+      "pinky_02_r",
+      "pinky_03_r",
+      "ring_01_r",
+      "ring_02_r",
+      "ring_03_r",
+      "thumb_01_r",
+      "thumb_02_r",
+      "thumb_03_r",
+      "neck_01",
+      "head",
+      "thigh_l",
+      "calf_l",
+      "foot_l",
+      "ball_l",
+      "thigh_r",
+      "calf_r",
+      "foot_r",
+      "ball_r"
+    ],
+    "max_influences": 4,
+    "weight_fixes": [
+      "clothes_top",
+      "elbow_l",
+      "elbow_r",
+      "knuckles_l",
+      "knuckles_r",
+      "shoulder_l",
+      "shoulder_r",
+      "thumb_base_l",
+      "thumb_base_r",
+      "thumb_middle_l",
+      "thumb_middle_r",
+      "vertices_changed",
+      "wrist_l",
+      "wrist_r"
+    ]
+  },
+  "morph_targets": {
+    "count": 67,
+    "arkit": [
+      "eyeBlinkLeft",
+      "eyeLookDownLeft",
+      "eyeLookInLeft",
+      "eyeLookOutLeft",
+      "eyeLookUpLeft",
+      "eyeSquintLeft",
+      "eyeWideLeft",
+      "eyeBlinkRight",
+      "eyeLookDownRight",
+      "eyeLookInRight",
+      "eyeLookOutRight",
+      "eyeLookUpRight",
+      "eyeSquintRight",
+      "eyeWideRight",
+      "jawForward",
+      "jawLeft",
+      "jawRight",
+      "jawOpen",
+      "mouthClose",
+      "mouthFunnel",
+      "mouthPucker",
+      "mouthLeft",
+      "mouthRight",
+      "mouthSmileLeft",
+      "mouthSmileRight",
+      "mouthFrownLeft",
+      "mouthFrownRight",
+      "mouthDimpleLeft",
+      "mouthDimpleRight",
+      "mouthStretchLeft",
+      "mouthStretchRight",
+      "mouthRollLower",
+      "mouthRollUpper",
+      "mouthShrugLower",
+      "mouthShrugUpper",
+      "mouthPressLeft",
+      "mouthPressRight",
+      "mouthLowerDownLeft",
+      "mouthLowerDownRight",
+      "mouthUpperUpLeft",
+      "mouthUpperUpRight",
+      "browDownLeft",
+      "browDownRight",
+      "browInnerUp",
+      "browOuterUpLeft",
+      "browOuterUpRight",
+      "cheekPuff",
+      "cheekSquintLeft",
+      "cheekSquintRight",
+      "noseSneerLeft",
+      "noseSneerRight",
+      "tongueOut"
+    ],
+    "visemes": [
+      "viseme_sil",
+      "viseme_PP",
+      "viseme_FF",
+      "viseme_TH",
+      "viseme_DD",
+      "viseme_kk",
+      "viseme_CH",
+      "viseme_SS",
+      "viseme_nn",
+      "viseme_RR",
+      "viseme_aa",
+      "viseme_E",
+      "viseme_I",
+      "viseme_O",
+      "viseme_U"
+    ],
+    "meshes": {
+      "Body": [
+        "viseme_aa",
+        "viseme_CH",
+        "viseme_DD",
+        "viseme_E",
+        "viseme_FF",
+        "viseme_I",
+        "viseme_kk",
+        "viseme_nn",
+        "viseme_O",
+        "viseme_PP",
+        "viseme_RR",
+        "viseme_sil",
+        "viseme_SS",
+        "viseme_TH",
+        "viseme_U",
+        "browDownLeft",
+        "browDownRight",
+        "browInnerUp",
+        "browOuterUpLeft",
+        "browOuterUpRight",
+        "cheekPuff",
+        "cheekSquintLeft",
+        "cheekSquintRight",
+        "eyeBlinkLeft",
+        "eyeBlinkRight",
+        "eyeLookDownLeft",
+        "eyeLookDownRight",
+        "eyeLookInLeft",
+        "eyeLookInRight",
+        "eyeLookOutLeft",
+        "eyeLookOutRight",
+        "eyeLookUpLeft",
+        "eyeLookUpRight",
+        "eyeSquintLeft",
+        "eyeSquintRight",
+        "eyeWideLeft",
+        "eyeWideRight",
+        "jawForward",
+        "jawLeft",
+        "jawOpen",
+        "jawRight",
+        "mouthClose",
+        "mouthDimpleLeft",
+        "mouthDimpleRight",
+        "mouthFrownLeft",
+        "mouthFrownRight",
+        "mouthFunnel",
+        "mouthLeft",
+        "mouthLowerDownLeft",
+        "mouthLowerDownRight",
+        "mouthPressLeft",
+        "mouthPressRight",
+        "mouthPucker",
+        "mouthRight",
+        "mouthRollLower",
+        "mouthRollUpper",
+        "mouthShrugLower",
+        "mouthShrugUpper",
+        "mouthSmileLeft",
+        "mouthSmileRight",
+        "mouthStretchLeft",
+        "mouthStretchRight",
+        "mouthUpperUpLeft",
+        "mouthUpperUpRight",
+        "noseSneerLeft",
+        "noseSneerRight",
+        "tongueOut"
+      ],
+      "Eyebrows": [
+        "browDownLeft",
+        "browDownRight",
+        "browInnerUp",
+        "browOuterUpLeft",
+        "browOuterUpRight",
+        "cheekPuff",
+        "cheekSquintLeft",
+        "cheekSquintRight",
+        "eyeBlinkLeft",
+        "eyeBlinkRight",
+        "eyeLookDownLeft",
+        "eyeLookDownRight",
+        "eyeLookInLeft",
+        "eyeLookInRight",
+        "eyeLookOutLeft",
+        "eyeLookOutRight",
+        "eyeLookUpLeft",
+        "eyeLookUpRight",
+        "eyeSquintLeft",
+        "eyeSquintRight",
+        "eyeWideLeft",
+        "eyeWideRight",
+        "jawOpen",
+        "mouthClose",
+        "mouthLeft",
+        "mouthRight",
+        "mouthSmileLeft",
+        "mouthSmileRight",
+        "noseSneerLeft",
+        "noseSneerRight",
+        "viseme_aa"
+      ],
+      "Eyelashes": [
+        "browDownLeft",
+        "browDownRight",
+        "cheekPuff",
+        "cheekSquintLeft",
+        "cheekSquintRight",
+        "eyeBlinkLeft",
+        "eyeBlinkRight",
+        "eyeLookDownLeft",
+        "eyeLookDownRight",
+        "eyeLookInLeft",
+        "eyeLookInRight",
+        "eyeLookOutLeft",
+        "eyeLookOutRight",
+        "eyeLookUpLeft",
+        "eyeLookUpRight",
+        "eyeSquintLeft",
+        "eyeSquintRight",
+        "eyeWideLeft",
+        "eyeWideRight",
+        "mouthSmileLeft",
+        "mouthSmileRight",
+        "mouthStretchLeft",
+        "mouthStretchRight",
+        "noseSneerLeft",
+        "noseSneerRight",
+        "viseme_E",
+        "viseme_SS"
+      ],
+      "Eyes": [
+        "eyeLookDownLeft",
+        "eyeLookDownRight",
+        "eyeLookInLeft",
+        "eyeLookInRight",
+        "eyeLookOutLeft",
+        "eyeLookOutRight",
+        "eyeLookUpLeft",
+        "eyeLookUpRight"
+      ],
+      "Teeth": [
+        "jawForward",
+        "jawLeft",
+        "jawOpen",
+        "jawRight",
+        "viseme_aa",
+        "viseme_DD",
+        "viseme_E",
+        "viseme_kk",
+        "viseme_nn",
+        "viseme_O",
+        "viseme_PP",
+        "viseme_TH"
+      ],
+      "Tongue": [
+        "jawForward",
+        "jawLeft",
+        "jawOpen",
+        "jawRight",
+        "tongueOut",
+        "viseme_aa",
+        "viseme_DD",
+        "viseme_E",
+        "viseme_kk",
+        "viseme_nn",
+        "viseme_O",
+        "viseme_PP",
+        "viseme_TH"
+      ]
+    }
+  },
+  "materials": [
+    {
+      "slot": "skin",
+      "meshes": [
+        "Body"
+      ],
+      "alpha_mode": "OPAQUE",
+      "double_sided": false,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": false,
+      "extensions": []
+    },
+    {
+      "slot": "bottom",
+      "meshes": [
+        "Bottom"
+      ],
+      "alpha_mode": "OPAQUE",
+      "double_sided": true,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": true,
+      "extensions": []
+    },
+    {
+      "slot": "eyebrows",
+      "meshes": [
+        "Eyebrows"
+      ],
+      "alpha_mode": "BLEND",
+      "double_sided": false,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": false,
+      "extensions": []
+    },
+    {
+      "slot": "eyelashes",
+      "meshes": [
+        "Eyelashes"
+      ],
+      "alpha_mode": "BLEND",
+      "double_sided": true,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": false,
+      "extensions": []
+    },
+    {
+      "slot": "eyes",
+      "meshes": [
+        "Eyes"
+      ],
+      "alpha_mode": "OPAQUE",
+      "double_sided": false,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": false,
+      "extensions": [
+        "KHR_materials_clearcoat"
+      ]
+    },
+    {
+      "slot": "hair",
+      "meshes": [
+        "Hair"
+      ],
+      "alpha_mode": "MASK",
+      "double_sided": true,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": true,
+      "extensions": []
+    },
+    {
+      "slot": "shoes",
+      "meshes": [
+        "Shoes"
+      ],
+      "alpha_mode": "OPAQUE",
+      "double_sided": true,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": false,
+      "extensions": []
+    },
+    {
+      "slot": "teeth",
+      "meshes": [
+        "Teeth"
+      ],
+      "alpha_mode": "OPAQUE",
+      "double_sided": false,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": false,
+      "extensions": []
+    },
+    {
+      "slot": "tongue",
+      "meshes": [
+        "Tongue"
+      ],
+      "alpha_mode": "OPAQUE",
+      "double_sided": false,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": false,
+      "extensions": []
+    },
+    {
+      "slot": "top",
+      "meshes": [
+        "Top"
+      ],
+      "alpha_mode": "OPAQUE",
+      "double_sided": true,
+      "base_color_texture": true,
+      "base_color_factor": null,
+      "normal_texture": true,
+      "extensions": []
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Body",
+      "vertices": 9899,
+      "morph_targets": 67
+    },
+    {
+      "name": "Bottom",
+      "vertices": 6873,
+      "morph_targets": 0
+    },
+    {
+      "name": "Eyebrows",
+      "vertices": 124,
+      "morph_targets": 31
+    },
+    {
+      "name": "Eyelashes",
+      "vertices": 250,
+      "morph_targets": 27
+    },
+    {
+      "name": "Eyes",
+      "vertices": 96,
+      "morph_targets": 8
+    },
+    {
+      "name": "Hair",
+      "vertices": 2043,
+      "morph_targets": 0
+    },
+    {
+      "name": "Shoes",
+      "vertices": 1738,
+      "morph_targets": 0
+    },
+    {
+      "name": "Teeth",
+      "vertices": 4494,
+      "morph_targets": 12
+    },
+    {
+      "name": "Tongue",
+      "vertices": 253,
+      "morph_targets": 13
+    },
+    {
+      "name": "Top",
+      "vertices": 1506,
+      "morph_targets": 0
+    }
+  ],
+  "textures": [
+    {
+      "name": "old_lightskinned_female_diffuse",
+      "mime_type": "image/jpeg",
+      "bytes": 324221
+    },
+    {
+      "name": "namfashionskirt_normal",
+      "mime_type": "image/jpeg",
+      "bytes": 60474
+    },
+    {
+      "name": "namfashionskirt",
+      "mime_type": "image/jpeg",
+      "bytes": 160583
+    },
+    {
+      "name": "eyebrow009",
+      "mime_type": "image/png",
+      "bytes": 230800
+    },
+    {
+      "name": "eyelashes03",
+      "mime_type": "image/png",
+      "bytes": 132260
+    },
+    {
+      "name": "brown_eye",
+      "mime_type": "image/jpeg",
+      "bytes": 11829
+    },
+    {
+      "name": "normals",
+      "mime_type": "image/jpeg",
+      "bytes": 66877
+    },
+    {
+      "name": "patsytex1",
+      "mime_type": "image/png",
+      "bytes": 912293
+    },
+    {
+      "name": "shoes06_diffuse",
+      "mime_type": "image/jpeg",
+      "bytes": 137934
+    },
+    {
+      "name": "teeth",
+      "mime_type": "image/jpeg",
+      "bytes": 87545
+    },
+    {
+      "name": "tongue01_diffuse",
+      "mime_type": "image/jpeg",
+      "bytes": 43994
+    },
+    {
+      "name": "F_Lusekofta_NRM",
+      "mime_type": "image/jpeg",
+      "bytes": 225655
+    },
+    {
+      "name": "F_Lusekofta",
+      "mime_type": "image/jpeg",
+      "bytes": 243696
+    }
+  ],
+  "extensions_used": [
+    "KHR_materials_clearcoat"
+  ],
+  "validation": {
+    "ok": true,
+    "checks": [
+      "glb",
+      "file_size",
+      "skeleton",
+      "morph_targets",
+      "morph_names",
+      "morph_meshes",
+      "morph_defaults",
+      "skinned_meshes",
+      "skin_weights",
+      "materials",
+      "alpha_modes",
+      "embedded_textures",
+      "height",
+      "import",
+      "bones",
+      "body_shape_keys",
+      "weighted_vertices",
+      "materials",
+      "height",
+      "posed_bounds"
+    ]
+  }
 }

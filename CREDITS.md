@@ -38,16 +38,40 @@ Tools and assets used to build the avatars in `avatars/`. Nothing in this sectio
 
 ### MakeHuman asset packs
 
-All four packs are CC0 1.0 (public domain dedication), from the MakeHuman Community:
+All packs come from the MakeHuman Community. The system assets, face-target packs and the community packs marked CC0 are CC0 1.0 (public domain dedication); the packs marked CC BY are "CC-BY" as their pages and `packs/<name>.json` state, and every asset the avatars take from them is credited below, in the avatar's `manifest.json` (`credits`, `attribution`) and in the GLB's `asset.copyright`.
 
-| Pack | Archive | sha256 of the archive used for the shipped avatars |
-|---|---|---|
-| [MakeHuman system assets](https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html) | https://files2.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip | `b542127a8e25547c7c29c19f2d1d2adb9a664c80396ecd694095dbc8028a0107` |
-| [Visemes 02](https://static.makehumancommunity.org/assets/assetpacks/visemes02.html) | https://files2.makehumancommunity.org/functional/visemes02.zip | `a69ab6fb95ddd5f56f70acc7e859f5f9c6ae613c527d577ea1571eff2183d29e` |
-| [Faceunits 01](https://static.makehumancommunity.org/assets/assetpacks/faceunits01.html) | https://files2.makehumancommunity.org/functional/faceunits01.zip | `d113107bd7eb59f3af4df6fc0ec29bfcc593f496d0b336aec14f086a80ce7146` |
-| [Skins 02](https://static.makehumancommunity.org/assets/assetpacks/skins02.html) (natural male skins) | https://files2.makehumancommunity.org/asset_packs/skins02/skins02_cc0.zip | `1613f1ef3afca53094511d26620ed7cf1d2dedc29ed3d384d60bdebe250698ae` |
+| Pack | Licence | Archive | sha256 of the archive used for the shipped avatars |
+|---|---|---|---|
+| [MakeHuman system assets](https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html) | CC0 | https://files2.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip | `b542127a8e25547c7c29c19f2d1d2adb9a664c80396ecd694095dbc8028a0107` |
+| [Visemes 02](https://static.makehumancommunity.org/assets/assetpacks/visemes02.html) | CC0 | https://files2.makehumancommunity.org/functional/visemes02.zip | `a69ab6fb95ddd5f56f70acc7e859f5f9c6ae613c527d577ea1571eff2183d29e` |
+| [Faceunits 01](https://static.makehumancommunity.org/assets/assetpacks/faceunits01.html) | CC0 | https://files2.makehumancommunity.org/functional/faceunits01.zip | `d113107bd7eb59f3af4df6fc0ec29bfcc593f496d0b336aec14f086a80ce7146` |
+| [Skins 02](https://static.makehumancommunity.org/assets/assetpacks/skins02.html) (natural male skins) | CC0 | https://files2.makehumancommunity.org/asset_packs/skins02/skins02_cc0.zip | `1613f1ef3afca53094511d26620ed7cf1d2dedc29ed3d384d60bdebe250698ae` |
+| [Shirts 01](https://static.makehumancommunity.org/assets/assetpacks/shirts01.html) | CC0 | https://files2.makehumancommunity.org/asset_packs/shirts01/shirts01_cc0.zip | `a5a723b0e84a109bb190fcfeac7f1de4138d875da3e30fe5b3340eac9f38bcd3` |
+| [Pants 01](https://static.makehumancommunity.org/assets/assetpacks/pants01.html) | CC0 | https://files2.makehumancommunity.org/asset_packs/pants01/pants01_cc0.zip | `e4e0ec60db34f279be291a83cfd7b342a7c5cf09bb7676682a5f39f4f6ac4ad9` |
+| [Suits 01](https://static.makehumancommunity.org/assets/assetpacks/suits01.html) | CC0 | https://files2.makehumancommunity.org/asset_packs/suits01/suits01_cc0.zip | `2b1d8676f3863b188e9eea98c1d8f234543d54c440e791d92b819f8ee1861f19` |
+| [Dress 03](https://static.makehumancommunity.org/assets/assetpacks/dress03.html) | CC BY | https://files2.makehumancommunity.org/asset_packs/dress03/dress03_cc-by.zip | `d35487edda8347ac8d0250207007c18056d7aaac404e91946bf9cf1399f2bcd8` |
+| [Hair 02](https://static.makehumancommunity.org/assets/assetpacks/hair02.html) | CC BY | https://files2.makehumancommunity.org/asset_packs/hair02/hair02_ccby.zip | `c681e5efd37df4007a52253a8d071aedbfe3b614f199d8dae4ae76d5bd7d95c9` |
+| [Hair 03](https://static.makehumancommunity.org/assets/assetpacks/hair03.html) | CC BY | https://files2.makehumancommunity.org/asset_packs/hair03/hair03_ccby.zip | `776c277cb6bcebc32907e05fa94d119e48742cdc1c34183996fc3e65e17a2740` |
+| [Shirts 02](https://static.makehumancommunity.org/assets/assetpacks/shirts02.html) | CC BY | https://files2.makehumancommunity.org/asset_packs/shirts02/shirts02_ccby.zip | `d711ca9f73212de855257ac08422e1e0ccb802e5231315c2a360d0fcfea5033e` |
+| [Skirts 02](https://static.makehumancommunity.org/assets/assetpacks/skirts02.html) | CC BY | https://files2.makehumancommunity.org/asset_packs/skirts02/skirts02_cc-by.zip | `20958a4669d88efc8295e2a4f5c97677f97ca47607478ee99e1a141525cff5b3` |
 
 The avatars embed meshes, targets and (resized, colour-adjusted) textures derived from these packs.
+
+Community assets in the shipped avatars (author, pack, licence):
+
+| Avatar | Part | Asset | Author | Pack | Licence |
+|---|---|---|---|---|---|
+| Rowan | skin | `mindfront_skin_male_african_middleage` | Mindfront | skins02 | CC0 |
+| Rowan | top | `namuhekam_male_polo_shirt` | namuhekam | shirts01 | CC0 |
+| Rowan | bottom | `cortu_cargo_pants` | Cortu | pants01 | CC0 |
+| Mira | outfit | `toigo_female_double-breasted_suit` | MargaretToigo | suits01 | CC0 |
+| Amina | outfit | `mindfront_f_dress_09` | Mindfront | dress03 | CC BY |
+| Amina | hair | `punkduck_alpha7_curly` | punkduck | hair03 | CC BY |
+| Elena | bottom | `punkduck_skirt_native_american_fashion` | punkduck | skirts02 | CC BY |
+| Elena | top | `mindfront_lusekofta` | Mindfront | shirts02 | CC BY |
+| Elena | hair | `elvs_50s_updo` | Elvaerwyn | hair02 | CC BY |
+
+Everything else (bodies, system skins, eyes, brows, lashes, teeth, tongue, Min-jun's outfit and every pair of shoes) comes from the MakeHuman system assets (CC0).
 
 Community skin used by Rowan: *skin male african middleage* (`mindfront_skin_male_african_middleage`, 2048 px colour, normal and specular maps) by **Mindfront**, CC0 1.0, http://www.makehumancommunity.org/node/526 (shipped in Skins 02). Mira uses the MakeHuman system skin `young_asian_female`. Each avatar's `manifest.json` records its skin's author, licence and source under `skin.asset`.
 

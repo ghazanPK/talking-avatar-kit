@@ -1,10 +1,12 @@
-"""Install MPFB and the MakeHuman CC0 asset packs into the kit's Blender profile.
+"""Install MPFB and the MakeHuman asset packs into the kit's Blender profile.
 
 The profile lives in ``.tak/blender-user/`` (git-ignored) and is used through
 ``BLENDER_USER_RESOURCES``, so the user's normal Blender setup is untouched.
-Downloads come from the official MakeHuman Community sources; their sha256 is
-recorded in ``.tak/install.json``. Re-running is cheap: archives that are
-already installed with the same hash are skipped.
+Downloads come from the official MakeHuman Community sources (the packs in
+``tak.pipeline.PACKS``: system assets, face targets, and the CC0 and CC BY
+community packs the avatar specs use); their sha256 and licence are recorded in
+``.tak/install.json``. Re-running is cheap: a pack already installed from the
+pinned archive is skipped without needing the archive again.
 """
 from __future__ import annotations
 
@@ -162,6 +164,14 @@ def install_mpfb(archive: Path, profile: Path, record: dict, warnings: list[str]
             "files": count, "repository": MPFB_REPO, "skipped": False}
 
 
+def pack_installed(key: str, record: dict, profile: Path) -> bool:
+    """True when ``record`` shows the pack installed from the pinned archive and its files are there."""
+    previous = record.get("packs", {}).get(key, {})
+    data = user_data_dir(profile, installed_repo(profile) or MPFB_REPO)
+    return (previous.get("sha256") == PACKS[key]["sha256"]
+            and (data / "packs" / f"{previous.get('pack_json', key)}.json").is_file())
+
+
 def install_pack(key: str, archive: Path, profile: Path, record: dict, warnings: list[str]) -> dict:
     meta = PACKS[key]
     digest = sha256_file(archive)
@@ -205,23 +215,34 @@ def run_setup(*, blender: str | None = None, packs_dir: Path | None = None,
     profile.mkdir(parents=True, exist_ok=True)
     record = read_record()
 
-    step = progress.scaled(0.0, 0.25)
-    archive = locate_archive(f"mpfb2-v{MPFB_VERSION}.zip", MPFB_URL, packs_dir, MPFB_SHA256,
-                             lambda m, p: step.emit("mpfb", m, p))
-    step.emit("mpfb", f"installing MPFB {MPFB_VERSION} from {archive.name}", 0.8)
-    mpfb = install_mpfb(archive, profile, record, warnings)
+    step = progress.scaled(0.0, 0.15)
+    previous = record.get("mpfb", {})
+    if previous.get("sha256") and (extension_dir(profile) / "blender_manifest.toml").is_file() \
+            and previous.get("version") == MPFB_VERSION:
+        mpfb = dict(previous, skipped=True)
+    else:
+        archive = locate_archive(f"mpfb2-v{MPFB_VERSION}.zip", MPFB_URL, packs_dir, MPFB_SHA256,
+                                 lambda m, p: step.emit("mpfb", m, p))
+        step.emit("mpfb", f"installing MPFB {MPFB_VERSION} from {archive.name}", 0.8)
+        mpfb = install_mpfb(archive, profile, record, warnings)
     step.emit("mpfb", "MPFB already installed" if mpfb["skipped"] else f"MPFB {MPFB_VERSION} installed", 1.0)
 
     packs: dict[str, dict] = {}
     keys = list(PACKS)
     for index, key in enumerate(keys):
-        step = progress.scaled(0.25 + 0.6 * index / len(keys), 0.25 + 0.6 * (index + 1) / len(keys))
+        step = progress.scaled(0.15 + 0.7 * index / len(keys), 0.15 + 0.7 * (index + 1) / len(keys))
         meta = PACKS[key]
-        archive = locate_archive(meta["file"], meta["url"], packs_dir, meta["sha256"],
-                                 lambda m, p, s=step: s.emit("packs", m, p * 0.5))
-        step.emit("packs", f"installing {archive.name}", 0.6)
-        packs[key] = install_pack(key, archive, profile, record, warnings)
-        step.emit("packs", f"{key} {'already installed' if packs[key]['skipped'] else 'installed'}", 1.0)
+        if pack_installed(key, record, profile):
+            # Installed before from an archive with the pinned hash: no archive needed again.
+            packs[key] = dict(record["packs"][key], skipped=True)
+        else:
+            archive = locate_archive(meta["file"], meta["url"], packs_dir, meta["sha256"],
+                                     lambda m, p, s=step: s.emit("packs", m, p * 0.5))
+            step.emit("packs", f"installing {archive.name}", 0.6)
+            packs[key] = install_pack(key, archive, profile, record, warnings)
+        packs[key]["license"] = meta["license"]
+        step.emit("packs", f"{key} ({meta['license']}) "
+                           f"{'already installed' if packs[key]['skipped'] else 'installed'}", 1.0)
 
     clean = lambda d: {k: v for k, v in d.items() if k != "skipped"}  # noqa: E731
     record = {"schema_version": 1, "updated": time.strftime("%Y-%m-%dT%H:%M:%S%z"),

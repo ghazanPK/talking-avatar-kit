@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "slug": "amina",
+  "name": "Amina",
+  "description": "Young African woman, long curly hair, long-sleeved black floor-length dress",
+  "persona": "A warm research coordinator who puts visitors at ease.",
+  "body": {
+    "gender": 0.0,
+    "age": 0.50,
+    "muscle": 0.43,
+    "weight": 0.48,
+    "height": 0.56,
+    "proportions": 0.52,
+    "cupsize": 0.42,
+    "firmness": 0.62,
+    "race": {"african": 1.0, "asian": 0.0, "caucasian": 0.0}
+  },
+  "rig": "game_engine",
+  "look": "mpfb",
+  "skin": {"material": "young_african_female"},
+  "eyes": {"mesh": "low-poly", "material": "brown"},
+  "eyebrows": {"asset": "eyebrow006"},
+  "eyelashes": {"asset": "eyelashes02"},
+  "teeth": {"asset": "teeth_shape02"},
+  "tongue": {"asset": "tongue01"},
+  "hair": {"asset": "punkduck_alpha7_curly", "pack": "hair03",
+           "credit": "hair punkduck_alpha7_curly by punkduck (MakeHuman community, hair03), CC BY"},
+  "clothes": [
+    {"asset": "shoes04", "slot": "shoes", "roughness": 0.45},
+    {"asset": "mindfront_f_dress_09", "pack": "dress03", "slot": "outfit", "roughness": 0.8,
+     "credit": "dress mindfront_f_dress_09 by Mindfront (MakeHuman community, dress03), CC BY"}
+  ],
+  "face": {"arkit": true, "visemes": "meta"},
+  "textures": {"default_max": 1024, "skin_max": 2048, "eyes_max": 512},
+  "checks": {"height_m": [1.7, 1.85], "max_bytes": 10000000}
+}

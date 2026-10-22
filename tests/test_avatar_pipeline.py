@@ -28,19 +28,104 @@ def real_spec(slug="rowan"):
     return load_spec(AVATARS_DIR / slug / "spec.json")
 
 
-@pytest.mark.parametrize("slug", ["rowan", "mira"])
+SLUGS = ["amina", "elena", "minjun", "mira", "rowan"]
+
+
+@pytest.mark.parametrize("slug", SLUGS)
 def test_shipped_specs_are_valid(slug):
     spec = real_spec(slug)
     assert spec["slug"] == slug
     assert spec["rig"] == "game_engine"
+    assert spec.get("look", "kit") in ("kit", "mpfb")
     slots = {c["slot"] for c in spec["clothes"]}
     assert "shoes" in slots and ("outfit" in slots or {"top", "bottom"} <= slots)
 
 
-def test_spec_has_no_machine_paths():
+@pytest.mark.parametrize("slug", SLUGS)
+def test_spec_has_no_machine_paths(slug):
+    text = (AVATARS_DIR / slug / "spec.json").read_text(encoding="utf-8")
+    assert ":\\" not in text and ":/" not in text.replace("https://", "") and "/mnt/" not in text
+
+
+def test_kit_and_mpfb_looks():
+    """Rowan and Mira keep the kit's skin pipeline (detail maps); the others MPFB's materials."""
     for slug in ("rowan", "mira"):
-        text = (AVATARS_DIR / slug / "spec.json").read_text(encoding="utf-8")
-        assert ":\\" not in text and ":/" not in text.replace("https://", "") and "/mnt/" not in text
+        spec = real_spec(slug)
+        assert spec["look"] == "kit" and len(spec["skin"]["detail"]) == 6
+    for slug in ("amina", "elena", "minjun"):
+        assert real_spec(slug)["look"] == "mpfb"
+
+
+@pytest.mark.parametrize("mutate, message", [
+    (lambda s: s["clothes"][1].__setitem__("pack", "nopack"), "must be a pack installed by setup"),
+    (lambda s: s["clothes"][1].pop("credit"), "credit is required"),
+    (lambda s: s["hair"].pop("credit"), "hair.credit is required"),
+    (lambda s: s["clothes"][1].__setitem__("cover", "maybe"), "cover must be one of"),
+    (lambda s: s["clothes"][0].__setitem__("tucked", True), "tucked applies to the top only"),
+    (lambda s: s["clothes"][2].__setitem__("recolor", [2, 0, 0]), "recolor must be"),
+    (lambda s: s.__setitem__("look", "toon"), "look must be one of"),
+    (lambda s: s.__setitem__("weights", {"body": "yes"}), "weights must be"),
+    (lambda s: s.__setitem__("layering", 1), "layering must be"),
+    (lambda s: s.__setitem__("persona", ""), "persona must be"),
+])
+def test_invalid_recipe_keys_are_rejected(mutate, message):
+    spec = copy.deepcopy(real_spec("elena"))
+    mutate(spec)
+    with pytest.raises(SpecError) as info:
+        validate_spec(spec, "elena")
+    assert message in str(info.value)
+
+
+def test_cc_by_credit_rule_follows_the_pack_licence():
+    spec = copy.deepcopy(real_spec("rowan"))
+    assert all("credit" not in c for c in spec["clothes"])  # CC0 community packs need no credit
+    spec["clothes"][1]["pack"] = "skirts02"
+    with pytest.raises(SpecError, match="credit is required"):
+        validate_spec(spec, "rowan")
+
+
+# --------------------------------------------------------------------------- packs
+
+def test_pack_table():
+    import re
+    for key, meta in PACKS.items():
+        assert re.fullmatch(r"[0-9a-f]{64}", meta["sha256"]), key
+        assert meta["url"].startswith("https://files2.makehumancommunity.org/"), key
+        assert meta["url"].endswith("/" + meta["file"]), key
+        assert meta["page"] == f"https://static.makehumancommunity.org/assets/assetpacks/{key}.html"
+        assert meta["license"] in ("CC0", "CC-BY"), key
+        assert meta["kind"] in ("system", "functional", "community"), key
+    hashes = [meta["sha256"] for meta in PACKS.values()]
+    assert len(hashes) == len(set(hashes))
+    assert {"shirts01", "pants01", "suits01", "dress03", "hair02", "hair03", "shirts02", "skirts02",
+            "skins02"} <= set(PACKS)
+
+
+def test_every_spec_pack_is_installed_by_setup():
+    used = {}
+    for slug in SLUGS:
+        spec = real_spec(slug)
+        for block in [spec["hair"], *spec["clothes"]]:
+            if "pack" in block:
+                assert block["pack"] in PACKS
+                assert block["asset"] in PACKS[block["pack"]]["uses"], (slug, block["asset"])
+                used.setdefault(block["pack"], set()).add(block["asset"])
+        if spec["skin"]["material"] in PACKS["skins02"]["uses"]:
+            used.setdefault("skins02", set()).add(spec["skin"]["material"])
+    for key, meta in PACKS.items():
+        if meta["kind"] == "community":
+            assert set(meta["uses"]) == used.get(key, set()), key
+
+
+def test_installed_pack_is_skipped_without_its_archive(tmp_path):
+    profile = tmp_path / "profile"
+    data = tak_setup.user_data_dir(profile)
+    (data / "packs").mkdir(parents=True)
+    (data / "packs" / "hair02.json").write_text("{}", encoding="utf-8")
+    record = {"packs": {"hair02": {"sha256": PACKS["hair02"]["sha256"], "pack_json": "hair02"}}}
+    assert tak_setup.pack_installed("hair02", record, profile)
+    record["packs"]["hair02"]["sha256"] = "0" * 64
+    assert not tak_setup.pack_installed("hair02", record, profile)
 
 
 @pytest.mark.parametrize("mutate, message", [
@@ -149,7 +234,7 @@ def test_help_exits_zero(capsys):
 
 
 def test_resolve_slugs_all():
-    assert cli.resolve_slugs([], True) == ["mira", "rowan"]
+    assert cli.resolve_slugs([], True) == SLUGS
 
 
 def test_setup_with_missing_packs_dir(tmp_path, capsys):
@@ -296,17 +381,58 @@ def test_manifest_contents(tmp_path):
     assert str(tmp_path) not in text
 
 
-def test_shipped_manifests_match_their_glbs():
+@pytest.mark.parametrize("slug", SLUGS)
+def test_shipped_manifests_match_their_glbs(slug):
     import hashlib
-    for slug in ("rowan", "mira"):
-        folder = AVATARS_DIR / slug
-        if not (folder / "manifest.json").is_file():
-            pytest.skip("avatars not built")
-        manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
-        data = (folder / manifest["file"]).read_bytes()
-        assert manifest["sha256"] == hashlib.sha256(data).hexdigest()
-        assert manifest["bytes"] == len(data)
-        assert static_checks(folder / manifest["file"], load_spec(folder / "spec.json"))["ok"]
+    folder = AVATARS_DIR / slug
+    if not (folder / "manifest.json").is_file():
+        pytest.skip("avatars not built")
+    manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
+    data = (folder / manifest["file"]).read_bytes()
+    assert manifest["sha256"] == hashlib.sha256(data).hexdigest()
+    assert manifest["bytes"] == len(data)
+    assert static_checks(folder / manifest["file"], load_spec(folder / "spec.json"))["ok"]
+
+
+@pytest.mark.parametrize("slug", SLUGS)
+def test_shipped_manifest_credits_follow_the_spec(slug):
+    """Every CC BY part is credited in the manifest exactly as its spec words it."""
+    from tak.pipeline.manifest import attribution
+    from tak.pipeline.spec import credits, pack_license
+    spec = real_spec(slug)
+    manifest = json.loads((AVATARS_DIR / slug / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["license"] == "CC-BY-4.0" and manifest["credit"] == "talking-avatar-kit by Ghazanfar Ali"
+    assert manifest["credits"] == credits(spec)
+    assert manifest["attribution"] == attribution(spec)
+    assert manifest["outfit"] == [c["asset"] for c in spec["clothes"]]
+    for line in manifest["credits"]:
+        assert line in manifest["attribution"] and line.endswith("CC BY")
+    parts = manifest["source_assets"]["parts"]
+    cc_by = [p for p in parts if str(p["license"]).startswith("CC-BY")]
+    for part in cc_by:
+        assert part.get("credit") in manifest["credits"], part
+        assert part["author"] and part["author"] in part["credit"]
+        assert pack_license(part["pack"]) == "CC-BY"
+    assert ("credited_community_assets" in manifest["licenses"]) == bool(cc_by)
+    if not cc_by:
+        assert manifest["credits"] == []
+
+
+def test_manifest_credits_for_cc_by_parts(tmp_path):
+    spec = real_spec("elena")
+    glb = make_glb(tmp_path / "elena.glb")
+    parts = {"hair": {"pack": "hair02", "author": "Elvaerwyn", "license": "CC-BY"},
+             "top": {"pack": "shirts02", "author": "Mindfront", "license": "CC-BY"}}
+    manifest = build_manifest(spec, glb, parts=parts)
+    assert manifest["credits"] == [c["credit"] for c in spec["clothes"] if "credit" in c] + [spec["hair"]["credit"]]
+    assert manifest["attribution"].startswith("Elena avatar, talking-avatar-kit by Ghazanfar Ali, licensed under "
+                                              "CC BY 4.0. Built with MPFB from CC0 MakeHuman assets. skirt ")
+    assert manifest["attribution"].endswith("(MakeHuman community, hair02), CC BY.")
+    by_part = {p["part"]: p for p in manifest["source_assets"]["parts"]}
+    assert by_part["top"]["author"] == "Mindfront" and by_part["top"]["credit"].startswith("sweater")
+    assert by_part["bottom"]["license"] == "CC-BY"  # from the pack table when no metadata is given
+    assert by_part["skin"]["license"] == "CC0" and by_part["skin"]["pack"] == "makehuman_system_assets"
+    assert manifest["persona"] == spec["persona"]
 
 
 # --------------------------------------------------------------------------- setup (offline)
