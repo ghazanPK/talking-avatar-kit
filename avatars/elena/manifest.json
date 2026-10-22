@@ -30,7 +30,7 @@
   "file": "elena.glb",
   "format": "glTF 2.0 binary (GLB)",
   "height_m": 1.6459,
-  "bytes": 5932496,
+  "bytes": 6260024,
   "outfit": [
     "shoes06",
     "punkduck_skirt_native_american_fashion",
@@ -44,7 +44,7 @@
   ],
   "attribution": "Elena avatar, talking-avatar-kit by Ghazanfar Ali, licensed under CC BY 4.0. Built with MPFB from CC0 MakeHuman assets. skirt punkduck_skirt_native_american_fashion by punkduck (MakeHuman, skirts02), CC BY; sweater mindfront_lusekofta by Mindfront (MakeHuman community, shirts02), CC BY; hair elvs_50s_updo by Elvaerwyn (MakeHuman community, hair02), CC BY.",
   "slug": "elena",
-  "sha256": "f09d66a297adc4ef23b5d3b97d179bc4416207626e6bc1dde487da2c3ea5a53b",
+  "sha256": "ae94e20d59157985a852dbf96d775b890c404fa1e54786f242c26e1420aaa803",
   "preview": "preview.png",
   "license": "CC-BY-4.0",
   "license_url": "https://creativecommons.org/licenses/by/4.0/",

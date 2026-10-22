@@ -30,7 +30,7 @@
   "file": "minjun.glb",
   "format": "glTF 2.0 binary (GLB)",
   "height_m": 1.6519,
-  "bytes": 4744816,
+  "bytes": 5072340,
   "outfit": [
     "shoes01",
     "male_casualsuit05"
@@ -38,7 +38,7 @@
   "persona": "A precise senior engineer: few words, each one exact.",
   "attribution": "Min-jun avatar, talking-avatar-kit by Ghazanfar Ali, licensed under CC BY 4.0. Built with MPFB from CC0 MakeHuman assets.",
   "slug": "minjun",
-  "sha256": "5d2fcb9f5a561586fb6adcf97800d526d2efe0e4758570eb048403af25dab69e",
+  "sha256": "be113764175c88497924ff1df283d19e42ae7be2263221d4aa6d917c85126149",
   "preview": "preview.png",
   "license": "CC-BY-4.0",
   "license_url": "https://creativecommons.org/licenses/by/4.0/",
