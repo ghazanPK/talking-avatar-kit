@@ -1,0 +1,43 @@
+{
+  "name": "Min-jun",
+  "description": "Middle-aged Asian man in a casual jacket and jeans",
+  "source": "MPFB 2.0.17 / MakeHuman system assets",
+  "licenses": {
+    "character_geometry_and_makehuman_assets": "CC0-1.0"
+  },
+  "rig": "MPFB game_engine (Unity Mecanim-oriented)",
+  "facial_shape_keys": {
+    "meta_oculus": 15,
+    "arkit": 52
+  },
+  "meta_oculus_names": [
+    "viseme_aa",
+    "viseme_CH",
+    "viseme_DD",
+    "viseme_E",
+    "viseme_FF",
+    "viseme_I",
+    "viseme_kk",
+    "viseme_nn",
+    "viseme_O",
+    "viseme_PP",
+    "viseme_RR",
+    "viseme_sil",
+    "viseme_SS",
+    "viseme_TH",
+    "viseme_U"
+  ],
+  "file": "minjun.glb",
+  "format": "glTF 2.0 binary (GLB)",
+  "height_m": 1.6519,
+  "bytes": 4744816,
+  "outfit": [
+    "shoes01",
+    "male_casualsuit05"
+  ],
+  "persona": "A precise senior engineer: few words, each one exact.",
+  "attribution": null,
+  "slug": "minjun",
+  "sha256": "5d2fcb9f5a561586fb6adcf97800d526d2efe0e4758570eb048403af25dab69e",
+  "preview": "preview.png"
+}

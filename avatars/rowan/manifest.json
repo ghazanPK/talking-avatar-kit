@@ -2,16 +2,14 @@
   "schema_version": 1,
   "slug": "rowan",
   "name": "Rowan",
-  "description": "Middle-aged African man in a slate work suit",
+  "description": "Middle-aged African man in a green polo shirt and dark cargo trousers",
   "license": "CC-BY-4.0",
   "license_url": "https://creativecommons.org/licenses/by/4.0/",
   "credit": "talking-avatar-kit by Ghazanfar Ali",
-  "attribution": "Rowan avatar, talking-avatar-kit by Ghazanfar Ali, licensed under CC BY 4.0. Built with MPFB from CC0 MakeHuman assets.",
+  "attribution": "Rowan avatar, talking-avatar-kit by Ghazanfar Ali, licensed under CC BY 4.0. Built with MPFB from CC0 MakeHuman assets. Outfit: polo shirt and cargo trousers from the MakeHuman community (CC0).",
   "file": "rowan.glb",
   "format": "glTF 2.0 binary (GLB)",
-  "bytes": 5357064,
-  "sha256": "fc583296ed65720a4bc38fa7152cf5ce7b8a17eae55aef9894b52cfea612a842",
-  "preview": "preview.png",
+  "bytes": 5319220,
   "units": "metres, +Y up, character faces +Z",
   "height_m": 1.9887,
   "generator": {
@@ -36,7 +34,8 @@
       "teeth": "teeth_shape01",
       "tongue": "tongue01",
       "hair": "short04",
-      "outfit": "male_worksuit01",
+      "top": "namuhekam_male_polo_shirt (MakeHuman community shirts01, CC0)",
+      "bottom": "cortu_cargo_pants (MakeHuman community pants01, CC0)",
       "shoes": "shoes03"
     }
   },
@@ -708,5 +707,13 @@
       "height",
       "posed_bounds"
     ]
-  }
+  },
+  "outfit": [
+    "shoes03",
+    "cortu_cargo_pants",
+    "namuhekam_male_polo_shirt"
+  ],
+  "persona": "A calm, steady lab technician who explains things once, and clearly.",
+  "sha256": "69aa505caed21eeb68183c75c0b76ec9863775523026bb564b3ebb25a3cf3ed5",
+  "preview": "preview.png"
 }

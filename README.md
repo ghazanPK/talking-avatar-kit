@@ -4,7 +4,7 @@ Prepared virtual-human avatars for the web: rigged, with facial blendshapes, bui
 
 ## Current state
 
-- **Avatars:** two prepared avatars, Rowan and Mira, in `avatars/<slug>/` (GLB, manifest, spec, preview). Each has a 53-bone humanoid rig (A-pose), the 52 ARKit facial blendshapes and 15 viseme targets, and physically based materials. Skin uses CC0 MakeHuman community skins with baked region detail (pores, wrinkles, palms, lips, colour and roughness variation) from tiles in `assets/detail/skin/`.
+- **Avatars:** five prepared avatars in `avatars/<slug>/` (GLB, manifest, preview): Rowan, Mira, Amina, Elena and Min-jun. Rowan and Mira also carry their build `spec.json`; their credits and licences are in each manifest. Each has a 53-bone humanoid rig (A-pose), the 52 ARKit facial blendshapes and 15 viseme targets, and physically based materials. Skin uses CC0 MakeHuman community skins with baked region detail (pores, wrinkles, palms, lips, colour and roughness variation) from tiles in `assets/detail/skin/`.
 - **Studio:** a local web app to browse avatars, view them under tone-mapped lighting with camera presets, drive blendshapes, apply test poses, capture reference renders, run build jobs and check installed tools.
 - **Pipeline:** headless Blender builds avatars from `spec.json` with MPFB, then validates the result (skeleton, blendshapes, materials, height, size, Blender re-import).
 

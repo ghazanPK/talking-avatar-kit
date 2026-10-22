@@ -33,7 +33,8 @@ def test_shipped_specs_are_valid(slug):
     spec = real_spec(slug)
     assert spec["slug"] == slug
     assert spec["rig"] == "game_engine"
-    assert {c["slot"] for c in spec["clothes"]} >= {"outfit", "shoes"}
+    slots = {c["slot"] for c in spec["clothes"]}
+    assert "shoes" in slots and ("outfit" in slots or {"top", "bottom"} <= slots)
 
 
 def test_spec_has_no_machine_paths():
@@ -181,7 +182,7 @@ def test_windows_path_conversion_under_wsl(monkeypatch):
 # --------------------------------------------------------------------------- GLB checks and manifest
 
 def make_glb(path, *, joints=GAME_ENGINE_BONES, body_targets=FACE, extra_material=None, height=1.9,
-             weights=(0.5, 0.25, 0.25, 0.0), default_weight=0.0):
+             weights=(0.5, 0.25, 0.25, 0.0), default_weight=0.0, clothes=("top", "bottom", "shoes")):
     """Write a small skinned GLB with the structure of a kit avatar (two vertices per mesh)."""
     bin_data = bytearray()
     accessors, views = [], []
@@ -205,7 +206,7 @@ def make_glb(path, *, joints=GAME_ENGINE_BONES, body_targets=FACE, extra_materia
     meshes, materials = [], []
     mesh_specs = [("Body", "skin", list(body_targets))] + [
         (name.capitalize(), name, []) for name in BASE_MATERIALS if name != "skin"] + [
-        ("Outfit", "outfit", []), ("Shoes", "shoes", [])]
+        (slot.capitalize(), slot, []) for slot in clothes]
     if extra_material:
         mesh_specs.append(("Extra", extra_material, []))
     for name, material, targets in mesh_specs:
@@ -287,7 +288,7 @@ def test_manifest_contents(tmp_path):
     assert manifest["morph_targets"]["arkit"] == list(ARKIT)
     assert manifest["morph_targets"]["visemes"] == list(VISEMES)
     assert manifest["morph_targets"]["count"] == 67
-    assert {m["slot"] for m in manifest["materials"]} >= set(BASE_MATERIALS) | {"outfit", "shoes"}
+    assert {m["slot"] for m in manifest["materials"]} >= set(BASE_MATERIALS) | {"top", "bottom", "shoes"}
     assert manifest["generator"]["mpfb"] == "2.0.17"
     assert set(manifest["generator"]["makehuman_packs_sha256"]) == set(PACKS)
     assert manifest["preview"] == "preview.png"

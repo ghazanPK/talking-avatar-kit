@@ -2,18 +2,16 @@
   "schema_version": 1,
   "slug": "mira",
   "name": "Mira",
-  "description": "Short young adult Asian woman in a muted teal casual suit",
+  "description": "Short young adult Asian woman in a grey double-breasted trouser suit",
   "license": "CC-BY-4.0",
   "license_url": "https://creativecommons.org/licenses/by/4.0/",
   "credit": "talking-avatar-kit by Ghazanfar Ali",
-  "attribution": "Mira avatar, talking-avatar-kit by Ghazanfar Ali, licensed under CC BY 4.0. Built with MPFB from CC0 MakeHuman assets.",
+  "attribution": "Mira avatar, talking-avatar-kit by Ghazanfar Ali, licensed under CC BY 4.0. Built with MPFB from CC0 MakeHuman assets. Outfit: double-breasted trouser suit by MargaretToigo from the MakeHuman community (CC0).",
   "file": "mira.glb",
   "format": "glTF 2.0 binary (GLB)",
-  "bytes": 6003988,
-  "sha256": "cdce07973da05f46799749ca9b75fea8b808bbc59717eb9c5c038157cd6ab7ba",
-  "preview": "preview.png",
+  "bytes": 6457256,
   "units": "metres, +Y up, character faces +Z",
-  "height_m": 1.424,
+  "height_m": 1.4131,
   "generator": {
     "pipeline": "talking-avatar-kit tak build",
     "blender": "5.2.2 LTS",
@@ -36,8 +34,8 @@
       "teeth": "teeth_shape02",
       "tongue": "tongue01",
       "hair": "ponytail01",
-      "outfit": "female_casualsuit01",
-      "shoes": "shoes02"
+      "outfit": "toigo_female_double-breasted_suit by MargaretToigo (MakeHuman community suits01, CC0)",
+      "shoes": "shoes04"
     }
   },
   "skin": {
@@ -701,5 +699,13 @@
       "height",
       "posed_bounds"
     ]
-  }
+  },
+  "outfit": [
+    "shoes04",
+    "toigo_female_double-breasted_suit"
+  ],
+  "persona": "A sharp young new hire: formal, precise, and curious about everything.",
+  "credits": [],
+  "sha256": "fa82c894e76a6f8b371956034e5900ea8bcff3bd959e29a65e4738b11881d4fd",
+  "preview": "preview.png"
 }

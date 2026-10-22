@@ -38,7 +38,8 @@
   "tongue": {"asset": "tongue01"},
   "hair": {"asset": "short04", "roughness": 0.62},
   "clothes": [
-    {"asset": "male_worksuit01", "slot": "outfit", "base_color": [0.17, 0.23, 0.29], "roughness": 0.78, "keep_texture": false},
+    {"asset": "namuhekam_male_polo_shirt", "pack": "shirts01", "slot": "top"},
+    {"asset": "cortu_cargo_pants", "pack": "pants01", "slot": "bottom"},
     {"asset": "shoes03", "slot": "shoes", "roughness": 0.45}
   ],
   "face": {"arkit": true, "visemes": "meta"},
