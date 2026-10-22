@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Talking Avatar</title>
+  <link rel="stylesheet" href="/studio.css">
+  <link rel="stylesheet" href="/talk/talk.css">
+  <script type="importmap">
+    {"imports": {"three": "/vendor/three/three.module.js", "three/addons/": "/vendor/three/addons/"}}
+  </script>
+  <script type="module" src="/js/talk.js"></script>
+</head>
+<body class="talk">
+  <header class="topbar">
+    <div class="brand">talking-avatar-kit <span>Talk</span></div>
+    <nav class="views" aria-label="Pages">
+      <a class="nav-link" href="/">Studio</a>
+    </nav>
+    <div class="status" id="status" role="status"></div>
+  </header>
+
+  <div class="talk-shell">
+    <main class="talk-stage">
+      <div id="viewport" class="viewport"></div>
+      <div class="overlay top-left" id="camera-bar" role="toolbar" aria-label="Camera presets"></div>
+      <div class="overlay bottom-left info" id="avatar-info"></div>
+      <div class="overlay center message" id="viewport-message" hidden></div>
+    </main>
+
+    <aside class="talk-panel" aria-label="Speech controls">
+      <label class="field">Avatar <select id="avatar"></select></label>
+
+      <div id="speech-missing" class="notice" hidden>
+        <strong>Speech is not installed.</strong>
+        <p>Kokoro text-to-speech is optional. Install it once with</p>
+        <pre><code>python -m tak speech setup</code></pre>
+        <p class="hint" id="speech-reason"></p>
+      </div>
+
+      <label class="field">Text
+        <textarea id="text" rows="5" maxlength="2000">Hello! I am a talking avatar. Peter bought a box of fresh apples.</textarea>
+      </label>
+      <div class="grid2">
+        <label class="field">Voice <select id="voice"></select></label>
+        <label class="field">Speed <span class="value" id="speed-value">1.00</span>
+          <input id="speed" type="range" min="0.6" max="1.6" step="0.05" value="1">
+        </label>
+      </div>
+      <div class="grid2">
+        <label class="field">Mood <select id="mood"></select></label>
+        <label class="field">Intensity <span class="value" id="mood-value">0.60</span>
+          <input id="mood-intensity" type="range" min="0" max="1" step="0.05" value="0.6">
+        </label>
+      </div>
+      <div class="row actions">
+        <button type="button" id="speak" class="primary">Speak</button>
+        <button type="button" id="stop">Stop</button>
+      </div>
+      <p class="hint" id="speech-info"></p>
+      <div class="words" id="words" aria-live="polite"></div>
+      <details class="options">
+        <summary>Options</summary>
+        <label class="check"><input type="checkbox" id="opt-blink" checked> Blinks</label>
+        <label class="check"><input type="checkbox" id="opt-gaze" checked> Gaze and saccades</label>
+        <label class="check"><input type="checkbox" id="opt-idle" checked> Idle motion</label>
+        <label class="field">Lip-sync offset (ms) <span class="value" id="offset-value">0</span>
+          <input id="offset" type="range" min="-150" max="150" step="5" value="0">
+        </label>
+      </details>
+    </aside>
+  </div>
+</body>
+</html>

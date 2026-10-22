@@ -1,0 +1,33 @@
+/* Talking demo page; builds on studio.css. */
+body.talk { grid-template-rows: 44px minmax(0, 1fr); }
+.nav-link { color: var(--muted); text-decoration: none; padding: 4px 8px; border-radius: 4px; }
+.nav-link:hover { color: var(--text); background: var(--panel-2); }
+.talk-shell { display: grid; grid-template-columns: minmax(0, 1fr) 320px; min-height: 0; }
+.talk-stage { position: relative; min-height: 0; }
+.talk-stage .viewport { position: absolute; inset: 0; }
+.talk-stage .overlay { position: absolute; z-index: 2; }
+.talk-stage .top-left { top: 10px; left: 10px; display: flex; gap: 4px; }
+.talk-stage .top-left button.active { border-color: var(--accent); color: #fff; }
+.talk-stage .bottom-left { bottom: 10px; left: 10px; color: var(--muted); font-size: 12px; background: rgba(21, 24, 29, .7); padding: 4px 8px; border-radius: 4px; }
+.talk-stage .center { inset: 0; display: grid; place-items: center; color: var(--muted); pointer-events: none; }
+.talk-panel { background: var(--panel); border-left: 1px solid var(--line); padding: 12px 14px; overflow-y: auto; }
+.talk-panel textarea { resize: vertical; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grid2 .field { margin: 6px 0; }
+.field .value { float: right; color: var(--text); font-family: var(--mono); font-size: 11px; }
+.actions { margin: 10px 0; }
+.actions button { flex: 1; padding: 7px 8px; }
+.notice { border: 1px solid var(--warn); background: rgba(231, 182, 92, .08); border-radius: var(--radius); padding: 8px 10px; margin: 8px 0; }
+.notice p { margin: 4px 0; }
+.notice pre { margin: 6px 0; background: var(--bg); padding: 6px 8px; border-radius: 4px; }
+.words { display: flex; flex-wrap: wrap; gap: 3px; margin: 8px 0; min-height: 20px; }
+.words span { padding: 1px 4px; border-radius: 3px; background: var(--panel-2); color: var(--muted); font-size: 12px; }
+.words span.on { background: var(--accent-2); color: #fff; }
+.options { margin-top: 12px; color: var(--muted); }
+.options summary { cursor: pointer; margin-bottom: 6px; }
+.options .check { display: flex; margin: 4px 0; }
+@media (max-width: 760px) {
+  body.talk { overflow: auto; }
+  .talk-shell { grid-template-columns: 1fr; grid-template-rows: 60vh auto; }
+  .talk-panel { border-left: 0; border-top: 1px solid var(--line); }
+}

@@ -190,3 +190,7 @@ main { min-width: 0; min-height: 0; position: relative; }
   .joblog-body { grid-template-columns: 1fr; }
   .job-list { max-height: 80px; border-right: 0; }
 }
+
+/* Link to the talking demo page in the top bar */
+.views .nav-link { color: var(--muted); text-decoration: none; padding: 4px 8px; border: 1px solid transparent; border-radius: 4px; }
+.views .nav-link:hover { color: var(--text); background: var(--panel-2); }

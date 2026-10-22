@@ -67,6 +67,21 @@ Community skin used by Rowan: *skin male african middleage* (`mindfront_skin_mal
 - Source: https://github.com/KhronosGroup/glTF-Blender-IO
 - Licence: Apache-2.0. Writes the GLB files.
 
+
 ## Fabric and pattern library
 
 `assets/fabrics/` (15 tileable fabrics: greyscale albedo, tangent-space normal map, optional roughness variation) and `assets/patterns/` (5 tileable pattern masks) are part of this kit, CC BY 4.0, credit "talking-avatar-kit by Ghazanfar Ali". The source swatches were generated on 2026-10-08 with an image generator from text prompts recorded by the author and processed with `tak/pipeline/fabrics.py` (luminance, flat-field correction, alignment of the weave between albedo and height, seam repair by offsetting and quilting along minimum-error cuts, periodic resampling, normal maps from height at the real patch size; pattern masks snapped to exact palettes and cropped to whole periods). `fabrics.json` and `patterns.json` list the real patch size of every tile and the sha256 of each source image and output. The processing tool uses [NumPy](https://numpy.org) (BSD-3-Clause) and [Pillow](https://python-pillow.org) (MIT-CMU); neither is needed to use the library.
+
+## Speech (optional)
+
+Nothing in this section is vendored. `python -m tak speech setup` installs the packages from PyPI (PyTorch from the official CPU wheel index) into the git-ignored `.tak/speech-venv`, and the model and voices are downloaded from the Hugging Face Hub into the git-ignored `.tak/models/` on first use; `.tak/speech-install.json` records the installed versions and the sha256 of every downloaded model file. The talking rig (`studio/js/talking/`) and the phoneme-to-viseme conversion (`tak/speech/`) are part of this kit (MIT).
+
+| Component | Version tested | Source | Licence | Use |
+|---|---|---|---|---|
+| [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) model and voices | v1.0 (`kokoro-v1_0.pth` sha256 `496dba118d1a58f5f3db2efc88dbdc216e0483fc89fe6e47ee1f2c53f18ad1e4`) | Hugging Face Hub `hexgrad/Kokoro-82M` | Apache-2.0 | Text-to-speech weights, downloaded on first use |
+| [kokoro](https://github.com/hexgrad/kokoro) | 0.9.4 | PyPI | Apache-2.0 | Inference library; reports the predicted phoneme durations used for lip-sync |
+| [misaki](https://github.com/hexgrad/misaki) | 0.9.4 | PyPI | Apache-2.0 | Grapheme-to-phoneme conversion (English dictionaries, Japanese and Mandarin extras) |
+| [PyTorch](https://pytorch.org) | 2.14.1 (CPU) | https://download.pytorch.org/whl/cpu | BSD-3-Clause | Runs Kokoro |
+| [spaCy](https://spacy.io) and `en_core_web_sm` | 3.8.16, 3.8.0 | PyPI, spaCy model release | MIT | English tokenisation for misaki |
+| [phonemizer-fork](https://pypi.org/project/phonemizer-fork/) with [espeak-ng](https://github.com/espeak-ng/espeak-ng) (through `espeakng-loader`) | 3.3.2, 0.2.4 | PyPI | GPL-3.0 | G2P for Spanish, French, Hindi, Italian and Portuguese; installed as tools, not distributed with the kit |
+| [huggingface_hub](https://github.com/huggingface/huggingface_hub), [soundfile](https://github.com/bastibe/python-soundfile), NumPy | as resolved by pip | PyPI | Apache-2.0, BSD-3-Clause, BSD-3-Clause | Model download, audio |

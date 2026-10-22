@@ -24,6 +24,8 @@ Other commands of the same entry point:
 | `python -m tak setup` | Install MPFB and the CC0 asset packs used by headless builds |
 | `python -m tak build <slug>` / `--all` | Build avatars from `avatars/<slug>/spec.json` |
 | `python -m tak check` | Report Python, Blender, MPFB and pack availability as JSON |
+| `python -m tak demo` | The same server, opening the talking demo at `/talk/` (see [talking.md](talking.md)) |
+| `python -m tak speech setup` | Install the optional Kokoro speech into `.tak/speech-venv` |
 
 ## Layout
 
@@ -102,7 +104,9 @@ All endpoints are on the local server and exchange JSON. State-changing requests
 | `GET /api/renders` | Saved render sets |
 | `POST /api/renders` | Save `{"slug", "label", "name", "data_url"}` (PNG) or `{"slug", "label", "name", "json"}` under `build/renders/` |
 
-Files: `/avatars/...` (repository avatars), `/extra/<n>/...` (extra avatar folder `n`), `/renders/...` (saved renders); everything else comes from `studio/`.
+Speech endpoints (`/api/speech/status`, `/api/speech/voices`, `POST /api/speech/say`, `/api/speech/audio/<id>.wav`) are described in [talking.md](talking.md).
+
+Files: `/avatars/...` (repository avatars), `/extra/<n>/...` (extra avatar folder `n`), `/renders/...` (saved renders); everything else comes from `studio/` (the talking demo is `studio/talk/`, served at `/talk/`).
 
 ## Tests
 

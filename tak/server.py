@@ -17,6 +17,10 @@ API (all JSON):
 * ``POST /api/jobs/<id>/cancel``   cancel (also ``DELETE /api/jobs/<id>``)
 * ``GET  /api/renders``            saved render sets under ``build/renders/``
 * ``POST /api/renders``            ``{"slug", "label", "name", "data_url"}`` (PNG) or ``"json"``
+* ``GET  /api/speech/status``      optional Kokoro speech: installed, languages, setup command
+* ``GET  /api/speech/voices``      Kokoro voices
+* ``POST /api/speech/say``         ``{"text", "voice", "speed"}`` -> audio URL and timeline
+* ``GET  /api/speech/audio/<id>.wav`` synthesised clip (cached in ``.tak/cache/speech``)
 
 Files: ``/avatars/...`` (repository avatars), ``/extra/<n>/...`` (extra avatar
 folder ``n`` from the settings), ``/renders/...`` (``build/renders``).
@@ -253,7 +257,26 @@ class StudioServer(ThreadingHTTPServer):
         self.python = python or sys.executable
         self.runner = JobRunner()
         self._check_lock = threading.Lock()
+        self._speech = None
+        self._speech_lock = threading.Lock()
         super().__init__(address, StudioHandler)
+
+    # speech (optional Kokoro, see tak/speech) ---------------------------------
+    @property
+    def speech(self):
+        with self._speech_lock:
+            if self._speech is None:
+                from .speech.service import SpeechService
+                self._speech = SpeechService(self.repo_root)
+            return self._speech
+
+    @speech.setter
+    def speech(self, service) -> None:
+        self._speech = service
+
+    def close_speech(self) -> None:
+        if self._speech is not None:
+            self._speech.close()
 
     # settings ---------------------------------------------------------------
     def load_settings(self) -> dict:
@@ -498,8 +521,35 @@ class StudioHandler(BaseHTTPRequestHandler):
         elif parts == ["info"] and method == "GET":
             self._json({"version": __version__, "pipeline_available": pipeline_available(),
                         "platform": tak_platform.platform_name()})
+        elif parts[:1] == ["speech"]:
+            self._speech_api(method, parts[1:])
         else:
             raise ApiError(HTTPStatus.NOT_FOUND, f"no API route {method} /api/{route}")
+
+    def _speech_api(self, method: str, parts: list[str]) -> None:
+        from .speech.service import SpeechError
+        srv = self.server
+        try:
+            if parts == ["status"] and method == "GET":
+                self._json(srv.speech.status())
+            elif parts == ["voices"] and method == "GET":
+                self._json(srv.speech.voices())
+            elif parts == ["say"] and method == "POST":
+                payload = self._body()
+                if not isinstance(payload, dict):
+                    raise ApiError(HTTPStatus.BAD_REQUEST, "expected a JSON object")
+                clip = srv.speech.say(payload.get("text"), payload.get("voice"), payload.get("speed"))
+                clip.pop("wav_path", None)
+                self._json(clip)
+            elif len(parts) == 2 and parts[0] == "audio" and method in ("GET", "HEAD"):
+                path = srv.speech.audio_path(parts[1])
+                if path is None:
+                    raise ApiError(HTTPStatus.NOT_FOUND, "no such clip")
+                self._send(HTTPStatus.OK, path.read_bytes(), "audio/wav", head=method == "HEAD")
+            else:
+                raise ApiError(HTTPStatus.NOT_FOUND, f"no API route {method} /api/speech/{'/'.join(parts)}")
+        except SpeechError as exc:
+            raise ApiError(exc.status, str(exc)) from None
 
     def _body_optional(self) -> None:
         length = int(self.headers.get("Content-Length") or 0)
@@ -536,14 +586,14 @@ def make_server(port: int = DEFAULT_PORT, repo_root: Path = REPO_ROOT, settings_
     return StudioServer(("127.0.0.1", port), repo_root=repo_root, settings_file=settings_file, python=python)
 
 
-def serve(port: int = DEFAULT_PORT, open_browser: bool = True) -> int:
+def serve(port: int = DEFAULT_PORT, open_browser: bool = True, page: str = "/", label: str = "Studio") -> int:
     try:
         server = make_server(port)
     except OSError as exc:
-        print(f"Could not start the Studio on 127.0.0.1:{port}: {exc}. Try another port with --port.", file=sys.stderr)
+        print(f"Could not start the {label} on 127.0.0.1:{port}: {exc}. Try another port with --port.", file=sys.stderr)
         return 1
-    url = f"http://127.0.0.1:{server.server_address[1]}/"
-    print(f"talking-avatar-kit Studio {__version__} running at {url}", flush=True)
+    url = f"http://127.0.0.1:{server.server_address[1]}{page}"
+    print(f"talking-avatar-kit {label} {__version__} running at {url}", flush=True)
     print("Press Ctrl+C to stop.", flush=True)
     if open_browser:
         threading.Timer(0.5, _open, args=(url,)).start()
@@ -553,6 +603,7 @@ def serve(port: int = DEFAULT_PORT, open_browser: bool = True) -> int:
         print("\nStopping the Studio.", flush=True)
     finally:
         server.runner.shutdown()
+        server.close_speech()
         server.server_close()
     return 0
 
