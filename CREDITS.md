@@ -67,6 +67,21 @@ Community skin used by Rowan: *skin male african middleage* (`mindfront_skin_mal
 - Source: https://github.com/KhronosGroup/glTF-Blender-IO
 - Licence: Apache-2.0. Writes the GLB files.
 
+## FBX export and Unity package
+
+Nothing in this section is vendored.
+
+### Blender FBX importer and exporter (io_scene_fbx)
+
+- Version: the one bundled with Blender (5.15.0 with Blender 5.2.2 LTS; recorded in each exported `<slug>.tak.json`)
+- Source: bundled with Blender, https://projects.blender.org/blender/blender (scripts/addons_core/io_scene_fbx)
+- Licence: GPL-2.0-or-later. Used as a tool by `blender/export_fbx.py` to write and re-import the FBX files; none of its code is part of the kit or of the exported files. `blender/tak_blender/fbx.py` wraps one of its internal functions at run time so texture paths in the FBX stay relative.
+
+### Unity
+
+- Version used for the checks: Unity 6000.3.25f1 with the Universal Render Pipeline package bundled with that editor
+- Source: https://unity.com/download (installed by the user; not bundled)
+- Licence: Unity Editor Software Terms (proprietary). `unity/` is an original MIT package that uses the public Unity editor and engine APIs; it contains no Unity code or assets. `python -m tak export fbx --unity-check` runs an installed editor in batch mode.
 
 ## Fabric and pattern library
 

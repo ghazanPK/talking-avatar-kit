@@ -6,6 +6,7 @@ Commands:
 * ``setup ...``                       install MPFB and asset packs (avatar pipeline)
 * ``build ...``                       build avatars from their specifications (avatar pipeline)
 * ``check``                           report tool availability as JSON (avatar pipeline)
+* ``export fbx ...``                  export avatars to Unity-ready FBX (avatar pipeline)
 * ``demo [--port N] [--no-open]``     launch the talking-avatar demo page (``/talk/``)
 * ``speech setup|status|voices|say``  optional Kokoro speech (``tak.speech``)
 
@@ -21,7 +22,8 @@ import sys
 
 from . import __version__
 
-PIPELINE_COMMANDS = {"setup": "setup_main", "build": "build_main", "check": "check_main"}
+PIPELINE_COMMANDS = {"setup": "setup_main", "build": "build_main", "check": "check_main",
+                     "export": "export_main"}
 PIPELINE_MODULES = ("tak.pipeline", "tak.pipeline.cli")
 
 USAGE = """usage: python -m tak <command> [options]
@@ -31,6 +33,7 @@ commands:
   setup     install MPFB and the CC0 asset packs for headless builds
   build     build avatars (<slug> or --all) with headless Blender
   check     print tool availability (Python, Blender, MPFB, packs) as JSON
+  export    export avatars to Unity-ready FBX: export fbx <slug>|--all [--out DIR] [--unity-check]
   demo      launch the talking-avatar demo (same server, opens /talk/)
   speech    optional Kokoro speech: setup, status, voices, say
 

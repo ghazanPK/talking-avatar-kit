@@ -207,12 +207,20 @@ def collect_check(blender_option: str | None = None, *, deep: bool = False) -> d
     return report
 
 
-COMMANDS = {"setup": setup_main, "build": build_main, "check": check_main, "validate": validate_main}
+def export_main(argv: Sequence[str] | None = None) -> int:
+    """``export fbx <slug>|--all ...``: Unity-ready FBX export (see tak.pipeline.export)."""
+    from .export import export_main as run_export
+
+    return run_export(argv)
+
+
+COMMANDS = {"setup": setup_main, "build": build_main, "check": check_main, "validate": validate_main,
+            "export": export_main}
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
     if not argv or argv[0] not in COMMANDS:
-        print("usage: python -m tak.pipeline {setup,build,check,validate} [options]", file=sys.stderr)
+        print("usage: python -m tak.pipeline {setup,build,check,validate,export} [options]", file=sys.stderr)
         return 2
     return COMMANDS[argv[0]](argv[1:])

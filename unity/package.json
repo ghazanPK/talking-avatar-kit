@@ -1,0 +1,18 @@
+{
+  "name": "com.ghazanpk.talking-avatar-kit",
+  "displayName": "Talking Avatar Kit",
+  "version": "0.1.0",
+  "unity": "2022.3",
+  "description": "Imports the talking-avatar-kit FBX avatars as Humanoid characters (T-pose reference from the A-pose bind, URP Lit or Standard materials from the exported textures) and exposes their ARKit and viseme blendshapes by name for lip-sync.",
+  "keywords": ["avatar", "humanoid", "blendshapes", "visemes", "arkit", "lip-sync"],
+  "license": "MIT",
+  "author": {
+    "name": "Ghazanfar Ali",
+    "url": "https://github.com/ghazanPK/talking-avatar-kit"
+  },
+  "documentationUrl": "https://github.com/ghazanPK/talking-avatar-kit/blob/main/docs/unity.md",
+  "dependencies": {
+    "com.unity.modules.animation": "1.0.0",
+    "com.unity.modules.imageconversion": "1.0.0"
+  }
+}
