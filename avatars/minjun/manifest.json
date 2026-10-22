@@ -36,8 +36,11 @@
     "male_casualsuit05"
   ],
   "persona": "A precise senior engineer: few words, each one exact.",
-  "attribution": null,
+  "attribution": "Min-jun avatar, talking-avatar-kit by Ghazanfar Ali, licensed under CC BY 4.0. Built with MPFB from CC0 MakeHuman assets.",
   "slug": "minjun",
   "sha256": "5d2fcb9f5a561586fb6adcf97800d526d2efe0e4758570eb048403af25dab69e",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "license": "CC-BY-4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "credit": "talking-avatar-kit by Ghazanfar Ali"
 }

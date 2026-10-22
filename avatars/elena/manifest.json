@@ -42,8 +42,11 @@
     "sweater mindfront_lusekofta by Mindfront (MakeHuman community, shirts02), CC BY",
     "hair elvs_50s_updo by Elvaerwyn (MakeHuman community, hair02), CC BY"
   ],
-  "attribution": "Elena: built with MPFB from CC0 MakeHuman assets. skirt punkduck_skirt_native_american_fashion by punkduck (MakeHuman, skirts02), CC BY; sweater mindfront_lusekofta by Mindfront (MakeHuman community, shirts02), CC BY; hair elvs_50s_updo by Elvaerwyn (MakeHuman community, hair02), CC BY.",
+  "attribution": "Elena avatar, talking-avatar-kit by Ghazanfar Ali, licensed under CC BY 4.0. built with MPFB from CC0 MakeHuman assets. skirt punkduck_skirt_native_american_fashion by punkduck (MakeHuman, skirts02), CC BY; sweater mindfront_lusekofta by Mindfront (MakeHuman community, shirts02), CC BY; hair elvs_50s_updo by Elvaerwyn (MakeHuman community, hair02), CC BY.",
   "slug": "elena",
   "sha256": "f09d66a297adc4ef23b5d3b97d179bc4416207626e6bc1dde487da2c3ea5a53b",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "license": "CC-BY-4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "credit": "talking-avatar-kit by Ghazanfar Ali"
 }
